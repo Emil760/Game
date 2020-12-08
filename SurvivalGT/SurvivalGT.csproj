@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94A248BF-F210-400B-8AA0-C8DC916AEB3A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SurvivalGT</RootNamespace>
+    <AssemblyName>SurvivalGT</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InfoUC\ComponentUC.xaml.cs">
+      <DependentUpon>ComponentUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\ToolUC.xaml.cs">
+      <DependentUpon>ToolUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\WeaponUC.xaml.cs">
+      <DependentUpon>WeaponUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Ammo.cs" />
+    <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Bag.cs" />
+    <Compile Include="Items\Book.cs" />
+    <Compile Include="Items\Food.cs" />
+    <Compile Include="Items\GasMask.cs" />
+    <Compile Include="Items\IBreakable.cs" />
+    <Compile Include="Items\IRepairable.cs" />
+    <Compile Include="Items\ISpoilable.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\Medecine.cs" />
+    <Compile Include="Items\Recyclable.cs" />
+    <Compile Include="Items\Tool.cs" />
+    <Compile Include="Items\Weapon.cs" />
+    <Compile Include="Models\Craft.cs" />
+    <Compile Include="Models\Effect.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\Loots.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Utility\Command.cs" />
+    <Compile Include="Utility\Convertors.cs" />
+    <Compile Include="Utility\Convertots.cs" />
+    <Compile Include="Models\ItemsDataTemplateSelector.cs" />
+    <Compile Include="Utility\ObservableObject.cs" />
+    <Compile Include="viewmodels\InventoryViewModel.cs" />
+    <Compile Include="viewmodels\MainViewModel.cs" />
+    <Compile Include="viewmodels\RepairViewModel.cs" />
+    <Compile Include="views\InventoryUserControl.xaml.cs">
+      <DependentUpon>InventoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\MapUserControl.xaml.cs">
+      <DependentUpon>MapUserControl.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="InfoUC\ComponentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\ToolUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\WeaponUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\InventoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\MapUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\CategoryButtonTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\DropTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\InfoDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\ListViewInventoryTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\tools\instruments.png" />
+    <Resource Include="images\tools\old_instruments.png" />
+    <Resource Include="images\tools\steel_instruments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\animals\bear.png" />
+    <Resource Include="images\animals\bear_corpse.png" />
+    <Resource Include="images\animals\bear_corpse_rad.png" />
+    <Resource Include="images\animals\boar.png" />
+    <Resource Include="images\animals\boar_corpse.png" />
+    <Resource Include="images\animals\boar_corpse_rad.png" />
+    <Resource Include="images\animals\boar_rad.png" />
+    <Resource Include="images\animals\lynx.png" />
+    <Resource Include="images\animals\lynx_corpse.png" />
+    <Resource Include="images\animals\lynx_corpse_rad.png" />
+    <Resource Include="images\animals\rat_corpse.png" />
+    <Resource Include="images\animals\rat_corpse_rad.png" />
+    <Resource Include="images\animals\rat_rad.png" />
+    <Resource Include="images\animals\snake_corpse.png" />
+    <Resource Include="images\animals\wolf.png" />
+    <Resource Include="images\animals\wolf_corpse.png" />
+    <Resource Include="images\animals\wolf_corpse_rad.png" />
+    <Resource Include="images\animals\wolf_rad.png" />
+    <Resource Include="images\armors\handmade_armor.png" />
+    <Resource Include="images\armors\hazmat.png" />
+    <Resource Include="images\armors\iron_armor.png" />
+    <Resource Include="images\armors\leather_armor.png" />
+    <Resource Include="images\armors\leshyi.png" />
+    <Resource Include="images\armors\military_armor.png" />
+    <Resource Include="images\armors\motorway_armor.png" />
+    <Resource Include="images\armors\steel_armor.png" />
+    <Resource Include="images\armors\tank_armor.png" />
+    <Resource Include="images\backgrounds\1.png" />
+    <Resource Include="images\backgrounds\2.jpg" />
+    <Resource Include="images\backgrounds\3.png" />
+    <Resource Include="images\backgrounds\4.jpg" />
+    <Resource Include="images\backgrounds\5.png" />
+    <Resource Include="images\backgrounds\6.png" />
+    <Resource Include="images\backgrounds\7.jpg" />
+    <Resource Include="images\backgrounds\8.png" />
+    <Resource Include="images\backgrounds\background1.jpg" />
+    <Resource Include="images\backgrounds\background2.jpg" />
+    <Resource Include="images\backgrounds\background3.jpg" />
+    <Resource Include="images\backgrounds\background8.jpg" />
+    <Resource Include="images\backgrounds\day_night.jpg" />
+    <Resource Include="images\backgrounds\F6Ew8.png" />
+    <Resource Include="images\backgrounds\games-background-1.jpg" />
+    <Resource Include="images\backgrounds\grey_lines.jpg" />
+    <Resource Include="images\backgrounds\grid.jpg" />
+    <Resource Include="images\backgrounds\grunge-background-grungy-canvas_19-122664.jpg" />
+    <Resource Include="images\backgrounds\images %281%29.jpg" />
+    <Resource Include="images\backgrounds\images %282%29.jpg" />
+    <Resource Include="images\backgrounds\images.jpg" />
+    <Resource Include="images\backgrounds\Inventory.png" />
+    <Resource Include="images\backgrounds\paper.jpg" />
+    <Resource Include="images\backgrounds\pexels-photo-207253.jpeg" />
+    <Resource Include="images\backgrounds\pexels-photo-242616.jpeg" />
+    <Resource Include="images\backgrounds\pexels-photo-326311.jpg" />
+    <Resource Include="images\backgrounds\thumb2-black-texture-surface-desktop-wallpapers.jpg" />
+    <Resource Include="images\backgrounds\9.jpg" />
+    <Resource Include="images\bags\bag0.png" />
+    <Resource Include="images\bags\bag1.png" />
+    <Resource Include="images\bags\bag2.png" />
+    <Resource Include="images\bags\bag3.png" />
+    <Resource Include="images\bags\bag4.png" />
+    <Resource Include="images\battle\action.png" />
+    <Resource Include="images\battle\ak47.png" />
+    <Resource Include="images\battle\barrel.png" />
+    <Resource Include="images\battle\bee.png" />
+    <Resource Include="images\battle\bees.png" />
+    <Resource Include="images\battle\bleeding.png" />
+    <Resource Include="images\battle\blindness.png" />
+    <Resource Include="images\battle\body.png" />
+    <Resource Include="images\battle\boxes.png" />
+    <Resource Include="images\battle\brocken_tree.png" />
+    <Resource Include="images\battle\bullet.png" />
+    <Resource Include="images\battle\commom_armor.png" />
+    <Resource Include="images\battle\compound_armor.png" />
+    <Resource Include="images\battle\corridor1.png" />
+    <Resource Include="images\battle\corridor2.png" />
+    <Resource Include="images\battle\crossbow1.png" />
+    <Resource Include="images\battle\crossbow2.png" />
+    <Resource Include="images\battle\crossbow3.png" />
+    <Resource Include="images\battle\damage.png" />
+    <Resource Include="images\battle\exit.png" />
+    <Resource Include="images\battle\fire.png" />
+    <Resource Include="images\battle\fist.png" />
+    <Resource Include="images\battle\flash.png" />
+    <Resource Include="images\battle\flint_spear.png" />
+    <Resource Include="images\battle\freezed.png" />
+    <Resource Include="images\battle\gate_open.png" />
+    <Resource Include="images\battle\goo.png" />
+    <Resource Include="images\battle\hand.png" />
+    <Resource Include="images\battle\handmade_cloth.png" />
+    <Resource Include="images\battle\head.png" />
+    <Resource Include="images\battle\highway_armor.png" />
+    <Resource Include="images\battle\hillock.png" />
+    <Resource Include="images\battle\hillock2.png" />
+    <Resource Include="images\battle\hive.png" />
+    <Resource Include="images\battle\hunter_armor.png" />
+    <Resource Include="images\battle\iron_armor.png" />
+    <Resource Include="images\battle\knife.png" />
+    <Resource Include="images\battle\Lamp.png" />
+    <Resource Include="images\battle\leather_armor.png" />
+    <Resource Include="images\battle\leg.png" />
+    <Resource Include="images\battle\military_armor.png" />
+    <Resource Include="images\battle\mine.png" />
+    <Resource Include="images\battle\mosin.png" />
+    <Resource Include="images\battle\mushroom.png" />
+    <Resource Include="images\battle\mushroom_active.png" />
+    <Resource Include="images\battle\poison.png" />
+    <Resource Include="images\battle\pps42.png" />
+    <Resource Include="images\battle\provoke.png" />
+    <Resource Include="images\battle\rad_armor.png" />
+    <Resource Include="images\battle\range.png" />
+    <Resource Include="images\battle\sand_bag.png" />
+    <Resource Include="images\battle\slowed.png" />
+    <Resource Include="images\battle\snake.png" />
+    <Resource Include="images\battle\snatch.png" />
+    <Resource Include="images\battle\steel_armor.png" />
+    <Resource Include="images\battle\stone1.png" />
+    <Resource Include="images\battle\stone2.png" />
+    <Resource Include="images\battle\stone3.png" />
+    <Resource Include="images\battle\swamp.png" />
+    <Resource Include="images\battle\table.png" />
+    <Resource Include="images\battle\tank_armor.png" />
+    <Resource Include="images\battle\tower.png" />
+    <Resource Include="images\battle\trap1.png" />
+    <Resource Include="images\battle\trap2.png" />
+    <Resource Include="images\battle\tree.png" />
+    <Resource Include="images\battle\tree2.png" />
+    <Resource Include="images\battle\tree3.png" />
+    <Resource Include="images\battle\tree4.png" />
+    <Resource Include="images\battle\tree5.png" />
+    <Resource Include="images\battle\wall1.png" />
+    <Resource Include="images\battle\wall10.png" />
+    <Resource Include="images\battle\wall11.png" />
+    <Resource Include="images\battle\wall12.png" />
+    <Resource Include="images\battle\wall13.png" />
+    <Resource Include="images\battle\wall14.png" />
+    <Resource Include="images\battle\wall15.png" />
+    <Resource Include="images\battle\wall16.png" />
+    <Resource Include="images\battle\wall2.png" />
+    <Resource Include="images\battle\wall3.png" />
+    <Resource Include="images\battle\wall4.png" />
+    <Resource Include="images\battle\wall5.png" />
+    <Resource Include="images\battle\wall6.png" />
+    <Resource Include="images\battle\wall7.png" />
+    <Resource Include="images\battle\wall8.png" />
+    <Resource Include="images\battle\wall9.png" />
+    <Resource Include="images\bioms\blockage.jpg" />
+    <Resource Include="images\bioms\blockage_open.png" />
+    <Resource Include="images\bioms\boarded_up_door1.png" />
+    <Resource Include="images\bioms\boarded_up_door_open.png" />
+    <Resource Include="images\bioms\cost.png" />
+    <Resource Include="images\bioms\forest.png" />
+    <Resource Include="images\bioms\gate.jpg" />
+    <Resource Include="images\bioms\gate_open.png" />
+    <Resource Include="images\bioms\grid.jpg" />
+    <Resource Include="images\bioms\grid_open.png" />
+    <Resource Include="images\bioms\iron_door.png" />
+    <Resource Include="images\bioms\luke.jpg" />
+    <Resource Include="images\bioms\luke_open.png" />
+    <Resource Include="images\bioms\mountain.png" />
+    <Resource Include="images\bioms\rad_forest.png" />
+    <Resource Include="images\bioms\rad_swap.png" />
+    <Resource Include="images\bioms\rad_wasteland.png" />
+    <Resource Include="images\bioms\steel_door.jpg" />
+    <Resource Include="images\bioms\steel_door.png" />
+    <Resource Include="images\bioms\steel_door_open.png" />
+    <Resource Include="images\bioms\swamp.png" />
+    <Resource Include="images\bioms\wasteland.png" />
+    <Resource Include="images\bioms\wood_door.png" />
+    <Resource Include="images\bioms\wood_door_open.png" />
+    <Resource Include="images\books\book.png" />
+    <Resource Include="images\buildings\administration.png" />
+    <Resource Include="images\buildings\apteka.png" />
+    <Resource Include="images\buildings\atelier.png" />
+    <Resource Include="images\buildings\cafe.png" />
+    <Resource Include="images\buildings\camp.png" />
+    <Resource Include="images\buildings\cantina.png" />
+    <Resource Include="images\buildings\car_workshop.png" />
+    <Resource Include="images\buildings\clinic.png" />
+    <Resource Include="images\buildings\cnstruction.png" />
+    <Resource Include="images\buildings\department_store.png" />
+    <Resource Include="images\buildings\electronics_store.png" />
+    <Resource Include="images\buildings\garage.png" />
+    <Resource Include="images\buildings\gastronome.png" />
+    <Resource Include="images\buildings\gas_station.png" />
+    <Resource Include="images\buildings\goods_shop.png" />
+    <Resource Include="images\buildings\grocerystore.png" />
+    <Resource Include="images\buildings\hospital.png" />
+    <Resource Include="images\buildings\house_wooden.png" />
+    <Resource Include="images\buildings\house_yellow.png" />
+    <Resource Include="images\buildings\hunter_shop.png" />
+    <Resource Include="images\buildings\hut_of_branches.png" />
+    <Resource Include="images\buildings\institute.png" />
+    <Resource Include="images\buildings\militarybase.png" />
+    <Resource Include="images\buildings\old_house1.png" />
+    <Resource Include="images\buildings\old_house2.png" />
+    <Resource Include="images\buildings\old_house3.png" />
+    <Resource Include="images\buildings\post_office.png" />
+    <Resource Include="images\buildings\restaurant.png" />
+    <Resource Include="images\buildings\ruin_wooden.png" />
+    <Resource Include="images\buildings\ruin_yellow.png" />
+    <Resource Include="images\buildings\school.png" />
+    <Resource Include="images\buildings\technikum.png" />
+    <Resource Include="images\companions\attack.png" />
+    <Resource Include="images\companions\blindness.png" />
+    <Resource Include="images\companions\distraction.png" />
+    <Resource Include="images\companions\entanglement.png" />
+    <Resource Include="images\companions\fly.png" />
+    <Resource Include="images\companions\hunter.png" />
+    <Resource Include="images\companions\immobilization.png" />
+    <Resource Include="images\companions\move1.png" />
+    <Resource Include="images\companions\move2.png" />
+    <Resource Include="images\companions\provocation.png" />
+    <Resource Include="images\companions\raven1.png" />
+    <Resource Include="images\companions\raven2.png" />
+    <Resource Include="images\companions\raven3.png" />
+    <Resource Include="images\companions\raven_attack.png" />
+    <Resource Include="images\companions\search_ammo.png" />
+    <Resource Include="images\companions\search_component.png" />
+    <Resource Include="images\companions\search_food.png" />
+    <Resource Include="images\companions\search_grass.png" />
+    <Resource Include="images\companions\search_medecine.png" />
+    <Resource Include="images\companions\tracking.png" />
+    <Resource Include="images\companions\wolf1.png" />
+    <Resource Include="images\companions\wolf2.png" />
+    <Resource Include="images\companions\wolf3.png" />
+    <Resource Include="images\companions\wolf4.png" />
+    <Resource Include="images\companions\wolf5.png" />
+    <Resource Include="images\companions\wolf_atack.png" />
+    <Resource Include="images\components\accumulator.png" />
+    <Resource Include="images\components\acid.png" />
+    <Resource Include="images\components\animal_skin.png" />
+    <Resource Include="images\components\battery.png" />
+    <Resource Include="images\components\blowball.png" />
+    <Resource Include="images\components\bone.png" />
+    <Resource Include="images\components\bone_glue.png" />
+    <Resource Include="images\components\books.png" />
+    <Resource Include="images\components\broken_battery.png" />
+    <Resource Include="images\components\can.png" />
+    <Resource Include="images\components\capsule.png" />
+    <Resource Include="images\components\cartridge.png" />
+    <Resource Include="images\components\cloth.png" />
+    <Resource Include="images\components\coal.png" />
+    <Resource Include="images\components\explosivs.png" />
+    <Resource Include="images\components\filter.png" />
+    <Resource Include="images\components\flint.png" />
+    <Resource Include="images\components\flint_blade.png" />
+    <Resource Include="images\components\gas.png" />
+    <Resource Include="images\components\gasmask_filter.png" />
+    <Resource Include="images\components\gilza.png" />
+    <Resource Include="images\components\glue_tape.png" />
+    <Resource Include="images\components\gunpowder.png" />
+    <Resource Include="images\components\herb.png" />
+    <Resource Include="images\components\ice.png" />
+    <Resource Include="images\components\lead.png" />
+    <Resource Include="images\components\nail.png" />
+    <Resource Include="images\components\nettle.png" />
+    <Resource Include="images\components\nightshade.png" />
+    <Resource Include="images\components\oil.png" />
+    <Resource Include="images\components\paper.png" />
+    <Resource Include="images\components\pipe.png" />
+    <Resource Include="images\components\poison.png" />
+    <Resource Include="images\components\prepared_skin.png" />
+    <Resource Include="images\components\provoloka.png" />
+    <Resource Include="images\components\rope.png" />
+    <Resource Include="images\components\rubber.png" />
+    <Resource Include="images\components\saltpeter.png" />
+    <Resource Include="images\components\scrap.png" />
+    <Resource Include="images\components\soap.png" />
+    <Resource Include="images\components\soil_saltpeter.png" />
+    <Resource Include="images\components\soil_sulfur.png" />
+    <Resource Include="images\components\spare_parts.png" />
+    <Resource Include="images\components\steel.png" />
+    <Resource Include="images\components\string.png" />
+    <Resource Include="images\components\sulfur.png" />
+    <Resource Include="images\components\sulfuric_acid.png" />
+    <Resource Include="images\components\table.png" />
+    <Resource Include="images\components\tanning_solution.png" />
+    <Resource Include="images\components\tape.png" />
+    <Resource Include="images\components\tire.png" />
+    <Resource Include="images\components\wood.png" />
+    <Resource Include="images\enemies\bandit1.png" />
+    <Resource Include="images\enemies\bandit10.png" />
+    <Resource Include="images\enemies\bandit11.png" />
+    <Resource Include="images\enemies\bandit12.png" />
+    <Resource Include="images\enemies\bandit13.png" />
+    <Resource Include="images\enemies\bandit14.png" />
+    <Resource Include="images\enemies\bandit15.png" />
+    <Resource Include="images\enemies\bandit16.png" />
+    <Resource Include="images\enemies\bandit17.png" />
+    <Resource Include="images\enemies\bandit18.png" />
+    <Resource Include="images\enemies\bandit19.png" />
+    <Resource Include="images\enemies\bandit2.png" />
+    <Resource Include="images\enemies\bandit20.png" />
+    <Resource Include="images\enemies\bandit21.png" />
+    <Resource Include="images\enemies\bandit22.png" />
+    <Resource Include="images\enemies\bandit23.png" />
+    <Resource Include="images\enemies\bandit24.png" />
+    <Resource Include="images\enemies\bandit25.png" />
+    <Resource Include="images\enemies\bandit3.png" />
+    <Resource Include="images\enemies\bandit4.png" />
+    <Resource Include="images\enemies\bandit5.png" />
+    <Resource Include="images\enemies\bandit6.png" />
+    <Resource Include="images\enemies\bandit7.png" />
+    <Resource Include="images\enemies\bandit8.png" />
+    <Resource Include="images\enemies\bandit9.png" />
+    <Resource Include="images\enemies\bear.png" />
+    <Resource Include="images\enemies\boar.png" />
+    <Resource Include="images\enemies\boar_rad.png" />
+    <Resource Include="images\enemies\lynx.png" />
+    <Resource Include="images\enemies\lynx_rad.png" />
+    <Resource Include="images\enemies\me.png" />
+    <Resource Include="images\enemies\rat.png" />
+    <Resource Include="images\enemies\rat_rad.png" />
+    <Resource Include="images\enemies\snake.png" />
+    <Resource Include="images\enemies\wolf.png" />
+    <Resource Include="images\enemies\wolf_rad.png" />
+    <Resource Include="images\food\backwheat.png" />
+    <Resource Include="images\food\beef_can.png" />
+    <Resource Include="images\food\berries.png" />
+    <Resource Include="images\food\boiled_buckwheat.png" />
+    <Resource Include="images\food\boiled_pasta.png" />
+    <Resource Include="images\food\boiled_rice.png" />
+    <Resource Include="images\food\bottled_water.png" />
+    <Resource Include="images\food\bread.png" />
+    <Resource Include="images\food\coffee.png" />
+    <Resource Include="images\food\coffee_cold.png" />
+    <Resource Include="images\food\coffee_hot.png" />
+    <Resource Include="images\food\crumbs.png" />
+    <Resource Include="images\food\cutlet_meat.png" />
+    <Resource Include="images\food\doner.png" />
+    <Resource Include="images\food\dry_fish.png" />
+    <Resource Include="images\food\dry_meat.png" />
+    <Resource Include="images\food\fat.png" />
+    <Resource Include="images\food\flour.png" />
+    <Resource Include="images\food\fresh_fish.png" />
+    <Resource Include="images\food\fresh_meat.png" />
+    <Resource Include="images\food\fried_fish.png" />
+    <Resource Include="images\food\fryed_meat.png" />
+    <Resource Include="images\food\honey.png" />
+    <Resource Include="images\food\jam.png" />
+    <Resource Include="images\food\kebab.png" />
+    <Resource Include="images\food\marinated_vegetable.png" />
+    <Resource Include="images\food\meat.png" />
+    <Resource Include="images\food\milk.png" />
+    <Resource Include="images\food\pasta.png" />
+    <Resource Include="images\food\pepsi.png" />
+    <Resource Include="images\food\pickles.png" />
+    <Resource Include="images\food\poison_water.png" />
+    <Resource Include="images\food\rad_meat.png" />
+    <Resource Include="images\food\rat_prepare.png" />
+    <Resource Include="images\food\rice.png" />
+    <Resource Include="images\food\rice_cutlet.png" />
+    <Resource Include="images\food\rotten_fish.png" />
+    <Resource Include="images\food\rotten_vegetable.png" />
+    <Resource Include="images\food\routed_dish.png" />
+    <Resource Include="images\food\routed_fish.png" />
+    <Resource Include="images\food\route_meat.png" />
+    <Resource Include="images\food\salo.png" />
+    <Resource Include="images\food\salt.png" />
+    <Resource Include="images\food\salted_fish.png" />
+    <Resource Include="images\food\salted_meat.png" />
+    <Resource Include="images\food\smoked_salo.png" />
+    <Resource Include="images\food\snake_prepare.png" />
+    <Resource Include="images\food\strawberry.png" />
+    <Resource Include="images\food\tea.png" />
+    <Resource Include="images\food\tea_cold.png" />
+    <Resource Include="images\food\tea_hot.png" />
+    <Resource Include="images\icons\ability.png" />
+    <Resource Include="images\icons\bag.png" />
+    <Resource Include="images\icons\bleeding.png" />
+    <Resource Include="images\icons\chem.png" />
+    <Resource Include="images\icons\chop.png" />
+    <Resource Include="images\icons\cook.png" />
+    <Resource Include="images\icons\craft.png" />
+    <Resource Include="images\icons\craft2.png" />
+    <Resource Include="images\icons\defence.png" />
+    <Resource Include="images\icons\destroy.png" />
+    <Resource Include="images\icons\drop.png" />
+    <Resource Include="images\icons\eat.png" />
+    <Resource Include="images\icons\energy.png" />
+    <Resource Include="images\icons\exhaustion.png" />
+    <Resource Include="images\icons\fatigue.png" />
+    <Resource Include="images\icons\food.png" />
+    <Resource Include="images\icons\forge.png" />
+    <Resource Include="images\icons\health.png" />
+    <Resource Include="images\icons\health2.png" />
+    <Resource Include="images\icons\hp.png" />
+    <Resource Include="images\icons\hunger.png" />
+    <Resource Include="images\icons\kg.png" />
+    <Resource Include="images\icons\lock.png" />
+    <Resource Include="images\icons\poison.png" />
+    <Resource Include="images\icons\radiation.png" />
+    <Resource Include="images\icons\radiation2.png" />
+    <Resource Include="images\icons\search.png" />
+    <Resource Include="images\icons\settings.png" />
+    <Resource Include="images\icons\sew.png" />
+    <Resource Include="images\icons\shield.png" />
+    <Resource Include="images\icons\skeleton.png" />
+    <Resource Include="images\icons\sleep.png" />
+    <Resource Include="images\icons\statistics.png" />
+    <Resource Include="images\icons\thirst.png" />
+    <Resource Include="images\icons\use.png" />
+    <Resource Include="images\icons\water.png" />
+    <Resource Include="images\icons\wear.png" />
+    <Resource Include="images\icons\weight.png" />
+    <Resource Include="images\icons\world.png" />
+    <Resource Include="images\masks\gasmask1.png" />
+    <Resource Include="images\masks\gasmask1_brocken.png" />
+    <Resource Include="images\masks\gasmask1_empty.png" />
+    <Resource Include="images\masks\gasmask2.png" />
+    <Resource Include="images\masks\gasmask2_brocken.png" />
+    <Resource Include="images\masks\gasmask2_empty.png" />
+    <Resource Include="images\masks\gasmask3.png" />
+    <Resource Include="images\masks\gasmask3_brocken.png" />
+    <Resource Include="images\masks\gasmask3_empty.png" />
+    <Resource Include="images\masks\gasmask4.png" />
+    <Resource Include="images\masks\gasmask4_brocken.png" />
+    <Resource Include="images\masks\gasmask4_empty.png" />
+    <Resource Include="images\masks\handmade_respirator.png" />
+    <Resource Include="images\masks\respirator.png" />
+    <Resource Include="images\medecines\activated_carbon.png" />
+    <Resource Include="images\medecines\bandage.png" />
+    <Resource Include="images\medecines\black_mushroom.png" />
+    <Resource Include="images\medecines\blue_mushroom.png" />
+    <Resource Include="images\medecines\brendy.png" />
+    <Resource Include="images\medecines\bryocarm.png" />
+    <Resource Include="images\medecines\chlorcystamine.png" />
+    <Resource Include="images\medecines\cigarette.png" />
+    <Resource Include="images\medecines\detoxifying_potion.png" />
+    <Resource Include="images\medecines\energizing_potion.png" />
+    <Resource Include="images\medecines\flemincillin.png" />
+    <Resource Include="images\medecines\green_mushroom.png" />
+    <Resource Include="images\medecines\healing_salve.png" />
+    <Resource Include="images\medecines\injector.png" />
+    <Resource Include="images\medecines\kazotein.png" />
+    <Resource Include="images\medecines\lidiacide.png" />
+    <Resource Include="images\medecines\lightblue_mushroom.png" />
+    <Resource Include="images\medecines\metocaine.png" />
+    <Resource Include="images\medecines\mixed_alcohol.png" />
+    <Resource Include="images\medecines\painkiller.png" />
+    <Resource Include="images\medecines\poison.png" />
+    <Resource Include="images\medecines\protozepam.png" />
+    <Resource Include="images\medecines\red_mushroom.png" />
+    <Resource Include="images\medecines\spirt.png" />
+    <Resource Include="images\medecines\tratodonide.png" />
+    <Resource Include="images\medecines\violet_mushroom.png" />
+    <Resource Include="images\medecines\vodka.png" />
+    <Resource Include="images\medecines\white_mushroom.png" />
+    <Resource Include="images\medecines\wine.png" />
+    <Resource Include="images\medecines\yellow_mushroom.png" />
+    <Resource Include="images\suits\handmade.png" />
+    <Resource Include="images\suits\hazmat.png" />
+    <Resource Include="images\suits\iron.png" />
+    <Resource Include="images\suits\leather.png" />
+    <Resource Include="images\suits\military.png" />
+    <Resource Include="images\suits\motorway.png" />
+    <Resource Include="images\suits\naked.png" />
+    <Resource Include="images\suits\tank.png" />
+    <Resource Include="images\temp\temp1.jpg" />
+    <Resource Include="images\tools\axe.png" />
+    <Resource Include="images\tools\chainsaw.png" />
+    <Resource Include="images\tools\crowbar.png" />
+    <Resource Include="images\tools\fire_matches.png" />
+    <Resource Include="images\tools\fishing_rod.png" />
+    <Resource Include="images\tools\flashlight2.png" />
+    <Resource Include="images\tools\flint.png" />
+    <Resource Include="images\tools\flint_axe.png" />
+    <Resource Include="images\tools\flint_knife.png" />
+    <Resource Include="images\tools\hacksaw.png" />
+    <Resource Include="images\tools\handmade_candle.png" />
+    <Resource Include="images\tools\handmade_light.png" />
+    <Resource Include="images\tools\handmade_primus.png" />
+    <Resource Include="images\tools\homemade_needle.png" />
+    <Resource Include="images\tools\needle.png" />
+    <Resource Include="images\tools\chim_kit.png" />
+    <Resource Include="images\tools\old_axe.png" />
+    <Resource Include="images\tools\old_hacksawr.png" />
+    <Resource Include="images\tools\old_knife.png" />
+    <Resource Include="images\tools\old_shovel.png" />
+    <Resource Include="images\tools\pan.png" />
+    <Resource Include="images\tools\pipe.png" />
+    <Resource Include="images\tools\primus.png" />
+    <Resource Include="images\tools\primus_empty.png" />
+    <Resource Include="images\tools\shovel.png" />
+    <Resource Include="images\tools\sleeping_bag.png" />
+    <Resource Include="images\tools\steel_axe.png" />
+    <Resource Include="images\tools\steel_crowbar.png" />
+    <Resource Include="images\tools\steel_knife.png" />
+    <Resource Include="images\tools\steel_pot.png" />
+    <Resource Include="images\tools\steel_shovel.png" />
+    <Resource Include="images\tools\torch.png" />
+    <Resource Include="images\tools\water_filter.png" />
+    <Resource Include="images\transports\bicycle.png" />
+    <Resource Include="images\transports\bicycle_brocken.png" />
+    <Resource Include="images\transports\gas_brocken.png" />
+    <Resource Include="images\transports\gas_brocken_gas.png" />
+    <Resource Include="images\transports\gas_demo.png" />
+    <Resource Include="images\transports\motocycle.png" />
+    <Resource Include="images\transports\motocycle_brocken_gas.png" />
+    <Resource Include="images\transports\spare_parts_bicycle.png" />
+    <Resource Include="images\transports\spare_parts_motocycle.png" />
+    <Resource Include="images\transports\uaz_brocken.png" />
+    <Resource Include="images\transports\uaz_brocken_gas.png" />
+    <Resource Include="images\transports\uaz_demo.png" />
+    <Resource Include="images\transports\vaz.png" />
+    <Resource Include="images\transports\vaz_brocken.png" />
+    <Resource Include="images\transports\vaz_brocken_gas.png" />
+    <Resource Include="images\transports\vaz_demo.png" />
+    <Resource Include="images\transports\zaz.png" />
+    <Resource Include="images\transports\zaz_brocken_gas.png" />
+    <Resource Include="images\transports\zaz_demo.png" />
+    <Resource Include="images\weapons\ak47.png" />
+    <Resource Include="images\weapons\ak47_brocken.png" />
+    <Resource Include="images\weapons\arrow.png" />
+    <Resource Include="images\weapons\arrow_poison.png" />
+    <Resource Include="images\weapons\berdish.png" />
+    <Resource Include="images\weapons\club.png" />
+    <Resource Include="images\weapons\cocktail_molotov.png" />
+    <Resource Include="images\weapons\crossbow1.png" />
+    <Resource Include="images\weapons\crossbow1_poison.png" />
+    <Resource Include="images\weapons\crossbow2.png" />
+    <Resource Include="images\weapons\crossbow2_poison.png" />
+    <Resource Include="images\weapons\dp.png" />
+    <Resource Include="images\weapons\dp_brocken.png" />
+    <Resource Include="images\weapons\flint_spear.png" />
+    <Resource Include="images\weapons\grenade.png" />
+    <Resource Include="images\weapons\handmade.png" />
+    <Resource Include="images\weapons\handmade_ammo.png" />
+    <Resource Include="images\weapons\handmade_grenade.png" />
+    <Resource Include="images\weapons\iron_knife.png" />
+    <Resource Include="images\weapons\knife.png" />
+    <Resource Include="images\weapons\machin_gun_brocken.png" />
+    <Resource Include="images\weapons\mosin.png" />
+    <Resource Include="images\weapons\mosin_brocken.png" />
+    <Resource Include="images\weapons\pistol.png" />
+    <Resource Include="images\weapons\pistol_ammo.png" />
+    <Resource Include="images\weapons\pistol_brocken.png" />
+    <Resource Include="images\weapons\pps42.png" />
+    <Resource Include="images\weapons\pps42_brocken.png" />
+    <Resource Include="images\weapons\rifle_ammo.png" />
+    <Resource Include="images\weapons\rpg7.png" />
+    <Resource Include="images\weapons\rpg7_ammo.png" />
+    <Resource Include="images\weapons\rpg7_brocken.png" />
+    <Resource Include="images\weapons\sniper_ammo.png" />
+    <Resource Include="images\weapons\sniper_brocke.png" />
+    <Resource Include="images\weapons\ak47_spare_parts.png" />
+    <Resource Include="images\weapons\revolver_spare_parts.png" />
+    <Resource Include="images\weapons\machine_gun_spare_parts.png" />
+    <Resource Include="images\weapons\pistol_spare_parts.png" />
+    <Resource Include="images\weapons\rifle_spare_parts.png" />
+    <Resource Include="images\weapons\submachine_ammo.png" />
+    <Resource Include="images\weather\black_sky.png" />
+    <Resource Include="images\weather\calm.png" />
+    <Resource Include="images\weather\dust_storm.png" />
+    <Resource Include="images\weather\fallout.png" />
+    <Resource Include="images\weather\fog.png" />
+    <Resource Include="images\weather\fresh_breeze.png" />
+    <Resource Include="images\weather\frost.png" />
+    <Resource Include="images\weather\full_moon.png" />
+    <Resource Include="images\weather\hot.png" />
+    <Resource Include="images\weather\hungry_season.png" />
+    <Resource Include="images\weather\ice storm.png" />
+    <Resource Include="images\weather\night.png" />
+    <Resource Include="images\weather\northern_lights.png" />
+    <Resource Include="images\weather\rain.png" />
+    <Resource Include="images\weather\scary_night.png" />
+    <Resource Include="images\weather\slush.png" />
+    <Resource Include="images\weather\sun.png" />
+    <Resource Include="images\weather\tailwind.png" />
+    <Resource Include="images\weather\Well-fed_season.png" />
+    <Resource Include="images\weather\working_season.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

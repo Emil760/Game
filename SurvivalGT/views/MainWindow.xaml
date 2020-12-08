@@ -1,0 +1,243 @@
+﻿<Window x:Class="SurvivalGT.views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:u="clr-namespace:SurvivalGT.Utility"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="1200" Height="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.Resources>
+
+        <u:FloatToIntConvertor x:Key="FloatToIntConvertor"/>
+
+        <ImageBrush x:Key="InteractionBrush" ImageSource="/images\backgrounds\background3.jpg"/>
+        <ImageBrush x:Key="StatsImageBrush" ImageSource="/images\backgrounds\grid.jpg"/>
+        <ImageBrush x:Key="DayNightBrush" ImageSource="/images\backgrounds\day_night.jpg"/>
+
+        <DataTemplate x:Key="Us1" DataType="UserControl">
+            
+        </DataTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="InteractionTemplate">
+            <Border Margin="5, 3" Background="{StaticResource InteractionBrush}" BorderBrush="White" BorderThickness="3" Cursor="Hand">
+                <ContentPresenter Margin="2"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger>
+                    
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+                <DataTrigger>
+
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--<Button Margin="10,0" Grid.Column="1" Background="{StaticResource ButtonImageBrush}" BorderBrush="White" BorderThickness="3" Cursor="Hand">
+            <Image Margin="2" Source="/images\icons\health2.png"/>
+        </Button>-->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="Wheat">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Margin="5" Source="/images\icons\settings.png" Cursor="Hand"></Image>
+
+            <Border Grid.Column="1" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\health.png"/>
+                    <TextBlock Text="{Binding Path=Player.Hp, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\bleeding.png"/>
+                    <TextBlock Text="{Binding Path=Player.Bleeding, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkRed" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="3" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\radiation.png"/>
+                    <TextBlock Text="{Binding Path=Player.Radiation, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="ForestGreen" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="4" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\poison.png"/>
+                    <TextBlock Text="{Binding Path=Player.Poison, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkSeaGreen" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="5" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\food.png"/>
+                    <TextBlock Text="{Binding Path=Player.Hunger, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Orange" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="6" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\water.png"/>
+                    <TextBlock Text="{Binding Path=Player.Thirst, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="LightBlue" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="7" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5,0" Source="/images\icons\energy.png"/>
+                    <TextBlock Text="{Binding Path=Player.Stamina, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="30"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="8" Margin="5" Background="{StaticResource DayNightBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
+                <TextBlock Foreground="White" FontSize="30" TextAlignment="Center" Text="{Binding Path=Date, StringFormat=hh:mm}"/>
+            </Border>
+        </Grid>
+
+        <UserControl Grid.Column="0" Grid.Row="1" Content="{Binding InteractionView}"/>
+
+        <Grid Grid.Row="2" Background="Wheat">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Template="{StaticResource InteractionTemplate}" Command="{Binding StatisticShowCommand}">
+                    <Image Source="/images\icons\statistics.png"/>
+                </Button>
+
+                <Button Grid.Column="2" Template="{StaticResource InteractionTemplate}" Command="{Binding AbilityShowCommand}">
+                    <Image Source="/images\icons\ability.png"/>
+                </Button>
+
+                <Button Grid.Column="3" Template="{StaticResource InteractionTemplate}" Command="{Binding HealthShowCommand}">
+                    <Image Source="/images\icons\health2.png"/>
+                </Button>
+
+                <Button Grid.Column="4" Template="{StaticResource InteractionTemplate}" Command="{Binding CraftShowCommand}">
+                    <Image Margin="2" Source="/images\icons\craft2.png"/>
+                </Button>
+
+                <Button Grid.Column="5" Template="{StaticResource InteractionTemplate}" Command="{Binding InventoryShowCommand}">
+                    <Image Source="/images\icons\bag.png"/>
+                </Button>
+
+                <Button Grid.Column="6" Template="{StaticResource InteractionTemplate}" Command="{Binding SearchShowCommand}">
+                    <Image Source="/images\icons\search.png"/>
+                </Button>
+
+                <Button Grid.Column="7" Template="{StaticResource InteractionTemplate}" Command="{Binding MapShowCommand}">
+                    <Image Source="/images\icons\world.png"/>
+                </Button>
+
+                <Border Grid.Column="8" Background="{StaticResource InteractionBrush}" BorderBrush="White" BorderThickness="3" Margin="5,3">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Margin="3,0" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="2"></Ellipse>
+                        <Ellipse Margin="3,0" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="2"></Ellipse>
+                        <Ellipse Margin="3,0" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="2"></Ellipse>
+                        <Ellipse Margin="3,0" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="2"></Ellipse>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
