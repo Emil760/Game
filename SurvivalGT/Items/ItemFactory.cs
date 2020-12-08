@@ -32,6 +32,8 @@ namespace SurvivalGT.Items
                 new Loot[] { new Loot(GetItem(ItemTag.Instruments), 1), new Loot(GetItem(ItemTag.Oil), 50), new Loot(GetItem(ItemTag.Ak47SpareParts), 2) });
 
             items[7] = new Item(ItemTag.String, "a", 1, "a");
+
+            items[8] = new Item(ItemTag.String, "a", 1, "a");
         }
 
         public static Item GetItem(ItemTag tag)
