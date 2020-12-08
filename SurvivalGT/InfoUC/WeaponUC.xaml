@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/WindowResources\InfoDictionary.xaml"/>
+                <ResourceDictionary Source="/WindowResources\ListViewInventoryTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -31,8 +31,8 @@
 
         <Border BorderBrush="CornflowerBlue" BorderThickness="3">
             <StackPanel>
-                <ListBox ItemsSource="{Binding RepairLoot}"></ListBox>
-                <Button Name="repair_btn" Content="Repair" Command="{Binding RepairCommand}" Height="45" Width="300" Margin="10" FontSize="25" Foreground="DarkSlateBlue" FontWeight="DemiBold"/>
+                <ListView ItemsSource="{Binding CraftItem}" ItemTemplate="{StaticResource RepairDataTemplate}"/>
+                <Button Name="repair_btn" Content="Repair" Visibility="{Binding RepairVisibility}" Command="{Binding RepairCommand}" Style="{StaticResource RepairStyle}"/>
             </StackPanel>
         </Border>
     </StackPanel>

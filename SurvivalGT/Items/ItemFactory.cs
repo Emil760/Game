@@ -30,10 +30,6 @@ namespace SurvivalGT.Items
 
             items[6] = new RangeWeapon(ItemTag.Ak47, "Ak47", 2.2f, "/images/weapons/ak47.png", 2, 100, 200, 450,
                 new Loot[] { new Loot(GetItem(ItemTag.Instruments), 1), new Loot(GetItem(ItemTag.Oil), 50), new Loot(GetItem(ItemTag.Ak47SpareParts), 2) });
-
-            items[7] = new Item(ItemTag.String, "a", 1, "a");
-
-            items[8] = new Item(ItemTag.String, "a", 1, "a");
         }
 
         public static Item GetItem(ItemTag tag)

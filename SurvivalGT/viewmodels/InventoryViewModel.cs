@@ -38,7 +38,11 @@ namespace SurvivalGT.viewmodels
         {
             if (player.Inventory.SelectedLoot.Item is IRepairable)
             {
-                if (player.Inventory.SelectedLoot.Item is RangeWeapon) InfoUC = new WeaponUC();
+                CraftItem[] crafts = new CraftItem[(player.Inventory.SelectedLoot as IRepairable).RepairLoots.Length];
+                for (int i = 0; i < crafts.Length; i++)
+                    crafts[i] = new CraftItem((player.Inventory.SelectedLoot as IRepairable).RepairLoots[i].Count, player.Inventory.SelectedLoot);
+
+                if (player.Inventory.SelectedLoot.Item is RangeWeapon) InfoUC = new WeaponUC(crafts);
             }
             else if (player.Inventory.SelectedLoot.Item is ISpoilable)
             {

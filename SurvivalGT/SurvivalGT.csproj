@@ -104,6 +104,7 @@
     <Compile Include="Items\Recyclable.cs" />
     <Compile Include="Items\Tool.cs" />
     <Compile Include="Items\Weapon.cs" />
+    <Compile Include="Models\CraftItem.cs" />
     <Compile Include="Models\Craft.cs" />
     <Compile Include="Models\Effect.cs" />
     <Compile Include="Models\Inventory.cs" />
