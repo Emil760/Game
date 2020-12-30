@@ -1,8 +1,10 @@
 ﻿namespace SurvivalGT.Items
 {
+    //remove set for current
     public interface IBreakable
     {
-        short Durability { get; }
-        short CurrentDurability { get; set; }
+        int Durability { get; }
+        int CurrentDurability { get; set; }
+        void WearOut();
     }
 }

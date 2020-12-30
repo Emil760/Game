@@ -2,35 +2,37 @@
 
 namespace SurvivalGT.Items
 {
-    class Recyclable : Item
+    class Recycleable : Item
     {
-        private Loot[] input;
-        private Loot[] output;
+        private LootRandom[] outputs;
 
-        public Recyclable(ItemTag tag, string name, int weight, string path, Loot[] output, Loot[] input)
-            : base(tag, name, weight, path)
+        public Recycleable(ItemTag tag, ItemType type, string name, float weight, string path, LootRandom[] outputs)
+            : base(tag, type, name, weight, path)
         {
-            Output = output;
-            Input = input;
+            this.outputs = outputs;
         }
 
-        public Loot[] Output { get => output; set => Set(ref output, value); }
-        public Loot[] Input { get => input; set => Set(ref input, value); }
+        public LootRandom[] Outputs { get => outputs; set => outputs = value; }
+
+        //public Loot[] Recycle()
+        //{
+        //    Loot[] loots = new Loot[outputs.Length];
+        //    for (int i = 0; i < outputs.Length; i++)
+        //        loots[i] = outputs[i].GetLoot();
+        //    return loots;
+        //}
     }
 
-    //class Recycleable : Item
-    //{
-    //    private ItemTag[] outputs;
-    //    private ItemTag[] tools;
+    class RecycleableComplex : Recycleable
+    {
+        private Loot[] inputs;
 
-    //    public Recycleable(ItemTag tag, string name, int weight, string path, ItemTag[] outputs, ItemTag[] tools)
-    //        : base(tag, name, weight, path)
-    //    {
-    //        Outputs = outputs;
-    //        Tools = tools;
-    //    }
+        public RecycleableComplex(ItemTag tag, ItemType type, string name, float weight, string path, Loot[] inputs, LootRandom[] outputs)
+            : base(tag, type, name, weight, path, outputs)
+        {
+            this.inputs = inputs;
+        }
 
-    //    public ItemTag[] Outputs { get => outputs; set => outputs = value; }
-    //    public ItemTag[] Tools { get => tools; set => tools = value; }
-    //}
+        public Loot[] Inputs { get => inputs; set => inputs = value; }
+    }
 }

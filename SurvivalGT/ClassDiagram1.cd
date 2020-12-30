@@ -1,218 +1,306 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="SurvivalGT.Items.Armor">
-    <Position X="1.75" Y="5" Width="2" />
+    <Position X="3.5" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAIAAAAAQAAAAAAAAGAAAEAIAABABABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAKAAGAAAEAIAABABAAA=</HashCode>
       <FileName>Items\Armor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SurvivalGT.Items.Bag">
-    <Position X="4.5" Y="5" Width="2" />
+    <Position X="6.25" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAKAAAAAAAIAAAAIQAAAAAAAAAAAAEAIAABABABA=</HashCode>
+      <HashCode>AAAAAKAAAAAAAIgQAAIAQAAAAKAAAAAgEAIAAJABAAA=</HashCode>
       <FileName>Items\Bag.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SurvivalGT.Items.Transport">
-    <Position X="4.5" Y="9.75" Width="2" />
+    <Position X="6.25" Y="11" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAAAAABAAAAAQAIAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAABAAAAAQAIAAAAAAAAAAA=</HashCode>
       <FileName>Items\Bag.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurvivalGT.Items.Book">
-    <Position X="21" Y="5" Width="2" />
+    <Position X="36.25" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAQAAAAAAAAAAAEAAAAAIAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAQAAAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Items\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurvivalGT.Items.GasMask">
-    <Position X="10" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAIAABABABA=</HashCode>
-      <FileName>Items\GasMask.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="SurvivalGT.Items.Item">
-    <Position X="19" Y="0.5" Width="3" />
+    <Position X="28" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAgAAIAAAACAAQAACAEAAAgAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAACAAAAAgAAIAIAACAAQAACAFAAAgAAAAAAAAABA=</HashCode>
       <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="SurvivalGT.Items.ItemFactory" Collapsed="true">
-    <Position X="42" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Items\ItemFactory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.Medecine">
-    <Position X="31.75" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAACAIABAACAAQAIAAAACAAEECAABBAgAAAAAAAARg=</HashCode>
-      <FileName>Items\Medecine.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="SurvivalGT.Items.EffectMedecine">
-    <Position X="31.75" Y="10.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Items\Medecine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.Tool">
-    <Position X="7.25" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAIAABABABA=</HashCode>
-      <FileName>Items\Tool.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="SurvivalGT.Items.Weapon">
-    <Position X="15.5" Y="5" Width="2" />
+    <Position X="30.75" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAgAAABAAAAAAAAAAAAAACAAAAAAAgABAAAAA=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurvivalGT.Items.MealWeapon">
-    <Position X="15.5" Y="8.75" Width="2" />
+    <Position X="30.75" Y="9.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAIAABABABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAEAIAABABAAA=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SurvivalGT.Items.RangeWeapon">
-    <Position X="18.25" Y="8.75" Width="2" />
+    <Position X="33.5" Y="9.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAQAAIAAAAAQAAAAAAEAAAAAEAIAABABABA=</HashCode>
+      <HashCode>ACAAACAAAAAAAIAAAAAAQAAAAKAAAAAAEAIAABAhAAA=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SurvivalGT.Items.ExplosiveWeapon">
-    <Position X="12.75" Y="8.75" Width="2" />
+    <Position X="28" Y="9.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurvivalGT.Models.Inventory" Collapsed="true">
-    <Position X="40.25" Y="0.5" Width="1.5" />
+  <Class Name="SurvivalGT.Items.Medecine">
+    <Position X="39" Y="10.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIIgCAAABAwACAACABUEAAAFBJAAACAQAEABACAIAg=</HashCode>
-      <FileName>Models\Inventory.cs</FileName>
-      <NewMemberFileName>models\Inventory.cs</NewMemberFileName>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurvivalGT.Models.Loot">
-    <Position X="9.5" Y="11.5" Width="2" />
+  <Class Name="SurvivalGT.Items.MedecineEffect">
+    <Position X="39" Y="13.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAABAQAAAQEAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Models\Loots.cs</FileName>
-      <NewMemberFileName>models\Loot.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Models.LootSpoil">
-    <Position X="10.75" Y="15.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAgAAAAIAAAEAAAAAAAA=</HashCode>
-      <FileName>Models\Loots.cs</FileName>
-      <NewMemberFileName>models\Loot.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Models.LootBreak">
-    <Position X="8" Y="15.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgQAAAIAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Models\Loots.cs</FileName>
-      <NewMemberFileName>models\Loot.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.LightSource">
-    <Position X="29" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Items\LightSource.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.Recyclable">
-    <Position X="23.75" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Items\Recyclable.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.PrepareFood">
-    <Position X="26.5" Y="5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAACAAAABAAAAAAAAAAABA=</HashCode>
-      <FileName>Items\Food.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurvivalGT.Items.EatFood">
-    <Position X="35.75" Y="5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAABAAAAEAAAAAAAAAAAAAAgAACAIAAAgAAAAAAAARA=</HashCode>
-      <FileName>Items\Food.cs</FileName>
+      <HashCode>AAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="SurvivalGT.Items.HealthyFood">
-    <Position X="37.25" Y="9" Width="2" />
+  <Class Name="SurvivalGT.Items.Primus">
+    <Position X="14.5" Y="11.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAFAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Items\Food.cs</FileName>
+      <HashCode>AABAEAAAAQAAAAAAAAAEQAABECCAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Fishrod">
+    <Position X="19.75" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAARAABACQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Light">
+    <Position X="9" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAABACAAAAAAACAAAAAgAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Lighter">
+    <Position X="17" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurvivalGT.Items.PoisonFood">
-    <Position X="34.5" Y="9" Width="2" />
+  <Class Name="SurvivalGT.Items.Tool">
+    <Position X="14.25" Y="5.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAACAIAEAgCAAAAAAAAAAAABAAAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>Items\Food.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAEAIAABABAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Food" BaseTypeListCollapsed="true">
+    <Position X="47.25" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Recycleable">
+    <Position X="25.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Items\Recyclable.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurvivalGT.Items.RawFood">
-    <Position X="34.5" Y="12.75" Width="2" />
+  <Class Name="SurvivalGT.Items.Goods" Collapsed="true">
+    <Position X="55.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAEAAAQAAAAAAAgBAAAAAQAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Items\Food.cs</FileName>
+      <HashCode>AAAAACAAAAAgAAAABAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Goods.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="SurvivalGT.Items.GoodsRandom" Collapsed="true">
+    <Position X="57.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAECAAABAwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Goods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurvivalGT.Items.Mask">
+    <Position X="22.5" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAIAAAAAAgQAAAAAAAAEAAAAAAwAAAAAIAAAQA=</HashCode>
+      <FileName>Items\Mask.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.GasMask">
+    <Position X="22.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABBEAAAAQAAAAAAAAAEQAAAECCAAAAQAAAAIAAAAAA=</HashCode>
+      <FileName>Items\Mask.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Alco" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAgAAAAAAAAAAAACBIAAAgQAEAIAABABAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Cigarette" BaseTypeListCollapsed="true">
+    <Position X="44.5" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAgAAAAAAAAAAAACBAAAAgQAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SurvivalGT.Items.OptionTool">
+    <Position X="13" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurvivalGT.Items.OldTool">
+    <Position X="11.75" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurvivalGT.Items.Consumer">
+    <Position X="45.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIIBAACCAQAAAAAAAAgAACAIAAAgABAAAAAQAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurvivalGT.Items.FoodPoison">
+    <Position X="47.25" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAgAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SurvivalGT.Items.Potion">
+    <Position X="50" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAEAIAABABAAA=</HashCode>
+      <FileName>Items\Consumer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="SurvivalGT.Items.IBreakable" Collapsed="true">
-    <Position X="40.25" Y="1.75" Width="1.5" />
+    <Position X="55.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAABABAAA=</HashCode>
       <FileName>Items\IBreakable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="SurvivalGT.Items.ISpoilable" Collapsed="true">
-    <Position X="40.25" Y="2.5" Width="1.5" />
+  <Interface Name="SurvivalGT.Items.ISpoilable">
+    <Position X="1" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQA=</HashCode>
       <FileName>Items\ISpoilable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurvivalGT.Items.IRepairable" Collapsed="true">
-    <Position X="42" Y="1.75" Width="1.5" />
+    <Position X="57.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\IRepairable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="SurvivalGT.Items.ItemTag" Collapsed="true">
-    <Position X="40.25" Y="3.5" Width="1.5" />
+  <Interface Name="SurvivalGT.Items.IEmptyable" Collapsed="true">
+    <Position X="57.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IpXhRov6wG6Apxkl8HHaHUJd25gOxo0C0ivphDQLG5E=</HashCode>
+      <HashCode>AABAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\IEmptyable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IEquipable" Collapsed="true">
+    <Position X="59.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAAAIAAAAA=</HashCode>
+      <FileName>Items\IEquipable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IRechargable" Collapsed="true">
+    <Position X="55.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Items\IRechargable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IRespoilable">
+    <Position X="1" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\ISpoilable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IEffectable">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\IEffectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IChanceable">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\IEffectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurvivalGT.Items.IAddictable">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\IEffectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SurvivalGT.Items.ItemTag" Collapsed="true">
+    <Position X="55.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>fJvyx4v54m7ap1/v8bn6fwZLyth/xu7z3ov9hf6/eZE=</HashCode>
+      <FileName>Items\Item.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SurvivalGT.Items.ItemType" Collapsed="true">
+    <Position X="57.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAgAAAAgAAAAAAAAAgAAABAAgAAAAA=</HashCode>
       <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
   </Enum>

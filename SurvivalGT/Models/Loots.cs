@@ -1,4 +1,5 @@
-﻿using SurvivalGT.Items;
+﻿using System;
+using SurvivalGT.Items;
 using System.Collections.Generic;
 
 namespace SurvivalGT.Models
@@ -148,4 +149,57 @@ namespace SurvivalGT.Models
             }
         }
     }
+
+    class LootRandom
+    {
+        private Item item;
+        private int min;
+        private int max;
+
+        public LootRandom(Item item, int min, int max)
+        {
+            this.item = item;
+            this.min = min;
+            this.max = max;
+        }
+
+        public Item Item { get => item; set => item = value; }
+        public int Min { get => min; set => min = value; }
+        public int Max { get => max; set => max = value; }
+
+        public Loot GetLoot()
+        {
+            Random random = new Random();
+            return item.GetLoot(random.Next(min, max));
+        }
+    }
+
+    class LootFullCount
+    {
+        Item item;
+        int count;
+        int full_count;
+
+        public LootFullCount(Item item, int count, int full_count)
+        {
+            this.item = item;
+            this.count = count;
+            this.full_count = full_count;
+        }
+
+        public Item Item { get => item; set => item = value; }
+        public int Count { get => count; set => count = value; }
+        public int Full_count { get => full_count; set => full_count = value; }
+    }
+
+    class LootMulty
+    {
+        static KeyValuePair<ItemTag, Item[]> craftitems;
+
+        static LootMulty()
+        {
+
+        }
+    }
+
 }

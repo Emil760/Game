@@ -66,4 +66,18 @@ namespace SurvivalGT.Models
             throw new NotImplementedException();
         }
     }
+
+    public class Worms : Effect
+    {
+        public override object Clone()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Run(Player player)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

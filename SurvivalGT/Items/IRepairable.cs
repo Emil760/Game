@@ -1,9 +1,8 @@
-﻿using SurvivalGT.Models;
-
-namespace SurvivalGT.Items
+﻿namespace SurvivalGT.Items
 {
     interface IRepairable
     {
-        Loot[] RepairLoots { get; }
+        Goods[] RepairGoods { get; }
+        void Repair();
     }
 }

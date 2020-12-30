@@ -1,8 +1,6 @@
 ﻿using SurvivalGT.Models;
-using SurvivalGT.Utility;
 using SurvivalGT.viewmodels;
 using System;
-using System.ComponentModel;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,62 +12,64 @@ namespace SurvivalGT.views
     /// <summary>
     /// Interaction logic for MapUserControl.xaml
     /// </summary>
-    public partial class MapUserControl : UserControl, INotifyPropertyChanged
+    public partial class MapUserControl : UserControl
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private MainViewModel main_view_model;
         private Player player;
 
-        private double zoom;
-        private Timer move_timer;
-        private bool is_moiving;
         private double full_time;
         private double curr_time;
-        private Point mouse;
+        private float zoom_per;
+        private Point to;
         private Point move;
 
         public MapUserControl(MainViewModel main_view_model)
         {
             InitializeComponent();
-            DataContext = this;
-            PrepareMoveCommand = new Command(PrepareMove);
-
             this.main_view_model = main_view_model;
+            DataContext = main_view_model;
+
             player = Player.Instance;
+
+            ellipse.Width = player.Width;
+            ellipse.Height = player.Height;
+            Canvas.SetLeft(ellipse, player.X);
+            Canvas.SetTop(ellipse, player.Y);
             arrow.Points = null;
 
-            zoom = 1;
+            canvas.Width = 5000;
+            canvas.Height = 5000;
+
             move = new Point();
 
-            move_timer = new Timer(16.666);
-            move_timer.Elapsed += Timer_Elapsed;
+            main_view_model.IsMoving = false;
+            main_view_model.Timer.Elapsed += Timer_Elapsed;
+
+            zoom_per = 1.02f;
         }
 
-        public ICommand PrepareMoveCommand { get; }
-
-        public Player Player { get => player; }
-
-        private void PrepareMove(object param)
+        private void Canvas_PrepareMove(object sender, MouseEventArgs e)
         {
-            mouse = Mouse.GetPosition(map_window);
-            mouse.X += viewer.HorizontalOffset;
-            mouse.Y += viewer.VerticalOffset;
-            arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(mouse.X, mouse.Y) });
-            curr_time = 0;
-            full_time = Math.Round(Math.Sqrt(Math.Pow(Math.Abs(arrow.Points[0].X - arrow.Points[1].X), 2) + Math.Pow(Math.Abs(arrow.Points[0].Y - arrow.Points[1].Y), 2)) - Math.Sqrt(Math.Pow(player.Width, 2) + Math.Pow(player.Height, 2)));
-            full_time = full_time / player.Speed * 10;
-            move.X = (arrow.Points[1].X - arrow.Points[0].X) / full_time * 16.6;
-            move.Y = (arrow.Points[1].Y - arrow.Points[0].Y) / full_time * 16.6;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                to = Mouse.GetPosition(map_control);
+                to.X += viewer.HorizontalOffset;
+                to.Y += viewer.VerticalOffset;
+                arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(to.X, to.Y) });
+                curr_time = 0;
+                full_time = Math.Round(Math.Sqrt(Math.Pow(Math.Abs(arrow.Points[0].X - arrow.Points[1].X), 2) + Math.Pow(Math.Abs(arrow.Points[0].Y - arrow.Points[1].Y), 2)) - Math.Sqrt(Math.Pow(player.Width, 2) + Math.Pow(player.Height, 2)));
+                full_time = full_time / player.Speed * 10;
+                move.X = (arrow.Points[1].X - arrow.Points[0].X) / full_time * main_view_model.Game.Fps;
+                move.Y = (arrow.Points[1].Y - arrow.Points[0].Y) / full_time * main_view_model.Game.Fps;
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (full_time <= curr_time)
             {
-                move_timer.Stop();
                 main_view_model.Timer.Stop();
-                is_moiving = false;
+                main_view_model.IsMoving = false;
                 Dispatcher.Invoke(() =>
                 {
                     arrow.Points = null;
@@ -78,128 +78,212 @@ namespace SurvivalGT.views
             }
             player.X += move.X;
             player.Y += move.Y;
-            curr_time += 16.6;
+            curr_time += main_view_model.Game.Fps;
             Dispatcher.Invoke(() =>
             {
-                arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(mouse.X, mouse.Y) });
+                Canvas.SetLeft(ellipse, player.X);
+                Canvas.SetTop(ellipse, player.Y);
+                arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(to.X, to.Y) });
             });
         }
 
-        private void map_MouseWheel(object sender, MouseWheelEventArgs e)
+        private void canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            Console.WriteLine(main_view_model.Game.Zoom + "\t" + canvas.Width + "\t" + canvas.Height);
             e.Handled = true;
-            if (e.Delta > 0)
+            if (e.Delta > 0 && main_view_model.Game.Zoom <= 2)
             {
-                if (zoom + 0.02 >= 1.6) return;
-                zoom += 0.02;
-                map.Width += map.Width * 0.02;
-                map.Height += map.Height * 0.02;
-                player.X += player.X * 0.02;
-                player.Y += player.Y * 0.02;
-                if (is_moiving)
-                {
-                    move.X += move.X * 0.02;
-                    move.Y += move.Y * 0.02;
-                }
-                else
-                {
-                    if (arrow.Points != null)
-                    {
-                        arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X + arrow.Points[1].X * 0.02, arrow.Points[1].Y + arrow.Points[1].Y * 0.02) });
-                    }
-                }
+                main_view_model.Game.Zoom += (zoom_per - 1);
+                canvas.Width *= zoom_per;
+                canvas.Height *= zoom_per;
+
+                player.X *= zoom_per;
+                player.Y *= zoom_per;
+                player.Width *= zoom_per;
+                player.Height *= zoom_per;
+
+                move.X *= zoom_per;
+                move.Y *= zoom_per;
+
+                to.X *= zoom_per;
+                to.Y *= zoom_per;
+
+                ellipse.Width = player.Width;
+                ellipse.Height = player.Height;
+                Canvas.SetLeft(ellipse, player.X);
+                Canvas.SetTop(ellipse, player.Y);
+
                 if (arrow.Points != null)
                 {
-                    mouse.X += mouse.X * 0.02;
-                    mouse.Y += mouse.Y * 0.02;
+                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X * zoom_per, arrow.Points[1].Y * zoom_per) });
                 }
             }
-            else
+            else if (main_view_model.Game.Zoom >= 0.5)
             {
-                if (zoom - 0.02 <= 0.3) return;
-                zoom -= 0.02;
-                map.Width -= map.Width * 0.02 * zoom;
-                map.Height -= map.Height * 0.02 * zoom;
-                player.X -= player.X * 0.02;
-                player.Y -= player.Y * 0.02;
-                if (is_moiving)
-                {
-                    move.X -= move.X * 0.02;
-                    move.Y -= move.Y * 0.02;
-                }
-                else
-                {
-                    if (arrow.Points != null)
-                    {
-                        arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X - arrow.Points[1].X * 0.02, arrow.Points[1].Y - arrow.Points[1].Y * 0.02) });
-                    }
-                }
+                main_view_model.Game.Zoom -= (zoom_per - 1);
+                canvas.Width /= zoom_per;
+                canvas.Height /= zoom_per;
+
+                player.X /= zoom_per;
+                player.Y /= zoom_per;
+                player.Width /= zoom_per;
+                player.Height /= zoom_per;
+
+                move.X /= zoom_per;
+                move.Y /= zoom_per;
+
+                to.X /= zoom_per;
+                to.Y /= zoom_per;
+
+                ellipse.Width = player.Width;
+                ellipse.Height = player.Height;
+                Canvas.SetLeft(ellipse, player.X);
+                Canvas.SetTop(ellipse, player.Y);
+
                 if (arrow.Points != null)
                 {
-                    mouse.X -= mouse.X * 0.02;
-                    mouse.Y -= mouse.Y * 0.02;
+                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X / zoom_per, arrow.Points[1].Y / zoom_per) });
                 }
             }
-            Console.WriteLine($"Zoom: {zoom}\tWidth:{map.Width}\tHeight: {map.Height}\n" +
-                $"VerticalOffset: {viewer.VerticalOffset}\tHorizontalOffset: {viewer.HorizontalOffset}\n" +
-                $"ExtentHeight: {viewer.ExtentHeight}\tExtentWidth: {viewer.ExtentWidth}\n" +
-                $"ScrollableHeight: {viewer.ScrollableHeight}\tScrollableWidth: {viewer.ScrollableWidth}\n\n");
-            //$"X1: {arrow.Points[0].X}\tY1: {arrow.Points[0].Y}\tX2: {arrow.Points[1].X}\tY2: {arrow.Points[1].Y}\n"
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (is_moiving)
-            {
-                move_timer.Stop();
-                main_view_model.Timer.Stop();
-                is_moiving = false;
-            }
-            else
-            {
-                move_timer.Start();
-                main_view_model.Timer.Start();
-                is_moiving = true;
-            }
-        }
 
-        private void Move()
-        {
-        }
-
-        private void StopMove()
-        {
-
-        }
-
-        public void Set<T>(ref T prop, T value, [System.Runtime.CompilerServices.CallerMemberName] string prop_name = "")
-        {
-            prop = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop_name));
-        }
-
-        private void map_window_KeyDown(object sender, KeyEventArgs e)
+        private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.W)
             {
-                if (viewer.VerticalOffset <= 10) viewer.ScrollToTop();
-                else viewer.ScrollToVerticalOffset(viewer.VerticalOffset - 10);
+                if (viewer.VerticalOffset != 0)
+                {
+                    if (viewer.VerticalOffset <= 10)
+                    {
+                        Canvas.SetTop(move_btn, Canvas.GetTop(move_btn) - viewer.VerticalOffset);
+                        Canvas.SetTop(sleep_btn, Canvas.GetTop(sleep_btn) - viewer.VerticalOffset);
+                        viewer.ScrollToTop();
+                    }
+                    else
+                    {
+                        Canvas.SetTop(move_btn, Canvas.GetTop(move_btn) - 10);
+                        Canvas.SetTop(sleep_btn, Canvas.GetTop(sleep_btn) - 10);
+                        viewer.ScrollToVerticalOffset(viewer.VerticalOffset - 10);
+                    }
+                }
             }
             else if (e.Key == Key.S)
             {
-                if (viewer.VerticalOffset + 10 >= viewer.ExtentHeight) viewer.ScrollToBottom();
-                else viewer.ScrollToVerticalOffset(viewer.VerticalOffset + 10);
+                if (viewer.VerticalOffset != viewer.Height - viewer.ExtentHeight)
+                {
+                    if (viewer.VerticalOffset + 10 >= viewer.ExtentHeight)
+                    {
+                        Canvas.SetTop(move_btn, Canvas.GetTop(move_btn) + viewer.VerticalOffset);
+                        Canvas.SetTop(sleep_btn, Canvas.GetTop(sleep_btn) + viewer.VerticalOffset);
+                        viewer.ScrollToBottom();
+                    }
+                    else
+                    {
+                        Canvas.SetTop(move_btn, Canvas.GetTop(move_btn) + 10);
+                        Canvas.SetTop(sleep_btn, Canvas.GetTop(sleep_btn) + 10);
+                        viewer.ScrollToVerticalOffset(viewer.VerticalOffset + 10);
+                    }
+                }
             }
             else if (e.Key == Key.A)
             {
-                if (viewer.HorizontalOffset <= 10) viewer.ScrollToLeftEnd();
-                else viewer.ScrollToHorizontalOffset(viewer.HorizontalOffset - 10);
+                if (viewer.HorizontalOffset != 0)
+                {
+                    if (viewer.HorizontalOffset <= 10)
+                    {
+                        Canvas.SetLeft(move_btn, Canvas.GetLeft(move_btn) - viewer.HorizontalOffset);
+                        Canvas.SetLeft(sleep_btn, Canvas.GetLeft(sleep_btn) - viewer.HorizontalOffset);
+                        viewer.ScrollToLeftEnd();
+                    }
+                    else
+                    {
+                        Canvas.SetLeft(move_btn, Canvas.GetLeft(move_btn) - 10);
+                        Canvas.SetLeft(sleep_btn, Canvas.GetLeft(sleep_btn) - 10);
+                        viewer.ScrollToHorizontalOffset(viewer.HorizontalOffset - 10);
+                    }
+                }
             }
             else if (e.Key == Key.D)
             {
-                if (viewer.HorizontalOffset + 10 >= viewer.ExtentWidth) viewer.ScrollToRightEnd();
-                else viewer.ScrollToHorizontalOffset(viewer.HorizontalOffset + 10);
+                if (viewer.HorizontalOffset != viewer.Width - viewer.ExtentWidth)
+                {
+                    if (viewer.HorizontalOffset + 10 >= viewer.ExtentWidth)
+                    {
+                        Canvas.SetLeft(move_btn, Canvas.GetLeft(move_btn) + viewer.HorizontalOffset);
+                        Canvas.SetLeft(sleep_btn, Canvas.GetLeft(sleep_btn) + viewer.HorizontalOffset);
+                        viewer.ScrollToRightEnd();
+                    }
+                    else
+                    {
+                        Canvas.SetLeft(move_btn, Canvas.GetLeft(move_btn) + 10);
+                        Canvas.SetLeft(sleep_btn, Canvas.GetLeft(sleep_btn) + 10);
+                        viewer.ScrollToHorizontalOffset(viewer.HorizontalOffset + 10);
+                    }
+                }
             }
+        }
+
+        private void Sleep_ClickBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Move_ClickBtn(object sender, RoutedEventArgs e)
+        {
+            if (main_view_model.IsMoving)
+            {
+                main_view_model.IsMoving = false;
+                main_view_model.Timer.Stop();
+            }
+            else if (arrow.Points != null)
+            {
+                main_view_model.IsMoving = true;
+                main_view_model.Timer.Start();
+            }
+        }
+
+        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.WidthChanged)
+            {
+                SetButtonsX();
+            }
+            if (e.HeightChanged)
+            {
+                SetButtonsY();
+            }
+        }
+
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetButtonsX();
+            SetButtonsY();
+        }
+
+        private void map_control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.WidthChanged)
+            {
+                SetButtonsX();
+
+            }
+            if (e.HeightChanged)
+            {
+                SetButtonsY();
+            }
+        }
+
+        private void SetButtonsX()
+        {
+            Canvas.SetLeft(move_btn, viewer.HorizontalOffset + viewer.ActualWidth - 150);
+            Canvas.SetLeft(sleep_btn, viewer.HorizontalOffset + viewer.ActualWidth - 150);
+        }
+
+        private void SetButtonsY()
+        {
+            Canvas.SetTop(move_btn, viewer.VerticalOffset + viewer.ActualHeight - 280);
+            Canvas.SetTop(sleep_btn, viewer.VerticalOffset + viewer.ActualHeight - 160);
         }
     }
 }

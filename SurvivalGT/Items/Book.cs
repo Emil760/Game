@@ -6,8 +6,8 @@
         short level;
         short stamina;
 
-        public Book(ItemTag tag, string name, float weight, string image, short level, short stamina) :
-            base(tag, name, weight, image)
+        public Book(ItemTag tag, string name, float weight, string path, short level, short stamina) :
+            base(tag, ItemType.Utility, name, weight, path)
         {
             this.level = level;
             this.stamina = stamina;

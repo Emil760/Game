@@ -17,7 +17,7 @@ namespace SurvivalGT.Models
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             Loot loot = item as Loot;
-            if (loot is IBreakable) return BrockenableDataTemplate;
+            if (loot.Item is IBreakable) return BrockenableDataTemplate;
             else return NormaDataTemplate;
         }
     }

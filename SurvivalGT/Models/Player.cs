@@ -1,20 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Shapes;
 
 namespace SurvivalGT.Models
 {
     public class Player : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        static private Player instance;
+        private static Player instance;
+
+        private Inventory inventory;
+        private LinkedList<Effect> effects;
 
         private double x;
         private double y;
         private double width;
         private double height;
-
-        private Inventory inventory;
-        private LinkedList<Effect> effects;
+        private double speed;
+        private DateTime date;
+        //test
+        private bool is_moving;
+        public bool IsMoving { get => is_moving; set => is_moving = value; }
 
         private string name;
         private short max_hp;
@@ -26,32 +33,34 @@ namespace SurvivalGT.Models
         private float thirst_dec;
         private float stamina;
         private float stamina_dec;
-        private float bleeding;
-        private float bleeding_dec;
         private float poison;
         private float poison_dec;
         private float radiation;
         private float radiation_dec;
+
+        private float alco;
+        private float smoking;
         private float overdose;
 
         private int max_weight;
         private int weight;
         private short seacrh;
         private short armor;
-        private short speed;
 
         private Player()
         {
-            Width = 40;
-            Height = 40;
             X = 3;
             Y = 3;
+            Height = 40;
+            Width = 40;
+            Speed = 5;
+
+            //Date
+            Date = new DateTime(1999, 1, 1, 0, 0, 0);
 
             MaxHp = 100;
             Hp = 100;
             HpDec = 0;
-            Bleeding = 0;
-            BleedingDec = 0;
             Thirst = 100;
             ThirstDec = 0.18f;
             Hunger = 100;
@@ -65,7 +74,6 @@ namespace SurvivalGT.Models
 
             Weight = 20000;
             Armor = 0;
-            Speed = 5;
 
             inventory = new Inventory();
         }
@@ -79,14 +87,16 @@ namespace SurvivalGT.Models
             }
         }
 
-        public double X { get => x; set => Set(ref x, value); }
-        public double Y { get => y; set => Set(ref y, value); }
-        public double Width { get => width; set => Set(ref width, value); }
-        public double Height { get => height; set => Set(ref height, value); }
+        public double X { get => x; set => x = value; }
+        public double Y { get => y; set => y = value; }
+        public double Width { get => width; set => width = value; }
+        public double Height { get => height; set => height = value; }
+        public double Speed { get => speed; set => speed = value; }
+        public DateTime Date { get => date; set => date = value; }
 
         public string Name { get => name; }
-
         public short MaxHp { get => max_hp; set => max_hp = value; }
+
         public float Hp
         {
             get => hp;
@@ -171,22 +181,6 @@ namespace SurvivalGT.Models
         }
         public float StaminaDec { get => stamina_dec; set => stamina_dec = value; }
 
-        public float Bleeding
-        {
-            get => bleeding;
-            set
-            {
-                if (value <= 0)
-                {
-                    if (bleeding == 0) return;
-                    bleeding = 0;
-                }
-                else bleeding = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bleeding"));
-            }
-        }
-        public float BleedingDec { get => bleeding_dec; set => bleeding_dec = value; }
-
         public float Poison
         {
             get => poison;
@@ -197,7 +191,7 @@ namespace SurvivalGT.Models
                     if (poison == 0) return;
                     poison = 0;
                 }
-                else bleeding = value;
+                else poison = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Poison"));
             }
         }
@@ -219,6 +213,8 @@ namespace SurvivalGT.Models
         }
         public float RadiationDec { get => radiation_dec; set => radiation_dec = value; }
 
+        public float Alco { get => alco; set => alco = value; }
+        public float Smoking { get => smoking; set => smoking = value; }
         public float Overdose { get => overdose; set => overdose = value; }
 
         public int MaxWeight { get => max_weight; set => max_weight = value; }
@@ -226,8 +222,6 @@ namespace SurvivalGT.Models
         public int Weight { get => weight; set => weight = value; }
 
         public short Armor { get => armor; set => armor = value; }
-
-        public short Speed { get => speed; set => speed = value; }
 
         public short Seacrh { get => seacrh; set => seacrh = value; }
 
@@ -238,12 +232,16 @@ namespace SurvivalGT.Models
         public void Decrease()
         {
             Hp -= hp_dec;
-            Bleeding -= bleeding_dec;
             Radiation -= radiation_dec;
             Poison -= poison_dec;
             Hunger -= hunger_dec;
             Thirst -= thirst_dec;
             Stamina -= stamina_dec;
+        }
+
+        public void SetEllipse(Ellipse ellipse)
+        {
+
         }
 
         public void Set<T>(ref T prop, T value, [System.Runtime.CompilerServices.CallerMemberName] string prop_name = "")

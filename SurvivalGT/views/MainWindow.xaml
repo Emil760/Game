@@ -16,7 +16,7 @@
         <ImageBrush x:Key="DayNightBrush" ImageSource="/images\backgrounds\day_night.jpg"/>
 
         <DataTemplate x:Key="Us1" DataType="UserControl">
-            
+
         </DataTemplate>
 
         <ControlTemplate TargetType="Button" x:Key="InteractionTemplate">
@@ -28,7 +28,7 @@
         <Style TargetType="TextBlock">
             <Style.Triggers>
                 <DataTrigger>
-                    
+
                 </DataTrigger>
                 <DataTrigger>
 
@@ -123,8 +123,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" Margin="5" Source="/images\icons\settings.png" Cursor="Hand"></Image>
@@ -132,54 +131,47 @@
             <Border Grid.Column="1" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
                     <Image Margin="5,0" Source="/images\icons\health.png"/>
-                    <TextBlock Text="{Binding Path=Player.Hp, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="30"/>
+                    <TextBlock Name="hp_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="2" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\bleeding.png"/>
-                    <TextBlock Text="{Binding Path=Player.Bleeding, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkRed" FontSize="30"/>
+                    <Image Margin="5,0" Source="/images\icons\food.png"/>
+                    <TextBlock Name="hunger_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Orange" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="3" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\radiation.png"/>
-                    <TextBlock Text="{Binding Path=Player.Radiation, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="ForestGreen" FontSize="30"/>
+                    <Image Margin="5,0" Source="/images\icons\water.png"/>
+                    <TextBlock  Name="thirst_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="LightBlue" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="4" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\poison.png"/>
-                    <TextBlock Text="{Binding Path=Player.Poison, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkSeaGreen" FontSize="30"/>
+                    <Image Margin="5,0" Source="/images\icons\energy.png"/>
+                    <TextBlock Name="stamina_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="5" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\food.png"/>
-                    <TextBlock Text="{Binding Path=Player.Hunger, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Orange" FontSize="30"/>
+                    <Image Margin="5,0" Source="/images\icons\poison.png"/>
+                    <TextBlock Name="poison_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkSeaGreen" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="6" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\water.png"/>
-                    <TextBlock Text="{Binding Path=Player.Thirst, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="LightBlue" FontSize="30"/>
-                </StackPanel>
-            </Border>
-
-            <Border Grid.Column="7" Margin="5" Background="{StaticResource StatsImageBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
-                <StackPanel Orientation="Horizontal">
-                    <Image Margin="5,0" Source="/images\icons\energy.png"/>
-                    <TextBlock Text="{Binding Path=Player.Stamina, Converter={StaticResource FloatToIntConvertor}}" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="30"/>
+                    <Image Margin="5,0" Source="/images\icons\radiation.png"/>
+                    <TextBlock  Name="rad_txtblock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="ForestGreen" FontSize="30"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="8" Margin="5" Background="{StaticResource DayNightBrush}" BorderBrush="LightYellow" BorderThickness="4" CornerRadius="15">
-                <TextBlock Foreground="White" FontSize="30" TextAlignment="Center" Text="{Binding Path=Date, StringFormat=hh:mm}"/>
+                <TextBlock x:Name="date_txtblock" Foreground="White" FontSize="30" TextAlignment="Center" />
             </Border>
         </Grid>
 

@@ -5,29 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
-             Name="map_window" d:DesignHeight="450" d:DesignWidth="800" KeyDown="map_window_KeyDown">
+             Name="map_control" d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="map_control_SizeChanged">
 
     <UserControl.Resources>
+
         <ImageBrush x:Key="PlayerBrush" ImageSource="/images\temp\temp1.jpg"/>
+
+        <LinearGradientBrush x:Key="ButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFCABFA0" Offset="0.003"/>
+            <GradientStop Color="#FFAE8D2A" Offset="1"/>
+        </LinearGradientBrush>
+
+        <ControlTemplate x:Key="MoveTemplate" TargetType="Button">
+            <Border CornerRadius="45" BorderBrush="Black" BorderThickness="5" Width="100" Height="100" Background="{StaticResource ButtonBackground}" Cursor="Hand">
+                <Image Name="image" Source="" Width="70" Height="70"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=IsMoving}" Value="False">
+                    <Setter TargetName="image" Property="Source" Value="/images\icons\walking.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsMoving}" Value="True">
+                    <Setter TargetName="image" Property="Source" Value="/images\icons\standing.png"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SleepTemplate" TargetType="Button">
+            <Border CornerRadius="45" BorderBrush="Black" BorderThickness="5" Width="100" Height="100" Background="{StaticResource ButtonBackground}" Cursor="Hand">
+                <Image Source="/images\icons\resting.png" Width="70" Height="70"/>
+            </Border>
+        </ControlTemplate>
+
     </UserControl.Resources>
 
-    <ScrollViewer x:Name="viewer" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-        <Canvas Name="map" Width="5000" Height="5000" Background="{StaticResource PlayerBrush}" MouseWheel="map_MouseWheel">
-
-            <Ellipse x:Name="player_ell" Fill="Red" Height="{Binding Path=Player.Height}" Width="{Binding Path=Player.Width}" Canvas.Left="{Binding Path=Player.X}" Canvas.Top="{Binding Path=Player.Y}"/>
+    <ScrollViewer x:Name="viewer" Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Focusable="True" KeyDown="Canvas_KeyDown">
+        <Canvas Name="canvas" Background="{StaticResource PlayerBrush}" MouseDown="Canvas_PrepareMove" MouseWheel="canvas_MouseWheel" SizeChanged="Canvas_SizeChanged" Loaded="Canvas_Loaded">
+            <Ellipse x:Name="ellipse" Fill="Red"/>
 
             <Polyline Name="arrow" Visibility="Visible" Stroke="DarkSeaGreen" StrokeThickness="15" StrokeEndLineCap="Triangle" StrokeStartLineCap="Round" Panel.ZIndex="-1"/>
 
-            <Button Width="100" Height="30" Canvas.Left="900" Canvas.Top="500" Background="Red" Opacity="0.5" Click="Button_Click" />
+            <Button Name="move_btn" Canvas.Left="1000" Canvas.Top="400" Template="{StaticResource MoveTemplate}" Click="Move_ClickBtn" Focusable="False"/>
 
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDown">
-                    <i:InvokeCommandAction Command="{Binding PrepareMoveCommand}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            <Button Name="sleep_btn" Canvas.Left="1000" Canvas.Top="550" Template="{StaticResource SleepTemplate}" Click="Sleep_ClickBtn"  Focusable="False"/>
         </Canvas>
     </ScrollViewer>
+   
 </UserControl>
-
-
-<!--xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"-->

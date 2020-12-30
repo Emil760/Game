@@ -1,55 +1,135 @@
-﻿using SurvivalGT.Utility;
+﻿using SurvivalGT.Models;
+using SurvivalGT.Utility;
 using System;
 
 namespace SurvivalGT.Items
 {
+    public enum ItemType
+    {
+        Component,
+        Food,
+        Medecine,
+        Weapon,
+        Tool,
+        Utility
+    }
+
     public enum ItemTag
     {
+        /// <summary>
+        /// Materials
+        /// </summary>
+        Akumulator,
+        BrockenAkumulator,
+        Acid,
+        Books,
+        Bone,
+        Benzin,
+        Battery,
+        Blowball,
+        Cartrige,
+        Cloth,
+        Coal,
+        Component,
+        Capsule,
+        Explosivs,
+        Electrodes,
+        Flint,
+        Gilza,
+        Gunpowder,
+        Filter,
+        Gear,
+        Gas,
+        Herb,
+        Lead,
+        Nail,
+        Nettle,
+        Nightshade,
+        Oil,
+        Paper,
+        Pipe,
+        Poison,
+        Rags,
+        Rope,
+        Rubber,
+        Soap,
+        Scrap,
+        PreparedSkin,
+        Saltpeter,
+        Sulfur,
+        SoilSaltpeter,
+        SoilSulfur,
+        Steel,
+        String,
+        Skin,
+        Tape,
+        Table,
+        TaningSolution,
+        Tire,
+        Wire,
+        Wood,
+        Ice,
+        BicyleSpareParts,
+        MotocycleSpareParts,
+        SpareParts,
         /// <summary>
         /// Food
         /// </summary>
         Apple,
-        AppleBrandy,
         BeefCan,
         Bread,
+        Berries,
+        BoiledBackwheat,
         BoiledPasta,
         BoiledRice,
-        CondensedMilk,
-        Crusmbs,
-        Coffee,
-        CoffeeCold,
-        CoffeHot,
-        Cutlet,
-        CutletRice,
-        Flour,
+        BackedSalo,
+        Backwheat,
         Crumbs,
+        Coffee,
+        Cake,
+        PreparedCoffe,
+        MeatCutlet,
+        Water,
+        MeatDry,
+        FishDry,
+        DurtyWater,
+        Doner,
+        Flour,
+        FriedMeat,
+        FriedFish,
+        FriedRat,
+        FriedSnake,
+        FreshRat,
+        FreshSnake,
+        FreshMeat,
+        FreshFish,
+        Fat,
+        Jam,
         Honey,
-        Salo,
-        Tea,
-        TeaHot,
-        TeaCold,
-        Salt,
+        Kebab,
+        Milk,
+        PoisonWater,
         MarinatedVegetables,
         Pasta,
         Pepsi,
+        Pickles,
         Rice,
-        FreshMeat,
-        FreshFish,
-        DryMeat,
-        DryFish,
-        CleanWater,
-        PoisonWater,
-        DurtyWater,
-        BackedMeat,
-        BackedFish,
-        BackedSalo,
-        SaltedMeat,
-        SaltedFish,
+        RadWater,
+        RiceCutlet,
         RoutedFish,
         RoutedMeat,
         RoutedFood,
         RottenVegetables,
-        Vodka,
+        RadMeat,
+        RadFish,
+        Salt,
+        Salo,
+        SaltedMeat,
+        SaltedFish,
+        SmokedSalo,
+        Strawberry,
+        Tea,
+        PreparedTea,
         BlackMushroom,
         BlueMushroom,
         GreenMushroom,
@@ -60,93 +140,117 @@ namespace SurvivalGT.Items
         YellowMushroom,
         WhiteMushroom,
         /// <summary>
-        /// Materials
-        /// </summary>
-        Akumulator,
-        AkumulatorBrocken,
-        Books,
-        Bone,
-        Battery,
-        Cartrige,
-        Rags,
-        Cloth,
-        Coal,
-        Component,
-        Capsule,
-        Electrodes,
-        Fat,
-        Flint,
-        FlintBlade,
-        Benzin,
-        Gilza,
-        Gunpowder,
-        GasMaskFilter,
-        Gear,
-        Lead,
-        Nail,
-        Oil,
-        Paper,
-        Pipe,
-        PreparedSkin,
-        Provoloka,
-        Rope,
-        Rubber,
-        Soap,
-        Scrap,
-        Saltpeter,
-        Sulfur,
-        SulfurAcid,
-        SoilSaltpeter,
-        SoilSulfur,
-        Skin,
-        String,
-        Tape,
-        Tire,
-        Wire,
-        Wood,
-        WeaponsPart,
-        TaningSolution,
-        /// <summary>
         /// Weapon
         /// </summary>
+        Arrow,
+        PistolAmmo,
+        SubmachineAmmo,
         RifleAmmo,
         SniperAmmo,
-        Arrow,
-        SubmachineAmmo,
-        PistolAmmo,
         Rpg7Ammo,
-        TTPistol,
+        PistolCapsule,
+        SubmachineCapsule,
+        RifleCapsule,
+        SniperCapsule,
+        PistolSpareParts,
+        RifleSpareParts,
+        SniperSpareParts,
         Ak47,
-        Ak47SpareParts,
-        Rpg7,
+        BrockenAk47,
+        Dp,
+        BrockenDp,
         Pistol,
+        BrockenPistol,
+        Pps42,
+        BrockenPps42,
+        Mosin,
+        BrockenMosin,
+        Rpg7,
+        BrockenRpg7,
+        SVD,
+        BrockenSVD,
         Crossbow,
         Crossbow2,
         Grenade,
+        HandmadeGrenade,
         Molotov,
-        SelfmadeGrenade,
-        SelfmadeGun,
-        SelfmadeAmmo,
-        Spear,
+        HandmadeGun,
+        HandmadeAmmo,
+        FlintSpear,
         Berdish,
+        Club,
+        IronBattleKnife,
+        BattleKnife,
+        /// <summary>
+        /// Tools
+        /// </summary>
+        Axe,
+        OldAxe,
+        FlintAxe,
+        SteelAxe,
+        BladeFlint,
+        СhimKit,
+        Can,
+        Crowbar,
+        SteelCrowbar,
+        HandmadeFishingRod,
+        FishingRod,
+        Flashlight,
+        Fire,
+        Hacksaw,
+        OldHacksaw,
+        HandmadeCandle,
+        Matches,
+        Instruments,
+        OldTools,
+        SteelTools,
+        Knife,
+        FlintKnife,
+        SteelKnife,
+        Lighter,
+        HandmadeLighter,
+        Pan,
+        SteelPan,
+        Primus,
+        EmptyPrimus,
+        HandmadePrimus,
+        EmptyHandmadePrimus,
+        Shovel,
+        SteelShovel,
+        OldShovel,
+        SleepingBag,
+        Needle,
+        SteelNeedle,
+        HandmadeNeadle,
+        Torch,
+        WaterFilter,
         /// <summary>
         /// Medical
         /// </summary>
         ActivatedCarbon,
         Bandage,
-        Spirt, // останавливаеи кровотечение 
+        Brendy,
+        Bryocarm, // дает хп 
         Chlorcystamine, // от радиации 
         Cigarettes,
-        Metocaine, // от сна эффект не спит 2 дня
-        Painkiller, // от травм
-        HealingSalve, // для хп
-        Protozepam, // для хп остновливает кровотечение
+        Cigar,
         DetoxPotion,
         EnergyPotion,
+        Prokozol,
         Fleminсillin, // от поноса
-        Tratodonide, // от радиации
-        Bryocarm, // дает хп 
+        HealingSalve, // для хп
+        Injector,
+        Kazotein,
+        Lidiacide, // от сна
+        Metocaine, // от сна эффект не спит 2 дня
         MixedAlcohol,
+        Mutocaine,
+        Painkiller, // от травм
+        Protozepam, // для хп остновливает кровотечение
+        Spirt, // останавливаеи кровотечение 
+        Tratodonide, // от радиации
+        Vodka,
+        Wine,
         /// <summary>
         ///  //Bag
         /// </summary>
@@ -154,65 +258,78 @@ namespace SurvivalGT.Items
         Bag2,
         Bag3,
         Bag4,
+        Bag5,
         /// <summary>
         /// Mask
         /// </summary>
         Gasmask1,
+        BrockenGasmask1,
+        EmptyGasmask1,
         Gasmask2,
+        BrockenGasmask2,
+        EmptyGasmask2,
         Gasmask3,
-        HomemadeResperator,
+        BrockenGasmask3,
+        EmptyGasmask3,
+        Gasmask4,
+        BrockenGasmask4,
+        EmptyGasmask4,
+        Resperator,
+        HandmadeResperator,
         /// <summary>
-        /// Cloth
+        /// Armor
         /// </summary>
-        HomemadeCloth,
-        LeatherCloth,
-        MilitaryCloth,
-        MotorwayCloth,
-        IronCloth,
-        /// <summary>
-        /// Tools
-        /// </summary>
-        Axe,
-        Knife,
-        FlintAxe,
-        FlintKnife,
-        Matches,
-        FishingRod,
-        Flashlight,
-        SelfmadeNeadle,
-        Instruments,
-        Instruments2,
-        Can,
-        Pan,
-        Torch,
+        HandmadeArmor,
+        LeatherArmor,
+        MilitaryArmor,
+        MotorwayArmor,
+        SteelArmor,
+        TankArmor,
+        Hazmat,
         /// <summary>
         /// Transport
         /// </summary>
-        Bike,
+        Bicycle,
+        BrockenBicycle,
+        BrockenGas,
+        DemoGas,
         Motocycle,
+        DemoMotocycle,
+        BrockenMotocycle,
+        Uaz,
+        BrockenUaz,
+        DemoUaz,
+        Vaz,
+        DemoVaz,
+        BrockenVaz,
         Zaz,
+        BrockenZaz,
+        DemoZaz,
         /// <summary>
         /// Aniamls
-        /// </summary>
+        /// </summary
         BearCorpse,
+        RadBearCorpse,
         BoarCorpse,
+        RadBoarCorpse,
         FishCorpse,
         RatCorpse,
+        RadRatCorpse,
         WolfCorpse,
+        RadWolfCorpse,
+        LynxCorpse,
+        RadLynxCorpse,
+        SnakeCorpse,
         /// <summary>
         /// Books
         /// </summary>
-        BookChemistry,
-        BookDriving,
-        BookMechanics,
-        BookMelle,
-        BookSewing,
-        BookShoot
+        Book
     }
 
     public class Item : ObserableObject, ICloneable
     {
         protected ItemTag tag;
+        protected ItemType type;
         protected string name;
         protected float weight;
         protected string path;
@@ -225,19 +342,31 @@ namespace SurvivalGT.Items
         public Item(ItemTag tag, string name, float weight, string path)
         {
             this.tag = tag;
+            this.type = ItemType.Component;
             this.name = name;
             this.weight = weight;
             Path = path;
         }
 
+        public Item(ItemTag tag, ItemType type, string name, float weight, string path)
+            : this(tag, name, weight, path)
+        {
+            this.type = type;
+        }
+
         public ItemTag Tag { get => tag; }
         public string Name { get => name; }
         public float Weight { get => weight; }
-        public string Path { get => path; private set => Set(ref path, value); }
+        public string Path { get => path; private set => path = value; }
+
+        public virtual Loot GetLoot(int count)
+        {
+            return new Loot(this, count);
+        }
 
         public virtual object Clone()
         {
-            return this.Clone();
+            return new Item(tag, type, name, weight, path);
         }
     }
 }

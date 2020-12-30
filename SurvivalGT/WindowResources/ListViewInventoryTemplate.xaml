@@ -4,7 +4,7 @@
                     xmlns:u="clr-namespace:SurvivalGT.Utility">
 
     <ImageBrush x:Key="ListViewBackground" ImageSource="/images\backgrounds\paper.jpg"/>
-    
+
     <u:MultConvertor x:Key="MultConvertor"/>
 
     <DataTemplate x:Key="NormalDataTemplate">
@@ -16,7 +16,7 @@
 
     <DataTemplate x:Key="BreakableDataTemplate">
         <Canvas>
-            <ProgressBar Maximum="100" Value="50" Background="LightGreen" Width="80" Height="8">
+            <ProgressBar Maximum="{Binding Path=Item.Durability}" Value="{Binding Path=Item.CurrentDurability}" Background="DarkOliveGreen" Width="80" Height="5" Foreground="DarkRed">
                 <ProgressBar.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </ProgressBar.LayoutTransform>
@@ -63,7 +63,9 @@
         <Setter Property="Background" Value="{StaticResource ListViewBackground}"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="Margin" Value="5"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
+
 
     <Style x:Key="RepairStyle" TargetType="Button">
         <Setter Property="Height" Value="45"/>
@@ -82,12 +84,17 @@
     </Style>
 
     <Style x:Key="RepairListViewStyle" TargetType="ListView">
-        
-    </Style>
-    
-    <DataTemplate x:Key="RepairDataTemplate">
-        <Canvas>
 
-        </Canvas>
+    </Style>
+
+    <DataTemplate x:Key="RepairDataTemplate">
+        <StackPanel Width="30" Height="30">
+            <Image Source="{Binding Path=Loot.Item.Image}" Width="20" Height="20"/>
+            <TextBlock>
+                <Run Text="{Binding Path=Count}" FontSize="15" Foreground="Black" FontWeight="DemiBold"/>
+                 / 
+                <Run Text="{Binding Path=Loot.Count}" FontSize="15" Foreground="Black" FontWeight="DemiBold"/>
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

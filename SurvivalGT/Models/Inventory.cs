@@ -68,7 +68,7 @@ namespace SurvivalGT.Models
 
         public void FilterFood(Loot loot)
         {
-            if (loot.Item is EatFood || loot.Item is PrepareFood)
+            if (loot.Item is Item || loot.Item is Item)
             {
                 loots.Add(loot);
                 SortLoot();
@@ -105,7 +105,7 @@ namespace SurvivalGT.Models
 
         public void FilterWeapon(Loot loot)
         {
-            if (loot.Item is Weapon || loot.Item is Ammo)
+            if (loot.Item is Weapon)
             {
                 loots.Add(loot);
                 SortLoot();
@@ -159,28 +159,3 @@ namespace SurvivalGT.Models
     }
 
 }
-
-
-//private int Partition(int[] array, int start, int end)
-//{
-//    int marker = start;
-//    for (int i = start; i <= end; i++)
-//    {
-//        if (array[i] <= array[end])
-//        {
-//            int temp = array[marker];
-//            array[marker] = array[i];
-//            array[i] = temp;
-//            marker += 1;
-//        }
-//    }
-//    return marker - 1;
-//}
-
-//private void Quicksort(int[] array, int start, int end)
-//{
-//    if (start >= end) return;
-//    int pivot = Partition(array, start, end);
-//    Quicksort(array, start, pivot - 1);
-//    Quicksort(array, pivot + 1, end);
-//}

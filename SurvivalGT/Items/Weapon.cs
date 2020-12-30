@@ -14,7 +14,7 @@ namespace SurvivalGT.Items
         }
 
         public Weapon(ItemTag tag, string name, float weight, string path, short act_point, short min_damage, short max_damage)
-            : base(tag, name, weight, path)
+            : base(tag, ItemType.Weapon, name, weight, path)
         {
             this.act_point = act_point;
             this.min_damage = min_damage;
@@ -30,19 +30,24 @@ namespace SurvivalGT.Items
 
     class MealWeapon : Weapon, IBreakable
     {
-        private short durability;
-        private short current_durability;
+        private int durability;
+        private int current_durability;
 
-        public MealWeapon(ItemTag tag, string name, float weight, string path, short act_point, short durability, short min_damage, short max_damage)
+        public MealWeapon(ItemTag tag, string name, float weight, string path, short act_point, short min_damage, short max_damage, int durability)
             : base(tag, name, weight, path, act_point, min_damage, max_damage)
         {
-            CurrentDurability = durability;
+            this.durability = durability;
             this.current_durability = durability;
         }
 
-        public short CurrentDurability { get => current_durability; set => Set(ref current_durability, value); }
+        public int CurrentDurability { get => current_durability; set => Set(ref current_durability, value); }
 
-        public short Durability { get => durability; }
+        public int Durability { get => durability; }
+
+        public void WearOut()
+        {
+            throw new System.NotImplementedException();
+        }
 
         //public override object Clone()
         //{
@@ -52,23 +57,39 @@ namespace SurvivalGT.Items
 
     class RangeWeapon : Weapon, IBreakable, IRepairable
     {
-        private short current_durability;
-        private short durability;
+        private ItemTag ammo;
+        private int current_durability;
+        private int durability;
         private Loot[] repair_loots;
 
-        public RangeWeapon(ItemTag tag, string name, float weight, string path, short act_point, short min_damage, short max_damage, short durability, Loot[] repair_loots)
+        public RangeWeapon(ItemTag tag, string name, float weight, string path, short act_point, short min_damage, short max_damage, ItemTag ammo, int durability, Loot[] repair_loots)
         : base(tag, name, weight, path, act_point, min_damage, max_damage)
         {
+            this.ammo = ammo;
             this.durability = durability;
             CurrentDurability = durability;
             this.repair_loots = repair_loots;
         }
 
-        public short CurrentDurability { get => current_durability; set => Set(ref current_durability, value); }
+        public ItemTag Ammo { get => ammo; set => ammo = value; }
 
-        public short Durability { get => durability; }
+        public int CurrentDurability { get => current_durability; set => Set(ref current_durability, value); }
+
+        public int Durability { get => durability; }
 
         public Loot[] RepairLoots { get => repair_loots; }
+
+        public Goods[] RepairGoods => throw new System.NotImplementedException();
+
+        public void Repair()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void WearOut()
+        {
+            throw new System.NotImplementedException();
+        }
 
         //public override object Clone()
         //{

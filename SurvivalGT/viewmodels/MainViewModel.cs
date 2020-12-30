@@ -5,6 +5,7 @@ using System;
 using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace SurvivalGT.viewmodels
 {
@@ -12,12 +13,15 @@ namespace SurvivalGT.viewmodels
     {
         private Player player;
         private ContentControl interaction_control;
-        private DateTime date;
         private Timer timer;
-        private double miunte = 1;
+        private float miunte = 1;
+        private bool is_moving;
+        Game game;
 
         public MainViewModel()
         {
+             game = Game.Instance;
+
             InventoryShowCommand = new Command(InventoryShow);
             CraftShowCommand = new Command(CraftShow);
             SearchShowCommand = new Command(SearchShow);
@@ -26,20 +30,11 @@ namespace SurvivalGT.viewmodels
             AbilityShowCommand = new Command(AbilityShow);
             MapShowCommand = new Command(MapShow);
 
-            //InteractionView = new MapUserControl(this);
-
             Player = Player.Instance;
 
-            timer = new Timer(16.666);
-            timer.Elapsed += Timer_Elapsed;
-            Date = new DateTime(1999, 1, 1, 0, 0, 0);
-            //timer.Start();
-        }
+            timer = new Timer(game.Fps);
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Date = Date.AddMinutes(miunte);
-            player.Decrease();
+            InteractionView = new MapUserControl(this);
         }
 
         public ICommand InventoryShowCommand { get; }
@@ -50,10 +45,13 @@ namespace SurvivalGT.viewmodels
         public ICommand AbilityShowCommand { get; }
         public ICommand MapShowCommand { get; }
 
+        public Game Game { get => game; }
         public Player Player { get => player; set => Set(ref player, value); }
         public ContentControl InteractionView { get => interaction_control; set => Set(ref interaction_control, value); }
-        public DateTime Date { get => date; set => Set(ref date, value); }
+
         public Timer Timer { get => timer; set => timer = value; }
+
+        public bool IsMoving { get => is_moving; set => Set(ref is_moving, value); }
 
         private void InventoryShow(object sender)
         {
@@ -88,7 +86,7 @@ namespace SurvivalGT.viewmodels
 
         private void MapShow(object sender)
         {
-            //InteractionView = new MapUserControl(this);
+            InteractionView = new MapUserControl(this);
         }
     }
 }
