@@ -6,11 +6,18 @@
              xmlns:local="clr-namespace:SurvivalGT.InfoUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <StackPanel>
-        <local:ItemUC DataContext="{Binding RelativeSource={RelativeSource Self}}"></local:ItemUC>
 
-        <TextBlock Text="{Binding Path=Loot.Item.Durability, StringFormat=Max durability: {0}}" />
-        <TextBlock Text="{Binding Path=Loot.Item.CurrentDurability, StringFormat=Durability{0}}" />
+    <UserControl.Resources>
+        <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <local:ItemUC DataContext="{Binding Path=Loot}"/>
+
+        <TextBlock>
+            <Run Text="{Binding Path=Loot.Item.CurrentDurability, StringFormat=Durability: {0}}" ></Run>
+            <Run> / </Run>
+            <Run Text="{Binding Path=Loot.Item.Durability, Mode=OneWay}"></Run>
+        </TextBlock>
     </StackPanel>
 </UserControl>

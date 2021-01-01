@@ -55,7 +55,10 @@ namespace SurvivalGT.viewmodels
 
         private void InventoryShow(object sender)
         {
-            InteractionView = new InventoryUserControl();
+            InventoryUserControl userControl = new InventoryUserControl();
+            InteractionView = new InventoryUserControl(); 
+
+            
             timer.Stop();
         }
 

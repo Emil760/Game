@@ -16,7 +16,7 @@ namespace SurvivalGT.views
         public MainWindow()
         {
             InitializeComponent();
-            main_view_model = new MainViewModel();
+            main_view_model = new MainViewModel();           
             DataContext = main_view_model;
 
             player = Player.Instance;
