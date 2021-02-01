@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="SurvivalGT.InfoUC.BookUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SurvivalGT.InfoUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WindowResources\InfoDictionary.xaml"/>
+                <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+
+        <Border BorderBrush="Brown" BorderThickness="4">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource LevelIcon}" Style="{StaticResource InfoIconStyle}"/>
+                <TextBlock Text="{Binding Path=Loot.Item.Level}" Style="{StaticResource InfoTextBlock}"/>
+                <Image Source="{StaticResource StaminaIcon}" Style="{StaticResource InfoIconStyle}"/>
+                <TextBlock Text="{Binding Path=Loot.Item.Stamina}" Style="{StaticResource InfoTextBlock}"/>
+            </StackPanel>
+        </Border>
+
+        <Button Content="Read" Template="{StaticResource ButtonTemplate}" Command="{Binding Path=ReadCommand}"/>
+    </StackPanel>
+</UserControl>

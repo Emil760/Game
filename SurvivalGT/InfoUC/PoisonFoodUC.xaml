@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SurvivalGT.InfoUC.PoisonFoodUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SurvivalGT.InfoUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/WindowResources\InfoDictionary.xaml"/>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+
+        <TextBlock Text="{Binding Path=Loot.Item.Time, StringFormat=Spoils after: {0}, Converter={StaticResource TimeConverter}}" Style="{StaticResource InfoTextBlock}"/>
+
+        <Border Style="{StaticResource BorderStyle}">
+            <StackPanel>
+                <local:ConsumerUC DataContext="{Binding Path=Loot}" Style="{StaticResource Consumer}"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Path=Loot.Item.Effect.Path}" Style="{StaticResource ImageEffect}"/>
+                    <TextBlock Style="{StaticResource InfoTextBlock}">
+                        <Run Text="{Binding Path=Loot.Item.Effect.Name, Mode=OneWay}"/>
+                        <Run Text="{Binding Path=Loot.Item.Chance, Mode=OneWay}"/>
+                        <Run Text="%"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <Button Content="Eat" Template="{StaticResource ButtonTemplate}" Command="{Binding Path=ConsumeCommand}"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+
+</UserControl>

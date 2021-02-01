@@ -3,22 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SurvivalGT.InfoUC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="250" d:DesignWidth="400">
     <UserControl.Resources>
         <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
     </UserControl.Resources>
 
     <StackPanel>
-        <TextBlock Text="{Binding Path=Item.Name, Mode=OneWay, StringFormat=Name: {0}}"/>
-        <TextBlock Text="{Binding Path=Item.Weight, Mode=OneWay, StringFormat=Weight: {0}}"/>
-        <TextBlock Text="{Binding Path=Count, Mode=OneWay, StringFormat=Count: {0}}"/>
-        <TextBlock>
+        <TextBlock Text="{Binding Path=Loot.Item.Name, Mode=OneWay, StringFormat=Name: {0}}" Style="{StaticResource InfoTextBlock}"/>
+        <TextBlock Text="{Binding Path=Loot.Item.Weight, Mode=OneWay, StringFormat=Weight: {0}, Converter={StaticResource WeightConverter}}" Style="{StaticResource InfoTextBlock}"/>
+        <TextBlock Text="{Binding Path=Loot.Count, StringFormat=Count: {0}}" Style="{StaticResource InfoTextBlock}"/>
+        <TextBlock Style="{StaticResource InfoTextBlock}">
             <TextBlock.Text>
-                <MultiBinding Converter="{StaticResource  MultConvertor}" StringFormat="Full weight: {0}">
-                    <Binding Path="Item.Weight"/>
-                    <Binding Path="Count"/>
+                <MultiBinding Converter="{StaticResource WeightCountConverter}" StringFormat="Full weight: {0}">
+                    <Binding Path="Loot.Item.Weight" Mode="OneWay"/>
+                    <Binding Path="Loot.Count" Mode="OneWay"/>
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

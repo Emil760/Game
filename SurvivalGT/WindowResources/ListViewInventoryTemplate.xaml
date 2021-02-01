@@ -1,11 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:m="clr-namespace:SurvivalGT.Models"
                     xmlns:u="clr-namespace:SurvivalGT.Utility">
 
-    <ImageBrush x:Key="ListViewBackground" ImageSource="/images\backgrounds\paper.jpg"/>
-
-    <u:MultConvertor x:Key="MultConvertor"/>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <u:WeightCountConverter x:Key="MultConvertor"/>
+    <u:BreakConverter x:Key="BreakConverter"/>
 
     <DataTemplate x:Key="NormalDataTemplate">
         <Canvas>
@@ -14,26 +16,36 @@
         </Canvas>
     </DataTemplate>
 
+    
     <DataTemplate x:Key="BreakableDataTemplate">
         <Canvas>
-            <ProgressBar Maximum="{Binding Path=Item.Durability}" Value="{Binding Path=Item.CurrentDurability}" Background="DarkOliveGreen" Width="80" Height="5" Foreground="DarkRed">
+            <ProgressBar x:Name="progress" Canvas.Left="2" Canvas.Top="5" Maximum="{Binding Path=Item.Durability}" Value="{Binding Path=Item.CurrentDurability}" Width="80" Height="5" Background="Transparent" Foreground="DarkOliveGreen" BorderBrush="Black" BorderThickness="1">
                 <ProgressBar.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </ProgressBar.LayoutTransform>
             </ProgressBar>
-            <Image Source="{Binding Path=Item.Path}" Height="80" Width="80"/>
+            <Image Canvas.Left="8" Source="{Binding Path=Item.Path}" Height="75" Width="75"/>
             <TextBlock Text="{Binding Path=Count}" Canvas.Top="66" Canvas.Right="5" FontSize="20" Width="90" FontWeight="SemiBold" TextAlignment="Right" Foreground="Black"/>
         </Canvas>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource BreakConverter}}" Value="Green">
+                <Setter TargetName="progress" Property="Foreground" Value="DarkOliveGreen"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource BreakConverter}}" Value="Yellow">
+                <Setter TargetName="progress" Property="Foreground" Value="Yellow"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource BreakConverter}}" Value="Red">
+                <Setter TargetName="progress" Property="Foreground" Value="Red"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
     </DataTemplate>
 
-    <m:ItemsDataTemplateSelector x:Key="ItemsDataTemplateSelector"
+
+    <u:ItemsDataTemplateSelector x:Key="ItemsDataTemplateSelector"
                                  NormaDataTemplate="{StaticResource NormalDataTemplate}"
                                  BrockenableDataTemplate="{StaticResource BreakableDataTemplate}">
-    </m:ItemsDataTemplateSelector>
-
-    <ItemsPanelTemplate x:Key="ListViewItemsPanelTemplate">
-        <WrapPanel/>
-    </ItemsPanelTemplate>
+    </u:ItemsDataTemplateSelector>
 
     <Style x:Key="InventoryListViewItem" TargetType="ListViewItem">
         <Setter Property="Template">
@@ -56,11 +68,12 @@
         </Setter>
     </Style>
 
+    
     <Style x:Key="InventoryListView" TargetType="ListView">
         <Setter Property="ItemTemplateSelector" Value="{StaticResource ItemsDataTemplateSelector}"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource InventoryListViewItem}"/>
-        <Setter Property="ItemsPanel" Value="{StaticResource ListViewItemsPanelTemplate}"/>
-        <Setter Property="Background" Value="{StaticResource ListViewBackground}"/>
+        <Setter Property="ItemsPanel" Value="{StaticResource ListViewPanelTemplate}"/>
+        <Setter Property="Background" Value="{StaticResource PaperBackground}"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
@@ -76,6 +89,7 @@
         <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
 
+    
     <Style x:Key="InfoStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
@@ -83,10 +97,12 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
+    
     <Style x:Key="RepairListViewStyle" TargetType="ListView">
 
     </Style>
 
+    
     <DataTemplate x:Key="RepairDataTemplate">
         <StackPanel Width="30" Height="30">
             <Image Source="{Binding Path=Loot.Item.Image}" Width="20" Height="20"/>

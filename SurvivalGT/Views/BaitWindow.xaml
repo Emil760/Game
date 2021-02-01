@@ -1,0 +1,25 @@
+﻿<Window x:Class="SurvivalGT.Views.BaitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"             
+        mc:Ignorable="d"
+        Title="Bait" Height="280" Width="580" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary Source="/WindowResources\BaitDictionary.xaml"/>
+    </Window.Resources>
+
+    <ListView
+        Background="{StaticResource Bait}"
+        ItemsSource="{Binding Path=Baits}"
+        Style="{StaticResource BaitListViewStyle}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <i:InvokeCommandAction Command="{Binding BaitChangedCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    </ListView>
+    
+</Window>

@@ -1,5 +1,4 @@
-﻿using SurvivalGT.Models;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SurvivalGT.InfoUC
 {
@@ -10,13 +9,7 @@ namespace SurvivalGT.InfoUC
     {
         public ItemUC()
         {
-
-        }
-
-        public ItemUC(Loot loot)
-        {
             InitializeComponent();
-            DataContext = loot;
         }
     }
 }

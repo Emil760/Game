@@ -13,7 +13,7 @@
             this.stamina = stamina;
         }
 
-        public short LevelPoints { get => level; }
+        public short Level { get => level; }
         public short Stamina { get => stamina; }
 
         //public override object Clone()

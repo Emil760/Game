@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SurvivalGT.Models
+﻿namespace SurvivalGT.Models
 {
-    class Map
+    public class Map
     {
+        private static Map instance;
 
+        private Map()
+        {
+
+        }
+
+        public static Map Instance
+        {
+            get
+            {
+                if (instance == null) instance = new Map();
+                return instance;
+            }
+        }
     }
 }

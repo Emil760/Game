@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ImageBrush x:Key="Bait" ImageSource="/images/backgrounds/fishing.jpg"/>
+
+    <LinearGradientBrush x:Key="BaitBorderBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF5D4A58" Offset="0"/>
+        <GradientStop Color="#FF5D4A58" Offset="1"/>
+        <GradientStop Color="#FFDCC3D5" Offset="0.495"/>
+    </LinearGradientBrush>  
+
+    <DataTemplate x:Key="BaitDataTemplate">
+        <StackPanel Width="100" Height="110">
+            <Border Width="90" Height="90" CornerRadius="45" BorderThickness="4" BorderBrush="{StaticResource BaitBorderBackground}" Background="Transparent">
+                <Image Source="{Binding Path=Item.Path}" Width="65" Height="65"/>
+                <Border.ToolTip>
+                    <ToolTip Template="{StaticResource ToolTipTemplate}">
+                        <TextBlock Text="{Binding Path=Item.Name}"/>
+                    </ToolTip>
+                </Border.ToolTip>
+            </Border>
+            <TextBlock Text="{Binding Path=Count, StringFormat=Fish: {0}}" FontSize="15" Foreground="WhiteSmoke" FontWeight="DemiBold"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <Style x:Key="BaitListViewStyle" TargetType="ListView">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ListViewItemTemplate}"/>
+        <Setter Property="ItemsPanel" Value="{StaticResource ListViewPanelTemplate}"/>
+        <Setter Property="ItemTemplate" Value="{StaticResource BaitDataTemplate}"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+
+</ResourceDictionary>

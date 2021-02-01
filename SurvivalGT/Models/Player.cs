@@ -5,10 +5,12 @@ using System.Windows.Shapes;
 
 namespace SurvivalGT.Models
 {
+    //put auto property if is needed
     public class Player : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private static Player instance;
+        private Game game;
 
         private Inventory inventory;
         private LinkedList<Effect> effects;
@@ -17,11 +19,15 @@ namespace SurvivalGT.Models
         private double y;
         private double width;
         private double height;
+
+        //test;
+        private double actual_width;
+        private double actual_height;
+        public double ActualWidth { get => actual_width; private set => actual_width = value; }
+        public double ActualHeight { get => actual_height; private set => actual_height = value; }
+
         private double speed;
         private DateTime date;
-        //test
-        private bool is_moving;
-        public bool IsMoving { get => is_moving; set => is_moving = value; }
 
         private string name;
         private short max_hp;
@@ -55,18 +61,17 @@ namespace SurvivalGT.Models
             Width = 40;
             Speed = 5;
 
-            //Date
             Date = new DateTime(1999, 1, 1, 0, 0, 0);
 
             MaxHp = 100;
             Hp = 100;
             HpDec = 0;
             Thirst = 100;
-            ThirstDec = 0.18f;
+            ThirstDec = 15;
             Hunger = 100;
-            HungerDec = 0.13f;
+            HungerDec = 10;
             Stamina = 100;
-            StaminaDec = 0.1f;
+            StaminaDec = 8;
             Poison = 0;
             PoisonDec = 0;
             Radiation = 0;
@@ -76,6 +81,7 @@ namespace SurvivalGT.Models
             Armor = 0;
 
             inventory = new Inventory();
+            game = Game.Instance;
         }
 
         public static Player Instance
@@ -229,19 +235,22 @@ namespace SurvivalGT.Models
 
         public LinkedList<Effect> Effects { get => effects; set => effects = value; }
 
+
         public void Decrease()
         {
-            Hp -= hp_dec;
-            Radiation -= radiation_dec;
-            Poison -= poison_dec;
-            Hunger -= hunger_dec;
-            Thirst -= thirst_dec;
-            Stamina -= stamina_dec;
+            Hp -= hp_dec / game.Fps / game.Minute;
+            Radiation -= radiation_dec / game.Fps / game.Minute;
+            Poison -= poison_dec / game.Fps / game.Minute;
+            Hunger -= hunger_dec / game.Fps / game.Minute;
+            Thirst -= thirst_dec / game.Fps / game.Minute;
+            Stamina -= stamina_dec / game.Fps / game.Minute;
+            date = date.AddMinutes(game.Minute);
         }
 
-        public void SetEllipse(Ellipse ellipse)
+        public void EffectFinished(Effect effect)
         {
-
+            effects.Remove(effect);
+            effect.Leave(this);
         }
 
         public void Set<T>(ref T prop, T value, [System.Runtime.CompilerServices.CallerMemberName] string prop_name = "")

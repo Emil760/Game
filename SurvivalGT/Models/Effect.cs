@@ -1,9 +1,12 @@
-﻿using System;
+﻿using SurvivalGT.Utility;
+using System.Collections.Generic;
 
 namespace SurvivalGT.Models
 {
     public enum EffectTag
     {
+        Rainy,
+        Frosty,
         SleepResistance,
         Alcogolizm,
         Smoking,
@@ -13,71 +16,142 @@ namespace SurvivalGT.Models
         RadiationResistance,
         Healing,
         RadiationSickness,
+        Worms
     }
 
-    public abstract class Effect : ICloneable
+    public static class EffectFactory
     {
-        protected int time;
+        private static Dictionary<EffectTag, Effect> effects;
 
-        public int Time { get => time; set => time = value; }
+        static EffectFactory()
+        {
+            effects = new Dictionary<EffectTag, Effect>();
+            effects.Add(EffectTag.Rainy, new Rainy());
+            effects.Add(EffectTag.Frosty, new Frosty());
+            effects.Add(EffectTag.Worms, new Worms());
+            effects.Add(EffectTag.Healing, new Healing());
+        }
 
-        public abstract void Run(Player player);
-
-        public abstract object Clone();
+        public static Effect GetEffect(EffectTag tag)
+        {
+            return effects[tag];
+        }
     }
 
-
-    public class SleepResistance : Effect
+    //name first duration second
+    public abstract class Effect : ObserableObject
     {
-        public override void Run(Player player)
+        protected int duration;
+
+        //remove
+        protected Effect()
         {
-            throw new NotImplementedException();
+
         }
 
-        public override object Clone()
+        protected Effect(int duration, string name, string path = null)
         {
-            throw new NotImplementedException();
+            Duration = duration;
+            Name = name;
+            Path = path;
         }
 
+        public int Duration { get => duration; set => Set(ref duration, value); }
+        public string Name { get; }
+        public string Path { get; }
+
+        public abstract void Enter(Player player);
+
+        public abstract void Leave(Player player);
     }
 
-    public class Alcogolizm : Effect
-    {
-        public override void Run(Player player)
-        {
-            throw new NotImplementedException();
-        }
+    //rad -5
+    //public class RadiationResistance : Effect
+    //{
 
-        public override object Clone()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //}
 
-    public class Smoking : Effect
-    {
-        public override void Run(Player player)
-        {
-            throw new NotImplementedException();
-        }
+    ////stamina +5
+    //public class SleepResistance : Effect
+    //{
 
-        public override object Clone()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //}
+
+    ////thirst -1 hunger -1 stamina -1
+    //public class Alcogolizm : Effect
+    //{
+
+    //}
+
+    ////thirst -2 hunger -1
+    //public class Smoking : Effect
+    //{
+
+    //}
+
+    //// weight -10% HpMax 90 HungerMax 90 ThirstMax 90 StaminaMax 90 
+    //public class Exhaustion : Effect
+    //{
+
+    //}
 
     public class Worms : Effect
     {
-        public override object Clone()
+        public Worms() : base(48, "Intestinal worms", "/images/effects/worms.png")
         {
-            throw new NotImplementedException();
+            Hunger = 1f;
+            Thirst = 0.5f;
         }
 
-        public override void Run(Player player)
+        public float Hunger { get; }
+        public float Thirst { get; }
+
+        public override void Enter(Player player)
         {
-            throw new NotImplementedException();
+            player.HungerDec += Hunger;
+            player.ThirstDec += Thirst;
+        }
+
+        public override void Leave(Player player)
+        {
+            player.HungerDec -= Hunger;
+            player.ThirstDec -= Thirst;
+        }
+    }
+
+    public class Healing : Effect
+    {
+        public Healing() : base(24, "Healing", "/images/effects/plus.png")
+        {
+
+        }
+
+        public float Hp { get; }
+
+        public override void Enter(Player player)
+        {
+            player.HpDec += Hp;
+        }
+
+        public override void Leave(Player player)
+        {
+            player.HpDec -= Hp;
         }
     }
 
 }
+
+//class Hangover : Effect
+//{
+
+//}
+
+//class Headache : Effect
+//{
+
+//}
+
+//class Sleepless : Effect
+//{
+
+//}

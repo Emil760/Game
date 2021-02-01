@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SurvivalGT.views.InventoryUserControl"
+﻿<UserControl x:Class="SurvivalGT.Views.InventoryUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,9 +14,6 @@
                 <ResourceDictionary Source="/WindowResources\CategoryButtonTemplate.xaml"/>
                 <ResourceDictionary Source="/WindowResources\ListViewInventoryTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <ImageBrush x:Key="EquipmentBackground" ImageSource="/images\backgrounds\background2.jpg"/>
-            <ImageBrush x:Key="MainBackground" ImageSource="/images\backgrounds\pexels-photo-326311.jpg"/>
 
             <Style x:Key="EquipmentStyle" TargetType="Button">
                 <Setter Property="Background" Value="{StaticResource EquipmentBackground}"/>
@@ -34,7 +31,7 @@
             </Style>
 
             <ControlTemplate x:Key="EquipmentTemplate" TargetType="Button">
-                <Border MinWidth="50" MinHeight="50" Width="70" Height="70" Margin="5" Cursor="Hand" Background="{DynamicResource EquipmentBackground}">
+                <Border MinWidth="50" MinHeight="50" Width="70" Height="70" Margin="5" Cursor="Hand" Background="{StaticResource EquipmentBackground}">
                     <ContentPresenter/>
                 </Border>
             </ControlTemplate>
@@ -43,7 +40,7 @@
     </UserControl.Resources>
 
 
-    <Border BorderBrush="Wheat" BorderThickness="10" Background="{StaticResource MainBackground}">
+    <Border BorderBrush="Wheat" BorderThickness="10" Background="{StaticResource WoodBackground}">
         <Grid ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -119,7 +116,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" ShowGridLines="True" Background="{StaticResource ListViewBackground}">
+                    <Grid Grid.Row="0" ShowGridLines="True" Background="{StaticResource PaperBackground}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="1.5*"/>
@@ -168,7 +165,7 @@
 
                     <GridSplitter Background="Black" Grid.Row="1" HorizontalAlignment="Stretch"/>
 
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="{StaticResource ListViewBackground}" Content="{Binding Path=InfoUC}"/>
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="{StaticResource PaperBackground}" Content="{Binding Path=InfoUC}"/>
 
                 </Grid>
             </Border>

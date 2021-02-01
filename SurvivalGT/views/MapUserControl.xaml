@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SurvivalGT.views.MapUserControl"
+﻿<UserControl x:Class="SurvivalGT.Views.MapUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,14 +18,14 @@
 
         <ControlTemplate x:Key="MoveTemplate" TargetType="Button">
             <Border CornerRadius="45" BorderBrush="Black" BorderThickness="5" Width="100" Height="100" Background="{StaticResource ButtonBackground}" Cursor="Hand">
-                <Image Name="image" Source="" Width="70" Height="70"/>
+                <Image Name="image" Width="70" Height="70"/>
             </Border>
 
             <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=IsMoving}" Value="False">
+                <DataTrigger Binding="{Binding Path=Game.IsMoving}" Value="False">
                     <Setter TargetName="image" Property="Source" Value="/images\icons\walking.png"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=IsMoving}" Value="True">
+                <DataTrigger Binding="{Binding Path=Game.IsMoving}" Value="True">
                     <Setter TargetName="image" Property="Source" Value="/images\icons\standing.png"/>
                 </DataTrigger>
             </ControlTemplate.Triggers>

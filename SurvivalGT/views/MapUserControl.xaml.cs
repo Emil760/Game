@@ -1,5 +1,5 @@
 ﻿using SurvivalGT.Models;
-using SurvivalGT.viewmodels;
+using SurvivalGT.ViewModels;
 using System;
 using System.Timers;
 using System.Windows;
@@ -7,29 +7,32 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SurvivalGT.views
+namespace SurvivalGT.Views
 {
     /// <summary>
     /// Interaction logic for MapUserControl.xaml
     /// </summary>
     public partial class MapUserControl : UserControl
     {
+        //remove (not from datacontext)
         private MainViewModel main_view_model;
         private Player player;
+        private Game game;
 
         private double full_time;
         private double curr_time;
-        private float zoom_per;
         private Point to;
         private Point move;
 
         public MapUserControl(MainViewModel main_view_model)
         {
             InitializeComponent();
+            this.Unloaded += MapUserControl_Unloaded;
             this.main_view_model = main_view_model;
             DataContext = main_view_model;
 
             player = Player.Instance;
+            game = Game.Instance;
 
             ellipse.Width = player.Width;
             ellipse.Height = player.Height;
@@ -42,10 +45,9 @@ namespace SurvivalGT.views
 
             move = new Point();
 
-            main_view_model.IsMoving = false;
-            main_view_model.Timer.Elapsed += Timer_Elapsed;
-
-            zoom_per = 1.02f;
+            //?
+            game.IsMoving = false;
+            game.Timer.Elapsed += Step;
         }
 
         private void Canvas_PrepareMove(object sender, MouseEventArgs e)
@@ -58,55 +60,54 @@ namespace SurvivalGT.views
                 arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(to.X, to.Y) });
                 curr_time = 0;
                 full_time = Math.Round(Math.Sqrt(Math.Pow(Math.Abs(arrow.Points[0].X - arrow.Points[1].X), 2) + Math.Pow(Math.Abs(arrow.Points[0].Y - arrow.Points[1].Y), 2)) - Math.Sqrt(Math.Pow(player.Width, 2) + Math.Pow(player.Height, 2)));
-                full_time = full_time / player.Speed * 10;
-                move.X = (arrow.Points[1].X - arrow.Points[0].X) / full_time * main_view_model.Game.Fps;
-                move.Y = (arrow.Points[1].Y - arrow.Points[0].Y) / full_time * main_view_model.Game.Fps;
+                full_time = full_time / player.Speed / game.Zoom * 10;
+                move.X = (arrow.Points[1].X - arrow.Points[0].X) / full_time * game.Fps;
+                move.Y = (arrow.Points[1].Y - arrow.Points[0].Y) / full_time * game.Fps;
             }
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Step(object sender, ElapsedEventArgs e)
         {
             if (full_time <= curr_time)
             {
-                main_view_model.Timer.Stop();
-                main_view_model.IsMoving = false;
+                game.Timer.Stop();
+                game.IsMoving = false;
+                Dispatcher.Invoke(() => { arrow.Points = null; });
+            }
+            else
+            {
+                player.X += move.X;
+                player.Y += move.Y;
+                curr_time += game.Fps;
                 Dispatcher.Invoke(() =>
                 {
-                    arrow.Points = null;
+                    Canvas.SetLeft(ellipse, player.X);
+                    Canvas.SetTop(ellipse, player.Y);
+                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(to.X, to.Y) });
                 });
-                return;
             }
-            player.X += move.X;
-            player.Y += move.Y;
-            curr_time += main_view_model.Game.Fps;
-            Dispatcher.Invoke(() =>
-            {
-                Canvas.SetLeft(ellipse, player.X);
-                Canvas.SetTop(ellipse, player.Y);
-                arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(to.X, to.Y) });
-            });
         }
 
         private void canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            Console.WriteLine(main_view_model.Game.Zoom + "\t" + canvas.Width + "\t" + canvas.Height);
             e.Handled = true;
-            if (e.Delta > 0 && main_view_model.Game.Zoom <= 2)
+            if (e.Delta > 0 && game.Zoom < game.MaxZoom)
             {
-                main_view_model.Game.Zoom += (zoom_per - 1);
-                canvas.Width *= zoom_per;
-                canvas.Height *= zoom_per;
+                game.Zoom += (game.ZoomPer - 1);
+                Console.WriteLine(game.Zoom);
+                canvas.Width *= game.ZoomPer;
+                canvas.Height *= game.ZoomPer;
 
-                player.X *= zoom_per;
-                player.Y *= zoom_per;
-                player.Width *= zoom_per;
-                player.Height *= zoom_per;
+                player.X *= game.ZoomPer;
+                player.Y *= game.ZoomPer;
+                player.Width *= game.ZoomPer;
+                player.Height *= game.ZoomPer;
 
-                move.X *= zoom_per;
-                move.Y *= zoom_per;
+                move.X *= game.ZoomPer;
+                move.Y *= game.ZoomPer;
 
-                to.X *= zoom_per;
-                to.Y *= zoom_per;
+                to.X *= game.ZoomPer;
+                to.Y *= game.ZoomPer;
 
                 ellipse.Width = player.Width;
                 ellipse.Height = player.Height;
@@ -114,26 +115,24 @@ namespace SurvivalGT.views
                 Canvas.SetTop(ellipse, player.Y);
 
                 if (arrow.Points != null)
-                {
-                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X * zoom_per, arrow.Points[1].Y * zoom_per) });
-                }
+                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X * game.ZoomPer, arrow.Points[1].Y * game.ZoomPer) });
             }
-            else if (main_view_model.Game.Zoom >= 0.5)
+            else if (game.Zoom > game.MinZoom)
             {
-                main_view_model.Game.Zoom -= (zoom_per - 1);
-                canvas.Width /= zoom_per;
-                canvas.Height /= zoom_per;
+                game.Zoom -= (game.ZoomPer - 1);
+                canvas.Width /= game.ZoomPer;
+                canvas.Height /= game.ZoomPer;
 
-                player.X /= zoom_per;
-                player.Y /= zoom_per;
-                player.Width /= zoom_per;
-                player.Height /= zoom_per;
+                player.X /= game.ZoomPer;
+                player.Y /= game.ZoomPer;
+                player.Width /= game.ZoomPer;
+                player.Height /= game.ZoomPer;
 
-                move.X /= zoom_per;
-                move.Y /= zoom_per;
+                move.X /= game.ZoomPer;
+                move.Y /= game.ZoomPer;
 
-                to.X /= zoom_per;
-                to.Y /= zoom_per;
+                to.X /= game.ZoomPer;
+                to.Y /= game.ZoomPer;
 
                 ellipse.Width = player.Width;
                 ellipse.Height = player.Height;
@@ -141,9 +140,7 @@ namespace SurvivalGT.views
                 Canvas.SetTop(ellipse, player.Y);
 
                 if (arrow.Points != null)
-                {
-                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X / zoom_per, arrow.Points[1].Y / zoom_per) });
-                }
+                    arrow.Points = new PointCollection(new Point[2] { new Point(player.X + player.Width / 2, player.Y + player.Height / 2), new Point(arrow.Points[1].X / game.ZoomPer, arrow.Points[1].Y / game.ZoomPer) });
             }
         }
 
@@ -231,15 +228,15 @@ namespace SurvivalGT.views
 
         private void Move_ClickBtn(object sender, RoutedEventArgs e)
         {
-            if (main_view_model.IsMoving)
+            if (game.IsMoving)
             {
-                main_view_model.IsMoving = false;
-                main_view_model.Timer.Stop();
+                game.IsMoving = false;
+                game.Timer.Stop();
             }
             else if (arrow.Points != null)
             {
-                main_view_model.IsMoving = true;
-                main_view_model.Timer.Start();
+                game.IsMoving = true;
+                game.Timer.Start();
             }
         }
 
@@ -284,6 +281,13 @@ namespace SurvivalGT.views
         {
             Canvas.SetTop(move_btn, viewer.VerticalOffset + viewer.ActualHeight - 280);
             Canvas.SetTop(sleep_btn, viewer.VerticalOffset + viewer.ActualHeight - 160);
+        }
+
+        private void MapUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //Console.WriteLine(this.Parent);
+            game.Timer.Stop();
+            game.Timer.Elapsed -= Step;
         }
     }
 }

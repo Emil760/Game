@@ -12,7 +12,7 @@ namespace SurvivalGT.Items
             this.outputs = outputs;
         }
 
-        public LootRandom[] Outputs { get => outputs; set => outputs = value; }
+        public LootRandom[] Outputs { get => outputs; }
 
         //public Loot[] Recycle()
         //{
@@ -25,14 +25,14 @@ namespace SurvivalGT.Items
 
     class RecycleableComplex : Recycleable
     {
-        private Loot[] inputs;
+        private ItemTag tool;
 
-        public RecycleableComplex(ItemTag tag, ItemType type, string name, float weight, string path, Loot[] inputs, LootRandom[] outputs)
+        public RecycleableComplex(ItemTag tag, ItemType type, string name, float weight, string path, ItemTag tool, LootRandom[] outputs)
             : base(tag, type, name, weight, path, outputs)
         {
-            this.inputs = inputs;
+            this.tool = tool;
         }
 
-        public Loot[] Inputs { get => inputs; set => inputs = value; }
+        public ItemTag Tool { get; }
     }
 }

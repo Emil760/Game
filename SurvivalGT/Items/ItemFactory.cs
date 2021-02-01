@@ -5,7 +5,6 @@ namespace SurvivalGT.Items
 {
     static class ItemFactory
     {
-        //private static Item[] items;
         private static Dictionary<ItemTag, Item> items;
 
         static ItemFactory()
@@ -42,6 +41,7 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Rags, new Item(ItemTag.Rags, "Rags", 0.1f, "/images/components/rags.png"));
             items.Add(ItemTag.RedMushroom, new Item(ItemTag.RedMushroom, "Red mushroom", 0.03f, "/images/components/red_mushroom.png"));
             items.Add(ItemTag.Rubber, new Item(ItemTag.Rubber, "Rubber", 0.12f, "/images/components/rubber.png"));
+            items.Add(ItemTag.SparkPlug, new Item(ItemTag.SparkPlug, "Spark plug", 20, "/images/components/spark_plug.png"));
             items.Add(ItemTag.Saltpeter, new Item(ItemTag.Saltpeter, "Saltpeter", 0.001f, "/images/components/saltpeter.png"));
             items.Add(ItemTag.Scrap, new Item(ItemTag.Scrap, "Scrap", 0.08f, "/images/components/scrap.png"));
             items.Add(ItemTag.Skin, new Item(ItemTag.Skin, "Skin", 0.15f, "/images/components/skin.png"));
@@ -56,10 +56,9 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Tire, new Item(ItemTag.Tire, "Tire", 3, "/images/components/tire.png"));
             items.Add(ItemTag.VioletMushroom, new Item(ItemTag.VioletMushroom, "Violet mushroom", 0.03f, "/images/components/violet_mushroom.png"));
             items.Add(ItemTag.WhiteMushroom, new Item(ItemTag.WhiteMushroom, "White mushroom", 0.03f, "/images/components/white_mushroom.png"));
-            items.Add(ItemTag.Wood, new Item(ItemTag.Wood, "Wood", 1, "/images/components/wood.png"));
             items.Add(ItemTag.YellowMushroom, new Item(ItemTag.YellowMushroom, "Yellow mushroom", 0.03f, "/images/components/yellow_mushroom.png"));
-
-
+            items.Add(ItemTag.Wood, new Item(ItemTag.Wood, "Wood", 1, "/images/components/wood.png"));
+            items.Add(ItemTag.Wire, new Item(ItemTag.Wire, "Wire", 0.15f, "/images/components/wire.png"));
 
             items.Add(ItemTag.Tea, new Item(ItemTag.Tea, ItemType.Food, "Tea", 0.02f, "/images/food/tea.png"));
             items.Add(ItemTag.Salt, new Item(ItemTag.Salt, ItemType.Food, "Salt", 0.005f, "/images/food/salt.png"));
@@ -69,7 +68,6 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Backwheat, new Item(ItemTag.Backwheat, ItemType.Food, "Backwheat", 0.1f, "/images/food/backwheat.png"));
             items.Add(ItemTag.Coffee, new Item(ItemTag.Coffee, ItemType.Food, "Coffee", 0.02f, "/images/food/coffee.png"));
             items.Add(ItemTag.Flour, new Item(ItemTag.Flour, ItemType.Food, "Flour", 0.20f, "/images/food/flour.png"));
-
 
 
             items.Add(ItemTag.BeefCan, new Food(ItemTag.BeefCan, "Beef can", 0.25f, "/images/food/beef_can.png", 0, 40, 20, 0, 0, 0, 64800));
@@ -84,10 +82,10 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.RiceCutlet, new Food(ItemTag.RiceCutlet, "Rice cutlet", 0.3f, "/images/food/rice_cutlet.png", 10, 60, 25, 10, 0, 0, 5040));
             items.Add(ItemTag.Doner, new Food(ItemTag.Doner, "Doner", 0.5f, "/images/food/doner.png", 25, 100, 100, 25, 0, 0, 2160));
             items.Add(ItemTag.Fat, new Food(ItemTag.Fat, "Fat", 0.01f, "/images/food/fat.png", -3, 10, 5, 0, 0, 0, 64800));
-            items.Add(ItemTag.FreshFish, new FoodPoison(ItemTag.FreshFish, "Fresh fish", 0.2f, "/images/food/fresh_fish.png", 0, 15, 5, 0, 8, 2, 2160, 15, new Worms()));
-            items.Add(ItemTag.FreshMeat, new FoodPoison(ItemTag.FreshMeat, "Fresh meat", 0.4f, "/images/food/fresh_meat.png", 0, 25, 5, 0, 10, 2, 2160, 15, new Worms()));
-            items.Add(ItemTag.FreshRat, new FoodPoison(ItemTag.FreshRat, "Fresh rat", 0.1f, "/images/food/fresh_rat.png", 0, 10, 5, 0, 5, 2, 2160, 15, new Worms()));
-            items.Add(ItemTag.FreshSnake, new FoodPoison(ItemTag.FreshSnake, "Fresh snake", 0.15f, "/images/food/fresh_snake.png", 0, 10, 5, 0, 10, 2, 2160, 15, new Worms()));
+            items.Add(ItemTag.FreshFish, new PoisonFood(ItemTag.FreshFish, "Fresh fish", 0.2f, "/images/food/fresh_fish.png", 0, 15, 5, 0, 8, 2, 2160, 15, new Worms()));
+            items.Add(ItemTag.FreshMeat, new PoisonFood(ItemTag.FreshMeat, "Fresh meat", 0.4f, "/images/food/fresh_meat.png", 0, 25, 5, 0, 10, 2, 2160, 15, new Worms()));
+            items.Add(ItemTag.FreshRat, new PoisonFood(ItemTag.FreshRat, "Fresh rat", 0.1f, "/images/food/fresh_rat.png", 0, 10, 5, 0, 5, 2, 2160, 15, new Worms()));
+            items.Add(ItemTag.FreshSnake, new PoisonFood(ItemTag.FreshSnake, "Fresh snake", 0.15f, "/images/food/fresh_snake.png", 0, 10, 5, 0, 10, 2, 2160, 15, new Worms()));
             items.Add(ItemTag.FriedFish, new Food(ItemTag.FriedFish, "Fried fish", 0.2f, "/images/food/fried_fish.png", 0, 25, 0, 0, 0, 0, 2160));
             items.Add(ItemTag.FriedMeat, new Food(ItemTag.FriedMeat, "Fried meat", 0.4f, "/images/food/fried_meat.png", 0, 40, 0, 0, 0, 0, 2160));
             items.Add(ItemTag.FriedRat, new Food(ItemTag.FriedRat, "Fried rat", 0.1f, "/images/food/fried_rat.png", 0, 20, 0, 0, 0, 0, 2160));
@@ -99,9 +97,9 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Milk, new Food(ItemTag.Milk, "Milk", 0.2f, "/images/food/milk.png", 0, 75, 10, 5, 0, 0, 2592000));
             items.Add(ItemTag.Pepsi, new Food(ItemTag.Pepsi, "Pepsi", 0.5f, "/images/food/pepsi.png", 0, 0, 35, 20, 0, 0, 43200));
             items.Add(ItemTag.Pickles, new Food(ItemTag.Pickles, "Pickles", 1, "/images/food/pickles.png", 10, 85, 45, 10, 0, 0, 259200));
-            items.Add(ItemTag.PoisonWater, new FoodPoison(ItemTag.PoisonWater, "Poison water", 0.5f, "/images/food/poison_water.png", 0, 0, 35, 0, 10, 2, 21600, 10, new Worms()));
-            items.Add(ItemTag.RadMeat, new FoodPoison(ItemTag.RadMeat, "Radiactive meat", 0.3f, "/images/food/radiactive_meat.png", 0, 35, 5, 0, 10, 5, 2160, 25, new Worms()));
-            items.Add(ItemTag.RadWater, new FoodPoison(ItemTag.RadWater, "Radiactive water", 0.5f, "/images/food/radiactive_water.png", 0, 0, 35, 0, 10, 5, 2160, 25, new Worms()));
+            items.Add(ItemTag.PoisonWater, new PoisonFood(ItemTag.PoisonWater, "Poison water", 0.5f, "/images/food/poison_water.png", 0, 0, 35, 0, 10, 2, 21600, 10, new Worms()));
+            items.Add(ItemTag.RadMeat, new PoisonFood(ItemTag.RadMeat, "Radiactive meat", 0.3f, "/images/food/radiactive_meat.png", 0, 35, 5, 0, 10, 5, 2160, 25, new Worms()));
+            items.Add(ItemTag.RadWater, new PoisonFood(ItemTag.RadWater, "Radiactive water", 0.5f, "/images/food/radiactive_water.png", 0, 0, 35, 0, 10, 5, 2160, 25, new Worms()));
             items.Add(ItemTag.SaltedFish, new Food(ItemTag.SaltedFish, "Salted fish", 0.2f, "/images/food/salted_fish.png", 0, 25, -5, 0, 0, 0, 64800));
             items.Add(ItemTag.SaltedMeat, new Food(ItemTag.SaltedMeat, "Salted meat", 0.4f, "/images/food/salted_meat.png", 0, 35, -5, 0, 0, 0, 64800));
             items.Add(ItemTag.SmokedSalo, new Food(ItemTag.SmokedSalo, "Smoked salo", 0.15f, "/images/food/smoked_salo.png", 5, 25, 10, 5, 0, -2, 64800));
@@ -110,11 +108,10 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Water, new Food(ItemTag.Water, "Water", 0.5f, "/images/food/water.png", 0, 0, 35, 0, -5, -2, 21600));
 
 
-
             items.Add(ItemTag.ActivatedCarbon, new Medecine(ItemTag.ActivatedCarbon, "Activated carbon", 0.01f, "/images/medecines/activated_carbon.png", 0, -3, -2, 0, -10, -1, 2));
             items.Add(ItemTag.Bandage, new Item(ItemTag.Bandage, ItemType.Medecine, "Bandage", 0.05f, "/images/medecines/bandage.png"));
             items.Add(ItemTag.Brendy, new Alco(ItemTag.Brendy, "Brendy", 1, "/images/medecines/brendy.png", -2, -5, 5, -5, -5, -2, 25, 1, new Worms(), 10));
-            items.Add(ItemTag.Bryocarm, new MedecineEffect(ItemTag.Bryocarm, "Bryocarm", 0.03f, "/images/medecines/bryocarm.png", 40, -20, -20, -10, 0, 0, 5, new Worms()));
+            items.Add(ItemTag.Bryocarm, new MedecineEffect(ItemTag.Bryocarm, "Bryocarm", 0.03f, "/images/medecines/bryocarm.png", 40, -20, -20, -10, 0, 0, 5, new Healing()));
             items.Add(ItemTag.Chlorcystamine, new MedecineEffect(ItemTag.Chlorcystamine, "Chlorcystamine", 0.03f, "/images/medecines/chlorcystamine.png", 0, 0, -15, -50, -30, -100, 5, new Worms()));
             items.Add(ItemTag.Cigarettes, new Cigarette(ItemTag.Cigarettes, "Cigarettes", 0.02f, "/images/medecines/cigarettes.png", -2, -5, -5, 15, 5, 0, 25, 2, new Worms()));
             items.Add(ItemTag.Cigar, new Cigarette(ItemTag.Cigar, "Cigar", 0.04f, "/images/medecines/cigar.png", -2, -25, -25, 70, 5, 0, 25, 5, new Worms()));
@@ -131,85 +128,89 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.Painkiller, new Item(ItemTag.Painkiller, ItemType.Medecine, "Painkiller", 0.01f, "/images/medecines/painkiller.png"));
 
 
+            items.Add(ItemTag.WaterFilter, new Tool(ItemTag.WaterFilter, "Water filter", 0.07f, "/images/tools/water_filter.png", 25));
+            items.Add(ItemTag.СhimKit, new Tool(ItemTag.СhimKit, "Сhemical laboratory", 3, "/images/tools/chim_kit.png", 100));
 
             items.Add(ItemTag.Axe, new OptionTool(ItemTag.Axe, "Axe", 2, "/images/tools/axe.png", 200, ItemTag.Axe));
-            items.Add(ItemTag.BladeFlint, new Lighter(ItemTag.BladeFlint, "Blade flint", 0.1f, "/images/tools/blade_flint.png", 10));
-            items.Add(ItemTag.СhimKit, new Tool(ItemTag.СhimKit, "Сhemical laboratory", 3, "/images/tools/chim_kit.png", 100));
             items.Add(ItemTag.Crowbar, new OptionTool(ItemTag.Crowbar, "Crowbar", 2, "/images/tools/crowbar.png", 30, ItemTag.Crowbar));
-            items.Add(ItemTag.HandmadeFishingRod, new Fishrod(ItemTag.HandmadeFishingRod, "Handmade fishing rod", 1.5f, "/images/tools/handmade_fishing_rod.png", 25, new Goods[] { }));
-            items.Add(ItemTag.Flashlight, new Light(ItemTag.Flashlight, "Flashlight", 0.3f, "/images/tools/flashlight.png", 30, 20, new Goods[] { new Goods(ItemTag.Battery, 1) }));
             items.Add(ItemTag.FlintAxe, new OptionTool(ItemTag.FlintAxe, "Flint axe", 1.5f, "/images/tools/flint_axe.png", 25, ItemTag.Axe));
             items.Add(ItemTag.FlintKnife, new OptionTool(ItemTag.FlintKnife, "Flint knife", 0.4f, "/images/tools/flint_knife.png", 25, ItemTag.Knife));
             items.Add(ItemTag.Hacksaw, new OptionTool(ItemTag.Hacksaw, "Hacksaw", 2, "/images/tools/hacksaw.png", 100, ItemTag.Hacksaw));
-            items.Add(ItemTag.HandmadeCandle, new Light(ItemTag.HandmadeCandle, "Handmade candle", 0.3f, "/images/tools/handmade_candle.png", 15, 15, new Goods[] { new Goods(ItemTag.Fat, 1), new Goods(ItemTag.Cloth, 1) }));
             items.Add(ItemTag.HandmadeNeadle, new OptionTool(ItemTag.HandmadeNeadle, "Handmade neadle", 0.005f, "/images/tools/handmade_needle.png", 10, ItemTag.Needle));
-            items.Add(ItemTag.HandmadeLighter, new Lighter(ItemTag.HandmadeLighter, "Handmade lighter", 0.05f, "/images/tools/handmade_light.png", 25));
-            items.Add(ItemTag.Primus, new Primus(ItemTag.Primus, "Primus", 2, "/images/tools/primus.png", "images/tools/empty_primus.png", 30, new Goods[] { new Goods(ItemTag.Gas, 3000) }, ItemTag.Fire));
-            items.Add(ItemTag.Instruments, new OptionTool(ItemTag.Instruments, "Tools", 2, "/images/tools/tools.png", 200, ItemTag.Instruments));
+            items.Add(ItemTag.HandmadeLighter, new OptionTool(ItemTag.HandmadeLighter, "Handmade lighter", 0.05f, "/images/tools/handmade_light.png", 25, ItemTag.Lighter));
+            items.Add(ItemTag.Instruments, new OptionTool(ItemTag.Instruments, "Tools", 2, "/images/tools/instruments.png", 200, ItemTag.Instruments));
             items.Add(ItemTag.Knife, new OptionTool(ItemTag.Knife, "Knife", 0.15f, "/images/tools/knife.png", 20, ItemTag.Knife));
-            items.Add(ItemTag.Lighter, new Lighter(ItemTag.Lighter, "Lighter", 0.02f, "/images/tools/lighter.png", 40));
-            items.Add(ItemTag.Matches, new Lighter(ItemTag.Matches, "Matches", 0.015f, "/images/tools/matches.png", 10));
             items.Add(ItemTag.Needle, new OptionTool(ItemTag.Needle, "Needle", 0.002f, "/images/tools/needle.png", 40, ItemTag.Needle));
-            items.Add(ItemTag.OldAxe, new OldTool(ItemTag.OldAxe, "Old axe", 2, "/images/tools/old_axe.png", 25, ItemTag.Axe));
-            items.Add(ItemTag.OldHacksaw, new OldTool(ItemTag.OldHacksaw, "Old hacksaw", 2, "/images/tools/old_hacksaw.png", 25, ItemTag.Hacksaw));
-            items.Add(ItemTag.OldTools, new OldTool(ItemTag.OldTools, "Old tools", 2, "/images/tools/old_tools.png", 50, ItemTag.Instruments));
-            items.Add(ItemTag.OldShovel, new OldTool(ItemTag.OldShovel, "Old shovel", 2, "/images/tools/old_shovel.png", 35, ItemTag.Shovel));
             items.Add(ItemTag.Pan, new OptionTool(ItemTag.Pan, "Pan", 0.4f, "/images/tools/pan.png", 100, ItemTag.Pan));
             items.Add(ItemTag.Shovel, new OptionTool(ItemTag.Shovel, "Shovel", 2, "/images/tools/shovel.png", 50, ItemTag.Shovel));
             items.Add(ItemTag.SteelAxe, new OptionTool(ItemTag.SteelAxe, "Steel axe", 3, "/images/tools/steel_axe.png", 300, ItemTag.Axe));
             items.Add(ItemTag.SteelCrowbar, new OptionTool(ItemTag.SteelCrowbar, "Steel crowbar", 3, "/images/tools/steel_crowbar.png", 100, ItemTag.Crowbar));
-            items.Add(ItemTag.SteelTools, new OptionTool(ItemTag.SteelTools, "Steel tools", 3, "/images/tools/steel_tools.png", 300, ItemTag.Instruments));
+            items.Add(ItemTag.SteelInstruments, new OptionTool(ItemTag.SteelInstruments, "Steel tools", 3, "/images/tools/steel_instruments.png", 300, ItemTag.Instruments));
             items.Add(ItemTag.SteelKnife, new OptionTool(ItemTag.SteelKnife, "Steel knife", 0.5f, "/images/tools/steel_knife.png", 150, ItemTag.Knife));
             items.Add(ItemTag.SteelNeedle, new OptionTool(ItemTag.SteelNeedle, "Steel needle", 0.005f, "/images/tools/steel_needle.png", 100, ItemTag.Needle));
             items.Add(ItemTag.SteelPan, new OptionTool(ItemTag.SteelPan, "Steel pan", 1, "/images/tools/steel_pan.png", 150, ItemTag.Pan));
             items.Add(ItemTag.SteelShovel, new OptionTool(ItemTag.SteelShovel, "Steel", 3, "/images/tools/steel_shovel.png", 150, ItemTag.Shovel));
-            items.Add(ItemTag.Torch, new Light(ItemTag.Torch, "Torch", 1.5f, "/images/tools/torch.png", 10, 15, new Goods[] { new Goods(ItemTag.Gas, 100), new Goods(ItemTag.Cloth, 3) }));
-            items.Add(ItemTag.WaterFilter, new Tool(ItemTag.WaterFilter, "Water filter", 0.07f, "/images/tools/water_filter.png", 25));
 
+            items.Add(ItemTag.BladeFlint, new Lighter(ItemTag.BladeFlint, "Blade flint", 0.1f, "/images/tools/blade_flint.png", 10));
+            items.Add(ItemTag.Matches, new Lighter(ItemTag.Matches, "Matches", 0.015f, "/images/tools/matches.png", 10));
+            items.Add(ItemTag.Lighter, new Lighter(ItemTag.Lighter, "Lighter", 0.02f, "/images/tools/lighter.png", 40));
+
+            items.Add(ItemTag.OldPan, new OldTool(ItemTag.OldPan, "Old pan", 0.3f, "/images/tools/old_pan.png", ItemTag.Pan));
+            items.Add(ItemTag.OldAxe, new OldTool(ItemTag.OldAxe, "Old axe", 2, "/images/tools/old_axe.png", ItemTag.Axe));
+            items.Add(ItemTag.OldCrowbar, new OldTool(ItemTag.OldCrowbar, "Old crowbar", 1.5f, "/images/tools/old_crowbar.png", ItemTag.Crowbar));
+            items.Add(ItemTag.OldShovel, new OldTool(ItemTag.OldShovel, "Old shovel", 2, "/images/tools/old_shovel.png", ItemTag.Shovel));
+            items.Add(ItemTag.OldInstruments, new OldTool(ItemTag.OldInstruments, "Old tools", 2, "/images/tools/old_instruments.png", ItemTag.Instruments));
+            items.Add(ItemTag.OldHacksaw, new OldTool(ItemTag.OldHacksaw, "Old hacksaw", 2, "/images/tools/old_hacksaw.png", ItemTag.Hacksaw));
+
+            items.Add(ItemTag.Flashlight, new Flashlight(ItemTag.Flashlight, "Flashlight", 0.3f, "/images/tools/flashlight.png", 20, 10080, new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.HandmadeCandle, new Light(ItemTag.HandmadeCandle, "Handmade candle", 0.3f, "/images/tools/handmade_candle.png", 15, 4320));
+            items.Add(ItemTag.Torch, new Light(ItemTag.Torch, "Torch", 1.5f, "/images/tools/torch.png", 15, 1440));
+
+            items.Add(ItemTag.HandmadeFishingRod, new Fishingrod(ItemTag.HandmadeFishingRod, "Handmade fishing rod", 1.5f, "/images/tools/handmade_fishing_rod.png", 25,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.FishingRod, new Fishingrod(ItemTag.FishingRod, "Fishing rod", 2.5f, "/images/tools/fishingrod.png", 111,
+                new Goods[] { new Goods(ItemTag.Wire, 5), new Goods(ItemTag.Scrap, 10), new Goods(ItemTag.Rags, 3) }, new ItemTag[] { ItemTag.Instruments }, 111));
 
 
             items.Add(ItemTag.HandmadeArmor, new Armor(ItemTag.HandmadeArmor, "Handmade armor", 1.5f, "/images/armors/handmade_armor.png", 100, 100,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.MilitaryArmor, new Armor(ItemTag.MilitaryArmor, "Military armor", 2.5f, "/images/armors/military_armor.png", 100, 200,
-                new Loot[] { }));
+                 new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.MotorwayArmor, new Armor(ItemTag.MotorwayArmor, "Motorway armor", 3.5f, "/images/armors/motorway_armor.png", 100, 300,
-                new Loot[] { }));
+                 new Goods[] { new Goods(ItemTag.Cloth, 2), new Goods(ItemTag.String, 5), new Goods(ItemTag.Tire, 1), new Goods(ItemTag.Wire, 3) }, new ItemTag[] { ItemTag.Needle }, 111));
             items.Add(ItemTag.LeatherArmor, new Armor(ItemTag.LeatherArmor, "Leather armor", 4, "/images/armors/leather_armor.png", 100, 380,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.SteelArmor, new Armor(ItemTag.SteelArmor, "Steel armor", 5, "/images/armors/steel_armor.png", 100, 500,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.TankArmor, new Armor(ItemTag.TankArmor, "Tank armor", 10, "/images/armors/tank_armor.png", 100, 1000,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.Hazmat, new Armor(ItemTag.Hazmat, "Hazmat", 1.5f, "/images/armors/hazmat.png", 100, 150,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
 
 
-
-            items.Add(ItemTag.Bag1, new Bag(ItemTag.Bag1, "Handmade bag", 0.3f, "/images/bags/handmade_bag.png", 100, 15,
-                new Loot[] { }));
-            items.Add(ItemTag.Bag2, new Bag(ItemTag.Bag2, "Suitcase", 0.8f, "/images/suitcase/bag0.png", 100, 25,
-                new Loot[] { }));
-            items.Add(ItemTag.Bag3, new Bag(ItemTag.Bag3, "Bag", 1, "/images/bags/bag.png", 100, 35,
-                new Loot[] { }));
-            items.Add(ItemTag.Bag4, new Bag(ItemTag.Bag4, "Military bag", 1.5f, "/images/bags/military_bag.png", 100, 45,
-                new Loot[] { }));
-            items.Add(ItemTag.Bag5, new Bag(ItemTag.Bag5, "Travel bag", 2, "/images/bags/travel_bag.png", 100, 60,
-                new Loot[] { }));
-
+            items.Add(ItemTag.HandmadeBag, new Bag(ItemTag.HandmadeBag, "Handmade bag", 0.3f, "/images/bags/handmade_bag.png", 100, 15,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Suitcase, new Bag(ItemTag.Suitcase, "Suitcase", 0.8f, "/images/bags/suitcase.png", 100, 25,
+                 new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Bag, new Bag(ItemTag.Bag, "Bag", 1, "/images/bags/bag.png", 100, 35,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.MilitaryBag, new Bag(ItemTag.MilitaryBag, "Military bag", 1.5f, "/images/bags/military_bag.png", 100, 45,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.TravelBag, new Bag(ItemTag.TravelBag, "Travel bag", 2, "/images/bags/travel_bag.png", 100, 60,
+                new Goods[] { }, new ItemTag[] { }, 111));
 
 
-            items.Add(ItemTag.Resperator, new Mask(ItemTag.Resperator, "Resperator", 0.2f, "/images/masks/gasmask1.png", 2, 5040));
-            items.Add(ItemTag.HandmadeResperator, new Mask(ItemTag.HandmadeResperator, "Handmade resperator", 0.4f, "/images/masks/gasmask1.png", 2, 5040));
+            items.Add(ItemTag.Respirator, new Mask(ItemTag.Respirator, "Respirator", 0.2f, "/images/masks/respirator.png", 2, 5040));
+            items.Add(ItemTag.HandmadeRespirator, new Mask(ItemTag.HandmadeRespirator, "Handmade respirator", 0.4f, "/images/masks/handmade_respirator.png", 2, 5040));
 
-            items.Add(ItemTag.Gasmask1, new GasMask(ItemTag.Gasmask1, "Gas mask level 1", 0.3f, "/images/masks/gasmask1.png", "/images/masks/empty_gasmask1.png", 3,
-                new Goods[] { new Goods(ItemTag.Filter, 1) }, 5040));
-            items.Add(ItemTag.Gasmask2, new GasMask(ItemTag.Gasmask2, "Gas mask level 2", 0.5f, "/images/masks/gasmask2.png", "/images/masks/empty_gasmask2.png", 4,
-                new Goods[] { new Goods(ItemTag.Filter, 1) }, 5040));
-            items.Add(ItemTag.Gasmask3, new GasMask(ItemTag.Gasmask3, "Gas mask level 3", 0.8f, "/images/masks/gasmask3.png", "/images/masks/empty_gasmask3.png", 6,
-                new Goods[] { new Goods(ItemTag.Filter, 1) }, 7200));
-            items.Add(ItemTag.Gasmask4, new GasMask(ItemTag.Gasmask4, "Gas mask level 4", 1, "/images/masks/gasmask4.png", "/images/masks/empty_gasmask4.png", 8,
-                new Goods[] { new Goods(ItemTag.Filter, 1) }, 7200));
-
+            items.Add(ItemTag.Gasmask1, new GasMask(ItemTag.Gasmask1, "Gas mask level 1", 0.3f, "/images/masks/gasmask1.png", "/images/masks/empty_gasmask1.png", 3, 5040,
+                new Goods[] { new Goods(ItemTag.Filter, 1) }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Gasmask2, new GasMask(ItemTag.Gasmask2, "Gas mask level 2", 0.5f, "/images/masks/gasmask2.png", "/images/masks/empty_gasmask2.png", 4, 5040,
+                new Goods[] { new Goods(ItemTag.Filter, 1) }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Gasmask3, new GasMask(ItemTag.Gasmask3, "Gas mask level 3", 0.8f, "/images/masks/gasmask3.png", "/images/masks/empty_gasmask3.png", 6, 5040,
+                new Goods[] { new Goods(ItemTag.Filter, 1) }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Gasmask4, new GasMask(ItemTag.Gasmask4, "Gas mask level 4", 1, "/images/masks/gasmask4.png", "/images/masks/empty_gasmask4.png", 8, 5040,
+                new Goods[] { new Goods(ItemTag.Filter, 1) }, new ItemTag[] { }, 111));
 
 
             items.Add(ItemTag.SpareParts, new Item(ItemTag.SpareParts, "Spare parts", 1, "/images/transports/spare_parts.png"));
@@ -217,18 +218,16 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.MotocycleSpareParts, new Item(ItemTag.MotocycleSpareParts, "Motocycle spare parts", 0.6f, "/images/transports/motocycle_spare_parts.png"));
 
 
-
             items.Add(ItemTag.Bicycle, new Transport(ItemTag.Bicycle, "Bicycle", 15, "/images/transports/bicycle.png", 100, 30, 0, 8,
-                new Loot[] { new Loot(GetItem(ItemTag.Acid), 1), new Loot(GetItem(ItemTag.Oil), 20), new Loot(GetItem(ItemTag.Instruments), 1) }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.Motocycle, new Transport(ItemTag.Motocycle, "Motocycle", 100, "/images/transports/motocycle.png", 100, 150, 4, 15,
-                new Loot[] { new Loot(GetItem(ItemTag.Acid), 1), new Loot(GetItem(ItemTag.Oil), 150), new Loot(GetItem(ItemTag.Tire), 1), new Loot(GetItem(ItemTag.Instruments), 1) }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.Zaz, new Transport(ItemTag.Zaz, "Zaz", 1000, "/images/transports/zaz.png", 100, 500, 8, 40,
-                new Loot[] { }));
+                new Goods[] { new Goods(ItemTag.SpareParts, 2), new Goods(ItemTag.Oil, 250), new Goods(ItemTag.Tire, 2), new Goods(ItemTag.SparkPlug, 1) }, new ItemTag[] { ItemTag.Instruments }, 111));
             items.Add(ItemTag.Vaz, new Transport(ItemTag.Vaz, "Vaz", 2000, "/images/transports/vaz.png", 100, 950, 11, 65,
-                new Loot[] { }));
+                new Goods[] { }, new ItemTag[] { }, 111));
             items.Add(ItemTag.Uaz, new Transport(ItemTag.Uaz, "Uaz", 3500, "/images/transports/uaz.png", 100, 2000, 15, 55,
-                new Loot[] { }));
-
+                new Goods[] { }, new ItemTag[] { }, 111));
 
 
             items.Add(ItemTag.PistolCapsule, new Item(ItemTag.PistolCapsule, ItemType.Weapon, "Pistol capsule", 0.005f, "/images/weapons/pistol_capsule.png"));
@@ -243,102 +242,111 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.RifleAmmo, new Item(ItemTag.RifleAmmo, ItemType.Weapon, "Rifle ammo", 0.01f, "/images/weapons/rifle_ammo.png"));
             items.Add(ItemTag.Rpg7Ammo, new Item(ItemTag.Rpg7Ammo, ItemType.Weapon, "Rpg7 ammo", 0.5f, "/images/weapons/rpg7_ammo.png"));
             items.Add(ItemTag.SniperAmmo, new Item(ItemTag.SniperAmmo, ItemType.Weapon, "Sniper ammo", 0.15f, "/images/weapons/sniper_ammo.png"));
+            items.Add(ItemTag.HandmadeBulkshot, new Item(ItemTag.HandmadeBulkshot, "Handmade bulkshot", 0.03f, "/images/weapons/handmade_buckshot.png"));
+            items.Add(ItemTag.HandmadeRocket, new Item(ItemTag.HandmadeRocket, "Handmade rocket", 1, "/images/weapons/handmade_rocket.png"));
 
 
-
-            items.Add(ItemTag.Berdish, new MealWeapon(ItemTag.Berdish, "Berdish", 2.5f, "/images/weapons/berdish.png", 2, 40, 65, 100));
-            items.Add(ItemTag.Club, new MealWeapon(ItemTag.Club, "Club", 2, "/images/weapons/club.png", 1, 20, 35, 100));
+            items.Add(ItemTag.Berdish, new MeleeWeapon(ItemTag.Berdish, "Berdish", 2.5f, "/images/weapons/berdish.png", 2, 40, 65, 100));
+            items.Add(ItemTag.Club, new MeleeWeapon(ItemTag.Club, "Club", 2, "/images/weapons/club.png", 1, 20, 35, 100));
             items.Add(ItemTag.Grenade, new ExplosiveWeapon(ItemTag.Grenade, "Grenade", 0.5f, "/images/weapons/grenade.png", 2, 100, 150));
             items.Add(ItemTag.HandmadeGrenade, new ExplosiveWeapon(ItemTag.HandmadeGrenade, "Handmade greande", 0.5f, "/images/weapons/handmade_grenade.png", 2, 60, 90));
-            items.Add(ItemTag.BattleKnife, new MealWeapon(ItemTag.BattleKnife, "Batlle knife", 0.3f, "/images/weapons/battle_knife.png", 1, 25, 45, 100));
-            items.Add(ItemTag.IronBattleKnife, new MealWeapon(ItemTag.IronBattleKnife, "Iron battle knife", 0.5f, "/images/weapons/iron_knife_battle.png", 1, 45, 55, 100));
+            items.Add(ItemTag.BattleKnife, new MeleeWeapon(ItemTag.BattleKnife, "Batlle knife", 0.3f, "/images/weapons/battle_knife.png", 1, 25, 45, 100));
+            items.Add(ItemTag.IronBattleKnife, new MeleeWeapon(ItemTag.IronBattleKnife, "Iron battle knife", 0.5f, "/images/weapons/iron_knife_battle.png", 1, 45, 55, 100));
             items.Add(ItemTag.Molotov, new ExplosiveWeapon(ItemTag.Molotov, "Molotov", 0.5f, "/images/weapons/molotov.png", 2, 50, 75));
-            items.Add(ItemTag.FlintSpear, new MealWeapon(ItemTag.FlintSpear, "Flint spear", 1.5f, "/images/weapons/flint_spear.png", 2, 20, 55, 100));
+            items.Add(ItemTag.FlintSpear, new MeleeWeapon(ItemTag.FlintSpear, "Flint spear", 1.5f, "/images/weapons/flint_spear.png", 2, 20, 55, 100));
 
-            items.Add(ItemTag.Ak47, new RangeWeapon(ItemTag.Ak47, "Ak47", 3, "/images/weapons/ak47.png", 3, 75, 100, ItemTag.RifleAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Crossbow, new RangeWeapon(ItemTag.Crossbow, "Crossbow", 1.5f, "/images/weapons/crossbow1.png", 2, 20, 45, ItemTag.Arrow, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Crossbow2, new RangeWeapon(ItemTag.Crossbow2, "Crossbow", 2.5f, "/images/weapons/crossbow2.png", 2, 35, 60, ItemTag.Arrow, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Dp, new RangeWeapon(ItemTag.Dp, "Dp", 3.5f, "/images/weapons/dp.png", 3, 80, 120, ItemTag.RifleAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.HandmadeGun, new RangeWeapon(ItemTag.HandmadeGun, "Handmade gun", 1.5f, "/images/weapons/handmade_gun.png", 3, 55, 75, ItemTag.HandmadeAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Mosin, new RangeWeapon(ItemTag.Mosin, "Mosin", 3, "/images/weapons/mosin.png", 3, 150, 200, ItemTag.SniperAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Pistol, new RangeWeapon(ItemTag.Pistol, "Pistol", 1, "/images/weapons/pistol.png", 1, 25, 40, ItemTag.PistolAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Pps42, new RangeWeapon(ItemTag.Pps42, "Pps 42", 2.5f, "/images/weapons/pps42.png", 2, 45, 65, ItemTag.PistolAmmo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.Rpg7, new RangeWeapon(ItemTag.Rpg7, "Rpg7", 5, "/images/weapons/rpg7.png", 3, 300, 500, ItemTag.Rpg7Ammo, 100,
-                new Loot[] { }));
-            items.Add(ItemTag.SVD, new RangeWeapon(ItemTag.SVD, "Svd", 3.5f, "/images/weapons/svd.png", 3, 200, 300, ItemTag.SniperAmmo, 100,
-                new Loot[] { }));
+            items.Add(ItemTag.Ak47, new RangeWeapon(ItemTag.Ak47, "Ak47", 3, "/images/weapons/ak47.png", 3, 75, 100, ItemTag.RifleAmmo, 4, 100,
+               new Goods[] { new Goods(ItemTag.RifleSpareParts, 2), new Goods(ItemTag.Oil, 100), new Goods(ItemTag.SpareParts, 2), new Goods(ItemTag.Rags, 5) }, new ItemTag[] { ItemTag.Instruments }, 111));
+            items.Add(ItemTag.Crossbow, new RangeWeapon(ItemTag.Crossbow, "Crossbow", 1.5f, "/images/weapons/crossbow1.png", 2, 20, 45, ItemTag.Arrow, 2, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Crossbow2, new RangeWeapon(ItemTag.Crossbow2, "Crossbow", 2.5f, "/images/weapons/crossbow2.png", 2, 35, 60, ItemTag.Arrow, 3, 100,
+               new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Dp, new RangeWeapon(ItemTag.Dp, "Dp", 3.5f, "/images/weapons/dp.png", 3, 80, 120, ItemTag.RifleAmmo, 3, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.HandmadeGun, new RangeWeapon(ItemTag.HandmadeGun, "Handmade gun", 1.5f, "/images/weapons/handmade_gun.png", 3, 55, 75, ItemTag.HandmadeAmmo, 3, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Mosin, new RangeWeapon(ItemTag.Mosin, "Mosin", 3, "/images/weapons/mosin.png", 3, 150, 200, ItemTag.SniperAmmo, 5, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Pistol, new RangeWeapon(ItemTag.Pistol, "Pistol", 1, "/images/weapons/pistol.png", 1, 25, 40, ItemTag.PistolAmmo, 2, 100,
+               new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Pps42, new RangeWeapon(ItemTag.Pps42, "Pps 42", 2.5f, "/images/weapons/pps42.png", 2, 45, 65, ItemTag.PistolAmmo, 3, 100,
+               new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.Rpg7, new RangeWeapon(ItemTag.Rpg7, "Rpg7", 5, "/images/weapons/rpg7.png", 3, 300, 500, ItemTag.Rpg7Ammo, 4, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.SVD, new RangeWeapon(ItemTag.SVD, "Svd", 3.5f, "/images/weapons/svd.png", 3, 200, 300, ItemTag.SniperAmmo, 6, 100,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.HandmadeShotgun, new RangeWeapon(ItemTag.HandmadeShotgun, "Handmade shotgun", 2.5f, "/images/weapons/handmade_shotgun.png", 3, 50, 75, ItemTag.HandmadeBulkshot, 2, 111,
+                new Goods[] { }, new ItemTag[] { }, 111));
+            items.Add(ItemTag.HandmadeLauncher, new RangeWeapon(ItemTag.HandmadeLauncher, "Handmade laucher", 10, "/images/weapons/handmade_launcher.png", 3, 100, 175, ItemTag.HandmadeRocket, 4, 111,
+                new Goods[] { }, new ItemTag[] { }, 111));
 
-            items.Add(ItemTag.Nail, new Recycleable(ItemTag.Nail, ItemType.Component, "Nail", 0.05f, "/images/componets/nail.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Scrap), 0, 3) }));
-            items.Add(ItemTag.Table, new Recycleable(ItemTag.Table, ItemType.Component, "Table", 10, "/images/componets/table.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Wood), 3, 10) }));
-            items.Add(ItemTag.Cloth, new Recycleable(ItemTag.Cloth, ItemType.Component, "Cloth", 0.5f, "/images/components/cloth.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Rags), 0, 5) }));
-            items.Add(ItemTag.Rope, new Recycleable(ItemTag.Rope, ItemType.Component, "Rope", 0.3f, "/images/components/rope.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.String), 25, 50) }));
-            items.Add(ItemTag.BrockenGasmask1, new Recycleable(ItemTag.BrockenGasmask1, ItemType.Utility, "BrockenGasmask1", 0.3f, "/images/masks/brocken_gasmask1", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
-            items.Add(ItemTag.BrockenGasmask2, new Recycleable(ItemTag.BrockenGasmask2, ItemType.Utility, "BrockenGasmask2", 0.4f, "/images/masks/brocken_gasmask2", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
-            items.Add(ItemTag.BrockenGasmask3, new Recycleable(ItemTag.BrockenGasmask3, ItemType.Utility, "BrockenGasmask3", 0.5f, "/images/masks/brocken_gasmask3", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
-            items.Add(ItemTag.BrockenGasmask4, new Recycleable(ItemTag.BrockenGasmask4, ItemType.Utility, "BrockenGasmask4", 0.6f, "/images/masks/brocken_gasmask4", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
-            items.Add(ItemTag.Can, new Recycleable(ItemTag.Can, ItemType.Component, "Can", 0.3f, "/images/components/can.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Scrap), 0, 3) }));
-            items.Add(ItemTag.Books, new Recycleable(ItemTag.Books, ItemType.Component, "Books", 0.5f, "/images/components/books.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Paper), 25, 50) }));
 
-            items.Add(ItemTag.BearCorpse, new RecycleableComplex(ItemTag.BearCorpse, ItemType.Food, "Bear corpse", 100, "/images/animals/bear_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RadBearCorpse, new RecycleableComplex(ItemTag.RadBearCorpse, ItemType.Food, "Radioactive Bear corpse", 100, "/images/animals/rad_bear_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BoarCorpse, new RecycleableComplex(ItemTag.BoarCorpse, ItemType.Food, "Boar corpse", 70, "/images/animals/boar_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RadBoarCorpse, new RecycleableComplex(ItemTag.RadBoarCorpse, ItemType.Food, "Radioactive Boar corpse", 70, "/images/animals/rad_boar_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.LynxCorpse, new RecycleableComplex(ItemTag.LynxCorpse, ItemType.Food, "Lynx corpse", 50, "/images/animals/lynx_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RadLynxCorpse, new RecycleableComplex(ItemTag.RadLynxCorpse, ItemType.Food, "Radioactive Lynx corpse", 50, "/images/animals/rad_lynx_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RatCorpse, new RecycleableComplex(ItemTag.RatCorpse, ItemType.Food, "Rat corpse", 1, "/images/animals/rat_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RadRatCorpse, new RecycleableComplex(ItemTag.RadRatCorpse, ItemType.Food, "Radioactive Rat corpse", 1, "/images/animals/rad_rat_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.SnakeCorpse, new RecycleableComplex(ItemTag.SnakeCorpse, ItemType.Food, "Snake corpse", 2, "/images/animals/snake_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.WolfCorpse, new RecycleableComplex(ItemTag.WolfCorpse, ItemType.Food, "Wolf corpse", 40, "/images/animals/wolf_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.RadWolfCorpse, new RecycleableComplex(ItemTag.RadWolfCorpse, ItemType.Food, "Radioactive Wolf corpse", 40, "/images/animals/rad_wolf_corpse.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenAkumulator, new RecycleableComplex(ItemTag.BrockenAkumulator, ItemType.Component, "Brocken akumulator", 25, "/images/components/brocken_akumulator.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.Cartrige, new RecycleableComplex(ItemTag.Cartrige, ItemType.Component, "Cartrige", 0.05f, "/images/components/cartrige.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenBicycle, new RecycleableComplex(ItemTag.BrockenBicycle, ItemType.Utility, "Brocken Bicycle", 25, "/images/transports/brocken_bicycle.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenMotocycle, new RecycleableComplex(ItemTag.BrockenMotocycle, ItemType.Utility, "Brocken Motocycle", 100, "/images/transports/",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenGas, new RecycleableComplex(ItemTag.BrockenGas, ItemType.Utility, "Brocken Gas", 1500, "/images/transports/brocken_gas.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenVaz, new RecycleableComplex(ItemTag.BrockenVaz, ItemType.Utility, "Brocken Vaz", 2500, "/images/transports/brocken_vaz.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenZaz, new RecycleableComplex(ItemTag.BrockenZaz, ItemType.Utility, "Brocken Zaz", 3500, "/images/transports/brocken_zaz.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenUaz, new RecycleableComplex(ItemTag.BrockenUaz, ItemType.Utility, "Brocken Uaz", 5000, "/images/transports/brocken_uaz.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenPistol, new RecycleableComplex(ItemTag.BrockenPistol, ItemType.Weapon, "Brocken Pistol", 1, "/images/weapons/brocken_pistol.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenPps42, new RecycleableComplex(ItemTag.BrockenPps42, ItemType.Weapon, "Brocken Pps42", 2.5f, "/images/weapons/brocken_pps42.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenAk47, new RecycleableComplex(ItemTag.BrockenAk47, ItemType.Weapon, "Brocken Ak47", 3, "/images/weapons/brocken_ak47.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenDp, new RecycleableComplex(ItemTag.BrockenDp, ItemType.Weapon, "Brocken Dp", 3.5f, "/images/weapons/brocken_dp.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenMosin, new RecycleableComplex(ItemTag.BrockenMosin, ItemType.Weapon, "Brocken Mosin", 3.5f, "/images/weapons/brocken_mosin.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenSVD, new RecycleableComplex(ItemTag.BrockenSVD, ItemType.Weapon, "Brocken SVD", 4, "/images/weapons/brocken_svd.png",
-                new Loot[] { }, new LootRandom[] { }));
-            items.Add(ItemTag.BrockenRpg7, new RecycleableComplex(ItemTag.BrockenRpg7, ItemType.Weapon, "Brocken Rpg7", 8, "/images/weapons/",
-                new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.Nail, new Recycleable(ItemTag.Nail, ItemType.Component, "Nail", 0.05f, "/images/componets/nail.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Scrap), 0, 3) }));
+            //items.Add(ItemTag.Table, new Recycleable(ItemTag.Table, ItemType.Component, "Table", 10, "/images/componets/table.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Wood), 3, 10) }));
+            //items.Add(ItemTag.Cloth, new Recycleable(ItemTag.Cloth, ItemType.Component, "Cloth", 0.5f, "/images/components/cloth.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Rags), 0, 5) }));
+            //items.Add(ItemTag.Rope, new Recycleable(ItemTag.Rope, ItemType.Component, "Rope", 0.3f, "/images/components/rope.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.String), 25, 50) }));
+            //items.Add(ItemTag.BrockenGasmask1, new Recycleable(ItemTag.BrockenGasmask1, ItemType.Utility, "BrockenGasmask1", 0.3f, "/images/masks/brocken_gasmask1", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
+            //items.Add(ItemTag.BrockenGasmask2, new Recycleable(ItemTag.BrockenGasmask2, ItemType.Utility, "BrockenGasmask2", 0.4f, "/images/masks/brocken_gasmask2", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
+            //items.Add(ItemTag.BrockenGasmask3, new Recycleable(ItemTag.BrockenGasmask3, ItemType.Utility, "BrockenGasmask3", 0.5f, "/images/masks/brocken_gasmask3", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
+            //items.Add(ItemTag.BrockenGasmask4, new Recycleable(ItemTag.BrockenGasmask4, ItemType.Utility, "BrockenGasmask4", 0.6f, "/images/masks/brocken_gasmask4", new LootRandom[] { new LootRandom(GetItem(ItemTag.Filter), 0, 1) }));
+            //items.Add(ItemTag.Can, new Recycleable(ItemTag.Can, ItemType.Component, "Can", 0.3f, "/images/components/can.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Scrap), 0, 3) }));
+            //items.Add(ItemTag.Books, new Recycleable(ItemTag.Books, ItemType.Component, "Books", 0.5f, "/images/components/books.png", new LootRandom[] { new LootRandom(GetItem(ItemTag.Paper), 25, 50) }));
+
+
+            //items.Add(ItemTag.BearCorpse, new RecycleableComplex(ItemTag.BearCorpse, ItemType.Food, "Bear corpse", 100, "/images/animals/bear_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RadBearCorpse, new RecycleableComplex(ItemTag.RadBearCorpse, ItemType.Food, "Radioactive Bear corpse", 100, "/images/animals/rad_bear_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BoarCorpse, new RecycleableComplex(ItemTag.BoarCorpse, ItemType.Food, "Boar corpse", 70, "/images/animals/boar_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RadBoarCorpse, new RecycleableComplex(ItemTag.RadBoarCorpse, ItemType.Food, "Radioactive Boar corpse", 70, "/images/animals/rad_boar_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.LynxCorpse, new RecycleableComplex(ItemTag.LynxCorpse, ItemType.Food, "Lynx corpse", 50, "/images/animals/lynx_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RadLynxCorpse, new RecycleableComplex(ItemTag.RadLynxCorpse, ItemType.Food, "Radioactive Lynx corpse", 50, "/images/animals/rad_lynx_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RatCorpse, new RecycleableComplex(ItemTag.RatCorpse, ItemType.Food, "Rat corpse", 1, "/images/animals/rat_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RadRatCorpse, new RecycleableComplex(ItemTag.RadRatCorpse, ItemType.Food, "Radioactive Rat corpse", 1, "/images/animals/rad_rat_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.SnakeCorpse, new RecycleableComplex(ItemTag.SnakeCorpse, ItemType.Food, "Snake corpse", 2, "/images/animals/snake_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.WolfCorpse, new RecycleableComplex(ItemTag.WolfCorpse, ItemType.Food, "Wolf corpse", 40, "/images/animals/wolf_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.RadWolfCorpse, new RecycleableComplex(ItemTag.RadWolfCorpse, ItemType.Food, "Radioactive Wolf corpse", 40, "/images/animals/rad_wolf_corpse.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenAkumulator, new RecycleableComplex(ItemTag.BrockenAkumulator, ItemType.Component, "Brocken akumulator", 25, "/images/components/brocken_akumulator.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.Cartrige, new RecycleableComplex(ItemTag.Cartrige, ItemType.Component, "Cartrige", 0.05f, "/images/components/cartrige.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenBicycle, new RecycleableComplex(ItemTag.BrockenBicycle, ItemType.Utility, "Brocken Bicycle", 25, "/images/transports/brocken_bicycle.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenMotocycle, new RecycleableComplex(ItemTag.BrockenMotocycle, ItemType.Utility, "Brocken Motocycle", 100, "/images/transports/",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenGas, new RecycleableComplex(ItemTag.BrockenGas, ItemType.Utility, "Brocken Gas", 1500, "/images/transports/brocken_gas.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenVaz, new RecycleableComplex(ItemTag.BrockenVaz, ItemType.Utility, "Brocken Vaz", 2500, "/images/transports/brocken_vaz.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenZaz, new RecycleableComplex(ItemTag.BrockenZaz, ItemType.Utility, "Brocken Zaz", 3500, "/images/transports/brocken_zaz.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenUaz, new RecycleableComplex(ItemTag.BrockenUaz, ItemType.Utility, "Brocken Uaz", 5000, "/images/transports/brocken_uaz.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenPistol, new RecycleableComplex(ItemTag.BrockenPistol, ItemType.Weapon, "Brocken Pistol", 1, "/images/weapons/brocken_pistol.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenPps42, new RecycleableComplex(ItemTag.BrockenPps42, ItemType.Weapon, "Brocken Pps42", 2.5f, "/images/weapons/brocken_pps42.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenAk47, new RecycleableComplex(ItemTag.BrockenAk47, ItemType.Weapon, "Brocken Ak47", 3, "/images/weapons/brocken_ak47.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenDp, new RecycleableComplex(ItemTag.BrockenDp, ItemType.Weapon, "Brocken Dp", 3.5f, "/images/weapons/brocken_dp.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenMosin, new RecycleableComplex(ItemTag.BrockenMosin, ItemType.Weapon, "Brocken Mosin", 3.5f, "/images/weapons/brocken_mosin.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenSVD, new RecycleableComplex(ItemTag.BrockenSVD, ItemType.Weapon, "Brocken SVD", 4, "/images/weapons/brocken_svd.png",
+            //    new Loot[] { }, new LootRandom[] { }));
+            //items.Add(ItemTag.BrockenRpg7, new RecycleableComplex(ItemTag.BrockenRpg7, ItemType.Weapon, "Brocken Rpg7", 8, "/images/weapons/",
+            //    new Loot[] { }, new LootRandom[] { }));
+
+            items.Add(ItemTag.Book, new Book(ItemTag.Book, "Book", 0.4f, "/images/books/book.png", 111, -15));
         }
 
         public static Item GetItem(ItemTag tag)
@@ -346,5 +354,4 @@ namespace SurvivalGT.Items
             return items[tag];
         }
     }
-
 }

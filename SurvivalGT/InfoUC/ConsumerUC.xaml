@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="SurvivalGT.InfoUC.ConsumerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WindowResources\InfoDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Image">
+                <Setter Property="Width" Value="45"/>
+                <Setter Property="Height" Value="45"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource HpIcon}" />
+            <TextBlock Text="{Binding Path=Item.Hp, Converter={StaticResource SignConverter}}" Foreground="Red" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Hp}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource HungerIcon}"/>
+            <TextBlock Text="{Binding Path=Item.Hunger, Converter={StaticResource SignConverter}}" Foreground="DarkOrange" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Hunger}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource ThirstIcon}"/>
+            <TextBlock Text="{Binding Path=Item.Thirst, Converter={StaticResource SignConverter}}" Foreground="CornflowerBlue" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Thirst}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource StaminaIcon}"/>
+            <TextBlock Text="{Binding Path=Item.Stamina, Converter={StaticResource SignConverter}}" Foreground="Yellow" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Stamina}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource PoisonIcon}"/>
+            <TextBlock Text="{Binding Path=Item.Poison, Converter={StaticResource SignConverter}}" Foreground="DarkGreen" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Poison}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{StaticResource RadIcon}"/>
+            <TextBlock Text="{Binding Path=Item.Rad, Converter={StaticResource SignConverter}}" Foreground="ForestGreen" FontWeight="Bold" Style="{StaticResource InfoTextBlock}"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Item.Rad}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

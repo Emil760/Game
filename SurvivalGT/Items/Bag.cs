@@ -7,53 +7,81 @@ namespace SurvivalGT.Items
         protected int capacity;
         protected int current_durability;
         protected int durability;
-        private Loot[] repair_loots;
         private bool is_equip;
+        private Goods[] repair_materials;
+        private ItemTag[] repair_options;
+        private int repair_time;
 
         public Bag()
         {
 
         }
 
-        public Bag(ItemTag tag, string name, float weight, string image, int durability, int capacity, Loot[] repair_loots)
+        public Bag(ItemTag tag, string name, float weight, string image, int durability, int capacity, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
             : base(tag, ItemType.Utility, name, weight, image)
         {
             this.durability = durability;
+            this.current_durability = durability;
             this.capacity = capacity;
-            this.repair_loots = repair_loots;
             this.is_equip = false;
+            this.repair_materials = repair_materials;
+            this.repair_options = repair_options;
+            this.repair_time = repair_time;
         }
 
-        public int Сapacity { get => capacity; }
+        public int Capacity { get => capacity; }
 
-        public int CurrentDurability { get => current_durability; set => current_durability = value; }
+        public int CurrentDurability { get => current_durability; set => Set(ref current_durability, value); }
 
         public int Durability { get => durability; }
 
-        public Loot[] RepairLoots { get => repair_loots; }
-
-        public Goods[] RepairGoods => throw new System.NotImplementedException();
-
         public bool IsEquip { get => is_equip; set => is_equip = value; }
+
+        public Goods[] RepairMaterials { get => repair_materials; }
+
+        public ItemTag[] RepairOptions { get => repair_options; }
+
+        public int RepairTime { get => repair_time; }
 
         public void Equip()
         {
-            throw new System.NotImplementedException();
+
         }
 
-        public void Repair()
+        public void Repair(Inventory inventory, CraftMaterial[] materials_craft, CraftOption[] options_craft)
         {
-            throw new System.NotImplementedException();
+            if (current_durability == durability) return;
+
+            for (int i = 0; i < repair_materials.Length; i++)
+            {
+                if (!materials_craft[i].Loot.Check(materials_craft[i].Count)) return;
+            }
+            for (int i = 0; i < repair_options.Length; i++)
+            {
+                if (!options_craft[i].Loots.First.Value.Check(options_craft[i].Count)) return;
+            }
+
+            for (int i = 0; i < repair_materials.Length; i++)
+            {
+                materials_craft[i].Loot.Use(materials_craft[i].Count, inventory);
+            }
+            for (int i = 0; i < repair_options.Length; i++)
+            {
+                options_craft[i].Loots.First.Value.Use(1, inventory);
+            }
+
+            if (durability - current_durability < 20) CurrentDurability += durability - current_durability;
+            else CurrentDurability += 20;
         }
 
         public void Unequip()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void WearOut()
         {
-            throw new System.NotImplementedException();
+
         }
 
         //public override object Clone()
@@ -67,8 +95,8 @@ namespace SurvivalGT.Items
         private short speed;
         private short fuel_consume;
 
-        public Transport(ItemTag tag, string name, float weight, string path, int durability, int capacity, short fuel_consume, short speed, Loot[] repair_loots)
-            : base(tag, name, weight, path, durability, capacity, repair_loots)
+        public Transport(ItemTag tag, string name, float weight, string path, int durability, int capacity, short fuel_consume, short speed, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
+            : base(tag, name, weight, path, durability, capacity, repair_materials, repair_options, repair_time)
         {
             this.speed = speed;
             this.fuel_consume = fuel_consume;

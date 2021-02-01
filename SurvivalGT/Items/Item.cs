@@ -61,6 +61,7 @@ namespace SurvivalGT.Items
         SoilSulfur,
         Steel,
         String,
+        SparkPlug,
         Skin,
         Tape,
         Table,
@@ -148,6 +149,9 @@ namespace SurvivalGT.Items
         RifleAmmo,
         SniperAmmo,
         Rpg7Ammo,
+        HandmadeBulkshot,
+        HandmadeRocket,
+        HandmadeAmmo,
         PistolCapsule,
         SubmachineCapsule,
         RifleCapsule,
@@ -175,7 +179,8 @@ namespace SurvivalGT.Items
         HandmadeGrenade,
         Molotov,
         HandmadeGun,
-        HandmadeAmmo,
+        HandmadeLauncher,
+        HandmadeShotgun,
         FlintSpear,
         Berdish,
         Club,
@@ -192,6 +197,7 @@ namespace SurvivalGT.Items
         СhimKit,
         Can,
         Crowbar,
+        OldCrowbar,
         SteelCrowbar,
         HandmadeFishingRod,
         FishingRod,
@@ -202,14 +208,15 @@ namespace SurvivalGT.Items
         HandmadeCandle,
         Matches,
         Instruments,
-        OldTools,
-        SteelTools,
+        OldInstruments,
+        SteelInstruments,
         Knife,
         FlintKnife,
         SteelKnife,
         Lighter,
         HandmadeLighter,
         Pan,
+        OldPan,
         SteelPan,
         Primus,
         EmptyPrimus,
@@ -254,11 +261,11 @@ namespace SurvivalGT.Items
         /// <summary>
         ///  //Bag
         /// </summary>
-        Bag1,
-        Bag2,
-        Bag3,
-        Bag4,
-        Bag5,
+        HandmadeBag,
+        Suitcase,
+        Bag,
+        MilitaryBag,
+        TravelBag,
         /// <summary>
         /// Mask
         /// </summary>
@@ -274,8 +281,8 @@ namespace SurvivalGT.Items
         Gasmask4,
         BrockenGasmask4,
         EmptyGasmask4,
-        Resperator,
-        HandmadeResperator,
+        Respirator,
+        HandmadeRespirator,
         /// <summary>
         /// Armor
         /// </summary>

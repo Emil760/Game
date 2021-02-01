@@ -26,6 +26,21 @@ namespace SurvivalGT.Models
             Sort = SortByCount;
         }
 
+        public Loot this[ItemTag index]
+        {
+            get
+            {
+                try
+                {
+                    return all_loots[index];
+                }
+                catch (KeyNotFoundException)
+                {
+                    return null;
+                }
+            }
+        }
+
         public Dictionary<ItemTag, Loot> AllLoots { get => all_loots; set => all_loots = value; }
         public ObservableCollection<Loot> Loots { get => loots; set => Set(ref loots, value); }
         public Loot SelectedLoot { get => selected_loot; set => Set(ref selected_loot, value); }
@@ -55,6 +70,49 @@ namespace SurvivalGT.Models
         public Loot DropCount(int count)
         {
             throw new NotImplementedException();
+        }
+
+        public LinkedList<Loot> GetOption(ItemTag tag)
+        {
+            LinkedList<Loot> options = new LinkedList<Loot>();
+            foreach (var loot in all_loots)
+            {
+                if (loot.Value.Item is OptionTool)
+                    if (((OptionTool)loot.Value.Item).Option == tag)
+                        options.AddLast(loot.Value);
+            }
+            return options;
+        }
+
+        public Loot GetMaterial(ItemTag tag)
+        {
+            try
+            {
+                return all_loots[tag];
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        public bool Check(ItemTag tag, int use_count = 1)
+        {
+            try
+            {
+                if (all_loots[tag].Count < use_count) return false;
+                else return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //throws exceptions if nothing is found (always check)
+        public void Use(ItemTag tag, int use_count)
+        {
+            all_loots[tag].Use(use_count, this);
         }
 
         // поменять

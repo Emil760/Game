@@ -76,12 +76,92 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InfoUC\AlcoUC.xaml.cs">
+      <DependentUpon>AlcoUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\ArmorUC.xaml.cs">
+      <DependentUpon>ArmorUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\BagUC.xaml.cs">
+      <DependentUpon>BagUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\BookUC.xaml.cs">
+      <DependentUpon>BookUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InfoUC\BreakableUC.xaml.cs">
       <DependentUpon>BreakableUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\CigaretteUC.xaml.cs">
+      <DependentUpon>CigaretteUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\ConsumerUC.xaml.cs">
+      <DependentUpon>ConsumerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\EquipUC.xaml.cs">
+      <DependentUpon>EquipUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\ExplosiveWeaponUC.xaml.cs">
+      <DependentUpon>ExplosiveWeaponUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\FishingrodUC.xaml.cs">
+      <DependentUpon>FishingrodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\FlashlightUC.xaml.cs">
+      <DependentUpon>FlashlightUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\MedecineUC.xaml.cs">
+      <DependentUpon>MedecineUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\PoisonFoodUC.xaml.cs">
+      <DependentUpon>PoisonFoodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\FoodUC.xaml.cs">
+      <DependentUpon>FoodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\GasMaskUC.xaml.cs">
+      <DependentUpon>GasMaskUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="InfoUC\ItemUC.xaml.cs">
       <DependentUpon>ItemUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InfoUC\LighterUC.xaml.cs">
+      <DependentUpon>LighterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\LightUC.xaml.cs">
+      <DependentUpon>LightUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\MaskUC.xaml.cs">
+      <DependentUpon>MaskUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\MedecineEffectUC.xaml.cs">
+      <DependentUpon>MedecineEffectUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\MeleeWeaponUC.xaml.cs">
+      <DependentUpon>MeleeWeaponUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\PotionUC.xaml.cs">
+      <DependentUpon>PotionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\PrimusUC.xaml.cs">
+      <DependentUpon>PrimusUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\RangeWeaponUC.xaml.cs">
+      <DependentUpon>RangeWeaponUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\RecycleableUC.xaml.cs">
+      <DependentUpon>RecycleableUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\RepairUC.xaml.cs">
+      <DependentUpon>RepairUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\ToolUC.xaml.cs">
+      <DependentUpon>ToolUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\TransportUC.xaml.cs">
+      <DependentUpon>TransportUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Fire.cs" />
+    <Compile Include="Items\Fishingrod.cs" />
     <Compile Include="Items\Goods.cs" />
     <Compile Include="Items\IEmptyable.cs" />
     <Compile Include="Items\IEquipable.cs" />
@@ -97,6 +177,8 @@
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Bag.cs" />
     <Compile Include="Items\Book.cs" />
+    <Compile Include="Items\Light.cs" />
+    <Compile Include="Items\Lighter.cs" />
     <Compile Include="Items\Mask.cs" />
     <Compile Include="Items\IBreakable.cs" />
     <Compile Include="Items\IRepairable.cs" />
@@ -110,28 +192,56 @@
     <Compile Include="Models\Effect.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Inventory.cs" />
-    <Compile Include="Models\Loots.cs" />
+    <Compile Include="Models\Loot.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Items\Consumer.cs" />
+    <Compile Include="Models\Weather.cs" />
+    <Compile Include="Models\СurableEffect.cs" />
+    <Compile Include="Temp\Temp.cs" />
     <Compile Include="Temp\ToDo.cs" />
     <Compile Include="Utility\Command.cs" />
     <Compile Include="Utility\Convertors.cs" />
-    <Compile Include="Utility\Convertots.cs" />
-    <Compile Include="Models\ItemsDataTemplateSelector.cs" />
+    <Compile Include="Utility\DataTemplateSelectors.cs" />
     <Compile Include="Utility\ObservableObject.cs" />
-    <Compile Include="viewmodels\GameViewModel.cs" />
-    <Compile Include="viewmodels\InventoryViewModel.cs" />
-    <Compile Include="viewmodels\MainViewModel.cs" />
-    <Compile Include="viewmodels\MapViewModel.cs" />
-    <Compile Include="viewmodels\RepairViewModel.cs" />
-    <Compile Include="views\InventoryUserControl.xaml.cs">
+    <Compile Include="ViewModels\ArmorViewModel.cs" />
+    <Compile Include="ViewModels\BagViewModel.cs" />
+    <Compile Include="ViewModels\BaitViewModel.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\BreakableViewModel.cs" />
+    <Compile Include="ViewModels\EquipViewModel.cs" />
+    <Compile Include="ViewModels\ExplosiveWeaponViewModel.cs" />
+    <Compile Include="ViewModels\FishingrodViewModel.cs" />
+    <Compile Include="ViewModels\FlashlightViewModel.cs" />
+    <Compile Include="ViewModels\FoodViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\GasMaskViewModel.cs" />
+    <Compile Include="ViewModels\InventoryViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\LighterViewModel.cs" />
+    <Compile Include="ViewModels\LightViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\MaskViewModel.cs" />
+    <Compile Include="ViewModels\MedecineEffectViewModel.cs" />
+    <Compile Include="ViewModels\MedecineViewModel.cs" />
+    <Compile Include="ViewModels\MeleeWeaponViewModel.cs" />
+    <Compile Include="ViewModels\PoisonFoodViewModel.cs" />
+    <Compile Include="ViewModels\RangeWeaponViewModel.cs" />
+    <Compile Include="ViewModels\RepairViewModel.cs" />
+    <Compile Include="ViewModels\ToolViewModel.cs" />
+    <Compile Include="ViewModels\TransportViewModel.cs" />
+    <Compile Include="ViewModels\WeaponViewModel.cs" />
+    <Compile Include="Views\BaitWindow.xaml.cs">
+      <DependentUpon>BaitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventoryUserControl.xaml.cs">
       <DependentUpon>InventoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\MapUserControl.xaml.cs">
+    <Compile Include="Views\MapUserControl.xaml.cs">
       <DependentUpon>MapUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -164,7 +274,63 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="InfoUC\AlcoUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\ArmorUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\BagUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\BookUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InfoUC\BreakableUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\CigaretteUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\ConsumerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\EquipUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\ExplosiveWeaponUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\FishingrodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\FlashlightUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\MedecineUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\PoisonFoodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\FoodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\GasMaskUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,19 +338,75 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InfoUC\LighterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\LightUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\MaskUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\MedecineEffectUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\MeleeWeaponUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\PotionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\PrimusUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\RangeWeaponUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\RecycleableUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\RepairUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\ToolUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\TransportUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InfoUC\WeaponUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\InventoryUserControl.xaml">
+    <Page Include="Views\BaitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\MainWindow.xaml">
+    <Page Include="Views\InventoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="views\MapUserControl.xaml">
+    <Page Include="Views\MapUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\BaitDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +415,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowResources\DropTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\GeneralDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,8 +483,7 @@
     <Resource Include="images\backgrounds\7.jpg" />
     <Resource Include="images\backgrounds\8.png" />
     <Resource Include="images\backgrounds\background1.jpg" />
-    <Resource Include="images\backgrounds\background2.jpg" />
-    <Resource Include="images\backgrounds\background3.jpg" />
+    <Resource Include="images\backgrounds\equipment.jpg" />
     <Resource Include="images\backgrounds\background8.jpg" />
     <Resource Include="images\backgrounds\day_night.jpg" />
     <Resource Include="images\backgrounds\F6Ew8.png" />
@@ -269,11 +494,11 @@
     <Resource Include="images\backgrounds\images %281%29.jpg" />
     <Resource Include="images\backgrounds\images %282%29.jpg" />
     <Resource Include="images\backgrounds\images.jpg" />
-    <Resource Include="images\backgrounds\Inventory.png" />
+    <Resource Include="images\backgrounds\inventory.png" />
     <Resource Include="images\backgrounds\paper.jpg" />
     <Resource Include="images\backgrounds\pexels-photo-207253.jpeg" />
     <Resource Include="images\backgrounds\pexels-photo-242616.jpeg" />
-    <Resource Include="images\backgrounds\pexels-photo-326311.jpg" />
+    <Resource Include="images\backgrounds\wood.jpg" />
     <Resource Include="images\backgrounds\thumb2-black-texture-surface-desktop-wallpapers.jpg" />
     <Resource Include="images\backgrounds\9.jpg" />
     <Resource Include="images\bags\handmade_bag.png" />
@@ -284,11 +509,7 @@
     <Resource Include="images\battle\action.png" />
     <Resource Include="images\battle\ak47.png" />
     <Resource Include="images\battle\barrel.png" />
-    <Resource Include="images\battle\bee.png" />
     <Resource Include="images\battle\bees.png" />
-    <Resource Include="images\battle\bleeding.png" />
-    <Resource Include="images\battle\blindness.png" />
-    <Resource Include="images\battle\body.png" />
     <Resource Include="images\battle\boxes.png" />
     <Resource Include="images\battle\brocken_tree.png" />
     <Resource Include="images\battle\bullet.png" />
@@ -301,16 +522,10 @@
     <Resource Include="images\battle\crossbow3.png" />
     <Resource Include="images\battle\damage.png" />
     <Resource Include="images\battle\exit.png" />
-    <Resource Include="images\battle\fire.png" />
     <Resource Include="images\battle\fist.png" />
-    <Resource Include="images\battle\flash.png" />
     <Resource Include="images\battle\flint_spear.png" />
-    <Resource Include="images\battle\freezed.png" />
     <Resource Include="images\battle\gate_open.png" />
-    <Resource Include="images\battle\goo.png" />
-    <Resource Include="images\battle\hand.png" />
     <Resource Include="images\battle\handmade_cloth.png" />
-    <Resource Include="images\battle\head.png" />
     <Resource Include="images\battle\highway_armor.png" />
     <Resource Include="images\battle\hillock.png" />
     <Resource Include="images\battle\hillock2.png" />
@@ -320,19 +535,15 @@
     <Resource Include="images\battle\knife.png" />
     <Resource Include="images\battle\Lamp.png" />
     <Resource Include="images\battle\leather_armor.png" />
-    <Resource Include="images\battle\leg.png" />
     <Resource Include="images\battle\military_armor.png" />
     <Resource Include="images\battle\mine.png" />
     <Resource Include="images\battle\mosin.png" />
     <Resource Include="images\battle\mushroom.png" />
     <Resource Include="images\battle\mushroom_active.png" />
-    <Resource Include="images\battle\poison.png" />
     <Resource Include="images\battle\pps42.png" />
-    <Resource Include="images\battle\provoke.png" />
     <Resource Include="images\battle\rad_armor.png" />
     <Resource Include="images\battle\range.png" />
     <Resource Include="images\battle\sand_bag.png" />
-    <Resource Include="images\battle\slowed.png" />
     <Resource Include="images\battle\snake.png" />
     <Resource Include="images\battle\snatch.png" />
     <Resource Include="images\battle\steel_armor.png" />
@@ -546,15 +757,15 @@
     <Resource Include="images\icons\destroy.png" />
     <Resource Include="images\icons\drop.png" />
     <Resource Include="images\icons\eat.png" />
-    <Resource Include="images\icons\energy.png" />
+    <Resource Include="images\icons\stamina.png" />
     <Resource Include="images\icons\exhaustion.png" />
     <Resource Include="images\icons\fatigue.png" />
-    <Resource Include="images\icons\food.png" />
+    <Resource Include="images\icons\hunger.png" />
     <Resource Include="images\icons\forge.png" />
     <Resource Include="images\icons\health.png" />
     <Resource Include="images\icons\health2.png" />
     <Resource Include="images\icons\hp.png" />
-    <Resource Include="images\icons\hunger.png" />
+    <Resource Include="images\icons\food1.png" />
     <Resource Include="images\icons\kg.png" />
     <Resource Include="images\icons\lock.png" />
     <Resource Include="images\icons\poison.png" />
@@ -567,9 +778,9 @@
     <Resource Include="images\icons\skeleton.png" />
     <Resource Include="images\icons\sleep.png" />
     <Resource Include="images\icons\statistics.png" />
-    <Resource Include="images\icons\thirst.png" />
-    <Resource Include="images\icons\use.png" />
     <Resource Include="images\icons\water.png" />
+    <Resource Include="images\icons\use.png" />
+    <Resource Include="images\icons\thirst.png" />
     <Resource Include="images\icons\wear.png" />
     <Resource Include="images\icons\weight.png" />
     <Resource Include="images\icons\world.png" />
@@ -612,7 +823,6 @@
     <Resource Include="images\suits\tank.png" />
     <Resource Include="images\temp\temp1.jpg" />
     <Resource Include="images\tools\axe.png" />
-    <Resource Include="images\tools\crowbar.png" />
     <Resource Include="images\tools\handmade_fishing_rod.png" />
     <Resource Include="images\tools\hacksaw.png" />
     <Resource Include="images\tools\needle.png" />
@@ -712,9 +922,8 @@
     <Resource Include="images\tools\handmade_candle.png" />
     <Resource Include="images\tools\steel_crowbar.png" />
     <Resource Include="images\tools\flashlight.png" />
-    <Resource Include="images\tools\old_hacksaw.png" />
     <Resource Include="images\tools\old_instruments.png" />
-    <Resource Include="images\tools\steel_tools.png" />
+    <Resource Include="images\tools\steel_instruments.png" />
     <Resource Include="images\tools\knife.png" />
     <Resource Include="images\tools\flint_knife.png" />
     <Resource Include="images\tools\steel_knife.png" />
@@ -800,10 +1009,63 @@
     <Resource Include="images\icons\resting.png" />
     <Resource Include="images\medecines\cigar.png" />
     <Resource Include="images\components\cloth.png" />
+    <Resource Include="images\tools\old_hacksaw.png" />
+    <Resource Include="images\tools\crowbar.png" />
+    <Resource Include="images\tools\old_crowbar.png" />
+    <Resource Include="images\tools\fishingrod.png" />
+    <Resource Include="images\tools\old_pan.png" />
+    <Resource Include="images\weapons\handmade_buckshot.png" />
+    <Resource Include="images\weapons\handmade_launcher.png" />
+    <Resource Include="images\weapons\handmade_rocket.png" />
+    <Resource Include="images\weapons\handmade_shotgun.png" />
+    <Resource Include="images\backgrounds\slot.jpg" />
+    <Resource Include="images\backgrounds\slot2.png" />
+    <Resource Include="images\backgrounds\tool_tip.png" />
+    <Resource Include="images\backgrounds\adasdasd.png" />
+    <Resource Include="images\backgrounds\3625DD70-1CFA-4118-AA91-91009102FE29.jpg" />
+    <Resource Include="images\backgrounds\Background_Slot.png" />
+    <Resource Include="images\backgrounds\Bg_paper.jpg" />
+    <Resource Include="images\backgrounds\IconBackground.png" />
+    <Resource Include="images\backgrounds\Infobox_border.png" />
+    <Resource Include="images\backgrounds\Infobox_Metal_top.png" />
+    <Resource Include="images\backgrounds\Metal_border.png" />
+    <Resource Include="images\backgrounds\Metal_corners.png" />
+    <Resource Include="images\backgrounds\slot.png" />
+    <Resource Include="images\icons\acid.png" />
+    <Resource Include="images\icons\level.png" />
+    <Resource Include="images\effects\bee.png" />
+    <Resource Include="images\effects\bleeding.png" />
+    <Resource Include="images\effects\blindness.png" />
+    <Resource Include="images\effects\body.png" />
+    <Resource Include="images\effects\fire.png" />
+    <Resource Include="images\effects\flash.png" />
+    <Resource Include="images\effects\freezed.png" />
+    <Resource Include="images\effects\goo.png" />
+    <Resource Include="images\effects\hand.png" />
+    <Resource Include="images\effects\head.png" />
+    <Resource Include="images\effects\leader.png" />
+    <Resource Include="images\effects\leg.png" />
+    <Resource Include="images\effects\pill.png" />
+    <Resource Include="images\effects\plus.png" />
+    <Resource Include="images\effects\poison.png" />
+    <Resource Include="images\effects\provoke.png" />
+    <Resource Include="images\effects\resistance.png" />
+    <Resource Include="images\effects\slowed.png" />
+    <Resource Include="images\effects\smoking.png" />
+    <Resource Include="images\effects\tablet.png" />
+    <Resource Include="images\effects\exhaustion.png" />
+    <Resource Include="images\effects\vodka.png" />
+    <Resource Include="images\effects\worms.png" />
+    <Resource Include="images\effects\bullet_wound.png" />
+    <Resource Include="images\backgrounds\fishing.jpg" />
+    <Resource Include="images\components\spark_plug.png" />
+    <Resource Include="images\icons\exclamation.png" />
     <Content Include="images\weapons\svd.png" />
     <Resource Include="images\weapons\sniper_capsule.png" />
     <Resource Include="images\weapons\submachine_capsule.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\ItemViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

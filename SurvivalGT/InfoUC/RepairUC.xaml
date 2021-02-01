@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="SurvivalGT.InfoUC.RepairUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
+    </UserControl.Resources>
+
+    <Border BorderBrush="Brown" BorderThickness="4">
+        <StackPanel>
+            <ListView ItemsSource="{Binding Path=RepairCrafts}" Style="{StaticResource RepairListViewStyle}"/>
+
+            <Button Content="Repair" Template="{StaticResource ButtonTemplate}" Command="{Binding Path=RepairCommand}"/>
+        </StackPanel>
+    </Border>
+</UserControl>

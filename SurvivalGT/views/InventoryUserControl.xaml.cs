@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using SurvivalGT.viewmodels;
+using SurvivalGT.ViewModels;
 
-namespace SurvivalGT.views
+namespace SurvivalGT.Views
 {
     /// <summary>
     /// Interaction logic for InventoryUserControl.xaml

@@ -2,6 +2,7 @@
 
 namespace SurvivalGT.Items
 {
+    //abstract
     class Consumer : Item
     {
         private short hp;
@@ -22,12 +23,12 @@ namespace SurvivalGT.Items
             this.rad = rad;
         }
 
-        protected short Hp { get => hp; }
-        protected short Hunger { get => hunger; }
-        protected short Thirst { get => thirst; }
-        protected short Stamina { get => stamina; }
-        protected short Poison { get => poison; }
-        protected short Rad { get => rad; }
+        public short Hp { get => hp; }
+        public short Hunger { get => hunger; }
+        public short Thirst { get => thirst; }
+        public short Stamina { get => stamina; }
+        public short Poison { get => poison; }
+        public short Rad { get => rad; }
 
         public virtual void Consume()
         {
@@ -44,30 +45,30 @@ namespace SurvivalGT.Items
         {
             this.time = time;
         }
+
         public int Time { get => time; set => time = value; }
 
         public void Spoil()
         {
             throw new System.NotImplementedException();
         }
-
     }
 
-    class FoodPoison : Food, IChanceable
+    class PoisonFood : Food, IChanceable
     {
         private short chance;
         private Effect effect;
 
-        public FoodPoison(ItemTag tag, string name, float weight, string path, short hp, short hunger, short thirst, short stamina, short poison, short rad, int time, short chance, Effect effect)
+        public PoisonFood(ItemTag tag, string name, float weight, string path, short hp, short hunger, short thirst, short stamina, short poison, short rad, int time, short chance, Effect effect)
                    : base(tag, name, weight, path, hp, hunger, thirst, stamina, poison, rad, time)
         {
             this.chance = chance;
             this.effect = effect;
         }
 
-        public short Chance => throw new System.NotImplementedException();
+        public short Chance  { get => chance; }
 
-        public Effect Effect => throw new System.NotImplementedException();
+        public Effect Effect { get => effect; }
     }
 
     class Medecine : Consumer

@@ -1,7 +1,7 @@
 ﻿using SurvivalGT.Models;
 using SurvivalGT.Utility;
 
-namespace SurvivalGT.viewmodels
+namespace SurvivalGT.ViewModels
 {
     class MapViewModel : ObserableObject
     {
