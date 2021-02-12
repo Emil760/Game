@@ -6,6 +6,10 @@ using System.Windows.Shapes;
 namespace SurvivalGT.Models
 {
     //put auto property if is needed
+    //level
+    //points
+    //nextexperiance
+    //experiane
     public class Player : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -81,6 +85,7 @@ namespace SurvivalGT.Models
             Armor = 0;
 
             inventory = new Inventory();
+            Level = new Level();
             game = Game.Instance;
         }
 
@@ -235,6 +240,7 @@ namespace SurvivalGT.Models
 
         public LinkedList<Effect> Effects { get => effects; set => effects = value; }
 
+        public Level Level { get; private set; }
 
         public void Decrease()
         {

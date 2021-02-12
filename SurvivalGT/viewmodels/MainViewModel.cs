@@ -58,7 +58,7 @@ namespace SurvivalGT.ViewModels
 
         private void CraftShow(object sender)
         {
-
+            if (!(interaction_view is CraftingUserControl)) InteractionView = new CraftingUserControl();
         }
 
         private void SearchShow(object sender)

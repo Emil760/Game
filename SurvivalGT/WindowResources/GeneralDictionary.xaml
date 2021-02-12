@@ -8,7 +8,6 @@
     <ImageBrush x:Key="WoodBackground" ImageSource="/images\backgrounds\wood.jpg"/>
     <ImageBrush x:Key="PaperBackground" ImageSource="/images\backgrounds\paper.jpg"/>
     <ImageBrush x:Key="EquipmentBackground" ImageSource="/images\backgrounds\equipment.jpg"/>
-    <ImageBrush x:Key="InventoryBackground" ImageSource="/images\backgrounds\inventory.png"/>
 
     <BitmapImage x:Key="HpIcon" UriSource="/images/icons/health.png"/>
     <BitmapImage x:Key="HungerIcon" UriSource="/images/icons/hunger.png"/>
@@ -42,7 +41,7 @@
 
     <ControlTemplate x:Key="ToolTipTemplate" TargetType="ToolTip">
         <Border Background="{StaticResource ToolTipBackground}">
-            <ContentPresenter TextBlock.FontSize="25" TextBlock.FontWeight="DemiBold" Margin="35, 5"/>
+            <ContentPresenter TextBlock.FontSize="25" TextBlock.FontWeight="DemiBold" Margin="25, 5"/>
         </Border>
     </ControlTemplate>
 

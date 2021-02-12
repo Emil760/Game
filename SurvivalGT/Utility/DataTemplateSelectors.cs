@@ -1,4 +1,5 @@
-﻿using SurvivalGT.Items;
+﻿using SurvivalGT.Interfacies;
+using SurvivalGT.Items;
 using SurvivalGT.Models;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,7 @@ namespace SurvivalGT.Utility
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            Loot loot = item as Loot;
+            ILoot loot = item as ILoot;
             if (loot.Item is IBreakable) return BrockenableDataTemplate;
             else return NormaDataTemplate;
         }
@@ -36,8 +37,9 @@ namespace SurvivalGT.Utility
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is CraftMaterial) return MaterialDataTemplate;
-            else return OptionDataTemplate;
+            ILoot loot = ((CraftItem)item).Loot;
+            if (loot is LootOption) return OptionDataTemplate;
+            else return MaterialDataTemplate;
         }
     }
 }

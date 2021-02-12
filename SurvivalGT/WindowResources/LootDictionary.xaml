@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="clr-namespace:SurvivalGT.Utility">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ImageBrush x:Key="SlotBackground" ImageSource="/images\backgrounds\slot.png"/>
+    <u:CountCheckConverter x:Key="CountCheckConverter"/>
+
+    <DataTemplate x:Key="MaterialDataTemplate" >
+        <StackPanel Width="70" Height="75">
+            <Border Background="{StaticResource SlotBackground}">
+                <Border.ToolTip>
+                    <ToolTip Template="{StaticResource ToolTipTemplate}" Placement="Top">
+                        <TextBlock Padding="35, 10" FontSize="25" Text="{Binding Path=Loot.Item.Name}"/>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Image Source="{Binding Path=Loot.Item.Path}" Width="60" Height="60"/>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="text1" Text="{Binding Path=Loot.Count}" FontSize="13" FontWeight="DemiBold"/>
+                <TextBlock x:Name="text2" Text="/" FontSize="13" FontWeight="DemiBold"/>
+                <TextBlock x:Name="text3" Text="{Binding Path=Count}" FontSize="13" FontWeight="DemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource CountCheckConverter}}" Value="False">
+                <Setter TargetName="text1" Property="Foreground" Value="Red"/>
+                <Setter TargetName="text2" Property="Foreground" Value="Red"/>
+                <Setter TargetName="text3" Property="Foreground" Value="Red"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="OptionDataTemplate">
+        <StackPanel Width="70" Height="75">
+            <Border Background="{StaticResource SlotBackground}">
+                <Border.ToolTip>
+                    <ToolTip Template="{StaticResource ToolTipTemplate}" Placement="Top" Content="{Binding Path=Loot.Item.Name}"/>
+                </Border.ToolTip>
+                <Image Source="{Binding Path=Loot.Item.Path}" Width="60" Height="60"/>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="text1" Text=" " FontSize="13" FontWeight="DemiBold"/>
+                <TextBlock x:Name="text2" Text="/" FontSize="13" FontWeight="DemiBold"/>
+                <TextBlock x:Name="text3" Text="{Binding Path=Loot.OptionsCount}" FontSize="13" FontWeight="DemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource CountCheckConverter}}" Value="False">
+                <Setter TargetName="text1" Property="Foreground" Value="Red"/>
+                <Setter TargetName="text2" Property="Foreground" Value="Red"/>
+                <Setter TargetName="text3" Property="Foreground" Value="Red"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+
+    <u:CraftDataTemplateSelector
+        x:Key="CraftDataTemplateSelector"
+        MaterialDataTemplate="{StaticResource MaterialDataTemplate}"
+        OptionDataTemplate="{StaticResource OptionDataTemplate}">
+    </u:CraftDataTemplateSelector>
+
+
+    <Style x:Key="LootListView" TargetType="ListView">
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="ItemsPanel" Value="{StaticResource  ListViewPanelTemplate}"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource  ListViewItemTemplate}"/>
+        <Setter Property="ItemTemplateSelector" Value="{StaticResource CraftDataTemplateSelector}"/>
+    </Style>
+
+</ResourceDictionary>

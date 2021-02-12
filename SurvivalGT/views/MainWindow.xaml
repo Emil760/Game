@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <ImageBrush x:Key="InteractionBrush" ImageSource="/images\backgrounds\slot.jpg"/>
+            <ImageBrush x:Key="InteractionBrush" ImageSource="/images\backgrounds\slot2.jpg"/>
             <ImageBrush x:Key="StatsImageBrush" ImageSource="/images\backgrounds\grid.jpg"/>
             <ImageBrush x:Key="DayNightBrush" ImageSource="/images\backgrounds\day_night.jpg"/>
 

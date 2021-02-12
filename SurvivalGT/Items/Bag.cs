@@ -1,4 +1,5 @@
-﻿using SurvivalGT.Models;
+﻿using SurvivalGT.Interfacies;
+using SurvivalGT.Models;
 
 namespace SurvivalGT.Items
 {
@@ -9,7 +10,6 @@ namespace SurvivalGT.Items
         protected int durability;
         private bool is_equip;
         private Goods[] repair_materials;
-        private ItemTag[] repair_options;
         private int repair_time;
 
         public Bag()
@@ -17,7 +17,7 @@ namespace SurvivalGT.Items
 
         }
 
-        public Bag(ItemTag tag, string name, float weight, string image, int durability, int capacity, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
+        public Bag(ItemTag tag, string name, float weight, string image, int durability, int capacity, Goods[] repair_materials, int repair_time)
             : base(tag, ItemType.Utility, name, weight, image)
         {
             this.durability = durability;
@@ -25,7 +25,6 @@ namespace SurvivalGT.Items
             this.capacity = capacity;
             this.is_equip = false;
             this.repair_materials = repair_materials;
-            this.repair_options = repair_options;
             this.repair_time = repair_time;
         }
 
@@ -37,9 +36,7 @@ namespace SurvivalGT.Items
 
         public bool IsEquip { get => is_equip; set => is_equip = value; }
 
-        public Goods[] RepairMaterials { get => repair_materials; }
-
-        public ItemTag[] RepairOptions { get => repair_options; }
+        public Goods[] RepairGoods { get => repair_materials; }
 
         public int RepairTime { get => repair_time; }
 
@@ -48,30 +45,30 @@ namespace SurvivalGT.Items
 
         }
 
-        public void Repair(Inventory inventory, CraftMaterial[] materials_craft, CraftOption[] options_craft)
+        public void Repair(Inventory inventory, CraftItem[] crafts)
         {
-            if (current_durability == durability) return;
+            //if (current_durability == durability) return;
 
-            for (int i = 0; i < repair_materials.Length; i++)
-            {
-                if (!materials_craft[i].Loot.Check(materials_craft[i].Count)) return;
-            }
-            for (int i = 0; i < repair_options.Length; i++)
-            {
-                if (!options_craft[i].Loots.First.Value.Check(options_craft[i].Count)) return;
-            }
+            //for (int i = 0; i < repair_materials.Length; i++)
+            //{
+            //    if (!materials_craft[i].Loot.Check(materials_craft[i].Count)) return;
+            //}
+            //for (int i = 0; i < repair_options.Length; i++)
+            //{
+            //    if (!options_craft[i].Loots.First.Value.Check(options_craft[i].Count)) return;
+            //}
 
-            for (int i = 0; i < repair_materials.Length; i++)
-            {
-                materials_craft[i].Loot.Use(materials_craft[i].Count, inventory);
-            }
-            for (int i = 0; i < repair_options.Length; i++)
-            {
-                options_craft[i].Loots.First.Value.Use(1, inventory);
-            }
+            //for (int i = 0; i < repair_materials.Length; i++)
+            //{
+            //    materials_craft[i].Loot.Use(materials_craft[i].Count, inventory);
+            //}
+            //for (int i = 0; i < repair_options.Length; i++)
+            //{
+            //    options_craft[i].Loots.First.Value.Use(1, inventory);
+            //}
 
-            if (durability - current_durability < 20) CurrentDurability += durability - current_durability;
-            else CurrentDurability += 20;
+            //if (durability - current_durability < 20) CurrentDurability += durability - current_durability;
+            //else CurrentDurability += 20;
         }
 
         public void Unequip()
@@ -95,8 +92,8 @@ namespace SurvivalGT.Items
         private short speed;
         private short fuel_consume;
 
-        public Transport(ItemTag tag, string name, float weight, string path, int durability, int capacity, short fuel_consume, short speed, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
-            : base(tag, name, weight, path, durability, capacity, repair_materials, repair_options, repair_time)
+        public Transport(ItemTag tag, string name, float weight, string path, int durability, int capacity, short fuel_consume, short speed, Goods[] repair_materials, int repair_time)
+            : base(tag, name, weight, path, durability, capacity, repair_materials, repair_time)
         {
             this.speed = speed;
             this.fuel_consume = fuel_consume;

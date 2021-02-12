@@ -1,4 +1,5 @@
-﻿using SurvivalGT.Models;
+﻿using SurvivalGT.Interfacies;
+using SurvivalGT.Models;
 
 namespace SurvivalGT.Items
 {
@@ -62,11 +63,10 @@ namespace SurvivalGT.Items
         private int current_durability;
         private int durability;
         private Goods[] repair_materials;
-        private ItemTag[] repair_options;
         private int repair_time;
 
 
-        public RangeWeapon(ItemTag tag, string name, float weight, string path, short action_points, short min_damage, short max_damage, ItemTag ammo, short range, int durability, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
+        public RangeWeapon(ItemTag tag, string name, float weight, string path, short action_points, short min_damage, short max_damage, ItemTag ammo, short range, int durability, Goods[] repair_materials, int repair_time)
         : base(tag, name, weight, path, action_points, min_damage, max_damage)
         {
             this.ammo = ammo;
@@ -74,7 +74,6 @@ namespace SurvivalGT.Items
             this.durability = durability;
             CurrentDurability = durability;
             this.repair_materials = repair_materials;
-            this.repair_options = repair_options;
             this.repair_time = repair_time;
         }
 
@@ -86,36 +85,35 @@ namespace SurvivalGT.Items
 
         public int Durability { get => durability; }
 
-        public Goods[] RepairMaterials { get => repair_materials; }
+        public Goods[] RepairGoods { get => repair_materials; }
 
-        public ItemTag[] RepairOptions { get => repair_options; }
 
         public int RepairTime { get => repair_time; }
 
-        public void Repair(Inventory inventory, CraftMaterial[] materials_craft, CraftOption[] options_craft)
+        public void Repair(Inventory inventory, CraftItem[] crafts)
         {
-            if (current_durability == durability) return;
+            //if (current_durability == durability) return;
 
-            for (int i = 0; i < repair_materials.Length; i++)
-            {
-                if (!materials_craft[i].Loot.Check(materials_craft[i].Count)) return;
-            }
-            for (int i = 0; i < repair_options.Length; i++)
-            {
-                if (!options_craft[i].Loots.First.Value.Check(options_craft[i].Count)) return;
-            }
+            //for (int i = 0; i < repair_materials.Length; i++)
+            //{
+            //    if (!materials_craft[i].Loot.Check(materials_craft[i].Count)) return;
+            //}
+            //for (int i = 0; i < repair_options.Length; i++)
+            //{
+            //    if (!options_craft[i].Loots.First.Value.Check(options_craft[i].Count)) return;
+            //}
 
-            for (int i = 0; i < repair_materials.Length; i++)
-            {
-                materials_craft[i].Loot.Use(materials_craft[i].Count, inventory);
-            }
-            for (int i = 0; i < repair_options.Length; i++)
-            {
-                options_craft[i].Loots.First.Value.Use(1, inventory);
-            }
+            //for (int i = 0; i < repair_materials.Length; i++)
+            //{
+            //    materials_craft[i].Loot.Use(materials_craft[i].Count, inventory);
+            //}
+            //for (int i = 0; i < repair_options.Length; i++)
+            //{
+            //    options_craft[i].Loots.First.Value.Use(1, inventory);
+            //}
 
-            if (durability - current_durability < 20) CurrentDurability += durability - current_durability;
-            else CurrentDurability += 20;
+            //if (durability - current_durability < 20) CurrentDurability += durability - current_durability;
+            //else CurrentDurability += 20;
         }
 
         public void WearOut()

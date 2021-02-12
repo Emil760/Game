@@ -4,15 +4,23 @@ namespace SurvivalGT.Items
 {
     class Recycleable : Item
     {
-        private LootRandom[] outputs;
+        protected LootRandom[] outputs;
+        protected int time;
 
-        public Recycleable(ItemTag tag, ItemType type, string name, float weight, string path, LootRandom[] outputs)
+        public Recycleable(ItemTag tag, ItemType type, string name, float weight, string path, int time, LootRandom[] outputs)
             : base(tag, type, name, weight, path)
         {
+            this.time = time;
             this.outputs = outputs;
         }
 
         public LootRandom[] Outputs { get => outputs; }
+        public int Time { get => time; }
+
+        public virtual ILoot[] Recycle(Inventory inventory)
+        {
+            return null;
+        }
 
         //public Loot[] Recycle()
         //{
@@ -25,14 +33,19 @@ namespace SurvivalGT.Items
 
     class RecycleableComplex : Recycleable
     {
-        private ItemTag tool;
+        private ItemTag[] inputs;
 
-        public RecycleableComplex(ItemTag tag, ItemType type, string name, float weight, string path, ItemTag tool, LootRandom[] outputs)
-            : base(tag, type, name, weight, path, outputs)
+        public RecycleableComplex(ItemTag tag, ItemType type, string name, float weight, string path, int time, ItemTag[] inputs, LootRandom[] outputs)
+            : base(tag, type, name, weight, path, time, outputs)
         {
-            this.tool = tool;
+            this.inputs = inputs;
         }
 
-        public ItemTag Tool { get; }
+        public ItemTag[] Inputs { get => inputs; }
+
+        public override ILoot[] Recycle(Inventory inventory)
+        {
+            return null;
+        }
     }
 }

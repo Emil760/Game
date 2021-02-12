@@ -1,4 +1,6 @@
-﻿namespace SurvivalGT.Items
+﻿using SurvivalGT.Interfacies;
+
+namespace SurvivalGT.Items
 {
     class Tool : Item, IBreakable
     {

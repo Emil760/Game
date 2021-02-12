@@ -11,7 +11,9 @@ namespace SurvivalGT.Items
         Medecine,
         Weapon,
         Tool,
-        Utility
+        Utility,
+        Transport,
+        Armor,
     }
 
     public enum ItemTag
@@ -19,6 +21,7 @@ namespace SurvivalGT.Items
         /// <summary>
         /// Materials
         /// </summary>
+        None,
         Akumulator,
         BrockenAkumulator,
         Acid,
@@ -36,10 +39,10 @@ namespace SurvivalGT.Items
         Electrodes,
         Flint,
         Gilza,
+        Gas,
         Gunpowder,
         Filter,
         Gear,
-        Gas,
         Herb,
         Lead,
         Nail,
@@ -366,9 +369,9 @@ namespace SurvivalGT.Items
         public float Weight { get => weight; }
         public string Path { get => path; private set => path = value; }
 
-        public virtual Loot GetLoot(int count)
+        public virtual ILoot GetLoot(int count = 0)
         {
-            return new Loot(this, count);
+            return new LootItem(this, count);
         }
 
         public virtual object Clone()

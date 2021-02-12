@@ -7,12 +7,17 @@
              d:DesignHeight="250" d:DesignWidth="400">
 
     <UserControl.Resources>
-        <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
+                <ResourceDictionary Source="/WindowResources/LootDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Border BorderBrush="Brown" BorderThickness="4">
         <StackPanel>
-            <ListView ItemsSource="{Binding Path=RepairCrafts}" Style="{StaticResource RepairListViewStyle}"/>
+            <ListView ItemsSource="{Binding Path=Repairs}" Style="{StaticResource LootListView}"/>
 
             <Button Content="Repair" Template="{StaticResource ButtonTemplate}" Command="{Binding Path=RepairCommand}"/>
         </StackPanel>

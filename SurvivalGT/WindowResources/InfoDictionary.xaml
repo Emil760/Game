@@ -4,21 +4,19 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
+        <ResourceDictionary Source="LootDictionary.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+
     <u:WeightCountConverter x:Key="WeightCountConverter"/>
     <u:WeightConverter x:Key="WeightConverter"/>
-    <u:CountCheckConverter x:Key="CountCheckConverter"/>
     <u:TimeConverter x:Key="TimeConverter"/>
-
-    <ImageBrush x:Key="SlotBackground" ImageSource="/images\backgrounds\slot2.png"/>
 
     <Style x:Key="MainBorder" TargetType="Border">
         <Setter Property="Margin" Value="10,5"/>
         <Setter Property="BorderThickness" Value="4"/>
         <Setter Property="BorderBrush" Value="Brown"/>
     </Style>
-    
+
     <Style x:Key="InfoTextBlock" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="DemiBold"/>
         <Setter Property="FontSize" Value="20"/>
@@ -60,77 +58,5 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-
-
-    <DataTemplate x:Key="MaterialDataTemplate" >
-        <StackPanel Width="70" Height="75">
-            <Border Background="{StaticResource SlotBackground}">
-                <Border.ToolTip>
-                    <ToolTip Template="{StaticResource ToolTipTemplate}" Placement="Top">
-                        <TextBlock Padding="35, 10" FontSize="25" Text="{Binding Path=Item.Name}"/>
-                    </ToolTip>
-                </Border.ToolTip>
-                <Image Source="{Binding Path=Item.Path}" Width="60" Height="60"/>
-            </Border>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock x:Name="text1" Text="{Binding Path=Count}" FontSize="13" FontWeight="DemiBold"/>
-                <TextBlock x:Name="text2" Text="/" FontSize="13" FontWeight="DemiBold"/>
-                <TextBlock x:Name="text3" Text="{Binding Path=Loot.Count}" FontSize="13" FontWeight="DemiBold">
-                    <!--<TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=Loot.Count, Converter={StaticResource CountCheckConverter}, ConverterParameter={Binding BindsDirectlyToSource=True}}" Value="False">
-                                    <Setter Property="Foreground" Value="Red"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>-->
-                </TextBlock>
-            </StackPanel>
-        </StackPanel>
-    </DataTemplate>
-
-
-    <DataTemplate x:Key="OptionDataTemplate">
-        <StackPanel Width="70" Height="75">
-            <Border Background="{StaticResource SlotBackground}">
-                <Border.ToolTip>
-                    <ToolTip Template="{StaticResource ToolTipTemplate}" Placement="Top" Content="{Binding Path=Item.Name}"/>
-                </Border.ToolTip>
-                <Image Source="{Binding Path=Item.Path}" Width="60" Height="60"/>
-            </Border>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock x:Name="text1" Text=" " FontSize="13" FontWeight="DemiBold"/>
-                <TextBlock x:Name="text2" Text="/" FontSize="13" FontWeight="DemiBold"/>
-                <TextBlock x:Name="text3" Text="{Binding Path=Count}" FontSize="13" FontWeight="DemiBold"/>
-            </StackPanel>
-        </StackPanel>
-
-        <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding BindsDirectlyToSource=True, Converter={StaticResource CountCheckConverter}}" Value="False">
-                <Setter TargetName="text1" Property="Foreground" Value="Red"/>
-                <Setter TargetName="text2" Property="Foreground" Value="Red"/>
-                <Setter TargetName="text3" Property="Foreground" Value="Red"/>
-            </DataTrigger>
-        </DataTemplate.Triggers>
-    </DataTemplate>
-
-
-    <u:CraftDataTemplateSelector
-        x:Key="CraftDataTemplateSelector"
-        MaterialDataTemplate="{StaticResource MaterialDataTemplate}"
-        OptionDataTemplate="{StaticResource OptionDataTemplate}">
-    </u:CraftDataTemplateSelector>
-
-    <Style x:Key="RepairListViewStyle" TargetType="ListView">
-        <Setter Property="SelectionMode" Value="Single"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="ItemsPanel" Value="{StaticResource  ListViewPanelTemplate}"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource  ListViewItemTemplate}"/>
-        <Setter Property="ItemTemplateSelector" Value="{StaticResource CraftDataTemplateSelector}"/>
-    </Style>
 
 </ResourceDictionary>

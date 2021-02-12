@@ -10,7 +10,7 @@ namespace SurvivalGT.Items
 
         }
 
-        public Item MakeFire(Loot loot)
+        public Item MakeFire(ILoot loot)
         {
             return ItemFactory.GetItem(ItemTag.Fire);
         }

@@ -5,9 +5,11 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WindowResources\GeneralDictionary.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+
     <u:WeightCountConverter x:Key="MultConvertor"/>
     <u:BreakConverter x:Key="BreakConverter"/>
+
+    <ImageBrush x:Key="Inventory" ImageSource="/images\backgrounds\inventory.png"/>
 
     <DataTemplate x:Key="NormalDataTemplate">
         <Canvas>
@@ -16,7 +18,7 @@
         </Canvas>
     </DataTemplate>
 
-    
+
     <DataTemplate x:Key="BreakableDataTemplate">
         <Canvas>
             <ProgressBar x:Name="progress" Canvas.Left="2" Canvas.Top="5" Maximum="{Binding Path=Item.Durability}" Value="{Binding Path=Item.CurrentDurability}" Width="80" Height="5" Background="Transparent" Foreground="DarkOliveGreen" BorderBrush="Black" BorderThickness="1">
@@ -68,12 +70,14 @@
         </Setter>
     </Style>
 
-    
+
     <Style x:Key="InventoryListView" TargetType="ListView">
         <Setter Property="ItemTemplateSelector" Value="{StaticResource ItemsDataTemplateSelector}"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource InventoryListViewItem}"/>
         <Setter Property="ItemsPanel" Value="{StaticResource ListViewPanelTemplate}"/>
-        <Setter Property="Background" Value="{StaticResource PaperBackground}"/>
+        <Setter Property="Background" Value="{StaticResource Inventory}"/>
+        <Setter Property="BorderBrush" Value="#525252"/>
+        <Setter Property="BorderThickness" Value="15"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
@@ -89,7 +93,7 @@
         <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
 
-    
+
     <Style x:Key="InfoStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
@@ -97,12 +101,18 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
-    
-    <Style x:Key="RepairListViewStyle" TargetType="ListView">
 
-    </Style>
+    <!--<Style x:Key="RepairListViewStyle" TargetType="ListView">
+        <Setter Property="ItemTemplateSelector" Value="{StaticResource ItemsDataTemplateSelector}"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource InventoryListViewItem}"/>
+        <Setter Property="ItemsPanel" Value="{StaticResource ListViewPanelTemplate}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>-->
 
-    
+
     <DataTemplate x:Key="RepairDataTemplate">
         <StackPanel Width="30" Height="30">
             <Image Source="{Binding Path=Loot.Item.Image}" Width="20" Height="20"/>

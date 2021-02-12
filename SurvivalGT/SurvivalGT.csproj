@@ -160,13 +160,14 @@
     <Compile Include="InfoUC\TransportUC.xaml.cs">
       <DependentUpon>TransportUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfacies\IExperience.cs" />
     <Compile Include="Items\Fire.cs" />
     <Compile Include="Items\Fishingrod.cs" />
     <Compile Include="Items\Goods.cs" />
-    <Compile Include="Items\IEmptyable.cs" />
-    <Compile Include="Items\IEquipable.cs" />
-    <Compile Include="Items\IEffectable.cs" />
-    <Compile Include="Items\IRechargable.cs" />
+    <Compile Include="Interfacies\IEmptyable.cs" />
+    <Compile Include="Interfacies\IEquipable.cs" />
+    <Compile Include="Interfacies\IEffectable.cs" />
+    <Compile Include="Interfacies\IRechargable.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -180,9 +181,9 @@
     <Compile Include="Items\Light.cs" />
     <Compile Include="Items\Lighter.cs" />
     <Compile Include="Items\Mask.cs" />
-    <Compile Include="Items\IBreakable.cs" />
-    <Compile Include="Items\IRepairable.cs" />
-    <Compile Include="Items\ISpoilable.cs" />
+    <Compile Include="Interfacies\IBreakable.cs" />
+    <Compile Include="Interfacies\IRepairable.cs" />
+    <Compile Include="Interfacies\ISpoilable.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Recyclable.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\Effect.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\Level.cs" />
     <Compile Include="Models\Loot.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
@@ -204,36 +206,44 @@
     <Compile Include="Utility\Convertors.cs" />
     <Compile Include="Utility\DataTemplateSelectors.cs" />
     <Compile Include="Utility\ObservableObject.cs" />
-    <Compile Include="ViewModels\ArmorViewModel.cs" />
-    <Compile Include="ViewModels\BagViewModel.cs" />
+    <Compile Include="ViewModels\Items\ArmorViewModel.cs" />
+    <Compile Include="ViewModels\Items\BagViewModel.cs" />
     <Compile Include="ViewModels\BaitViewModel.cs" />
-    <Compile Include="ViewModels\BookViewModel.cs" />
-    <Compile Include="ViewModels\BreakableViewModel.cs" />
-    <Compile Include="ViewModels\EquipViewModel.cs" />
-    <Compile Include="ViewModels\ExplosiveWeaponViewModel.cs" />
-    <Compile Include="ViewModels\FishingrodViewModel.cs" />
-    <Compile Include="ViewModels\FlashlightViewModel.cs" />
-    <Compile Include="ViewModels\FoodViewModel.cs" />
+    <Compile Include="ViewModels\Items\BookViewModel.cs" />
+    <Compile Include="ViewModels\Items\BreakableViewModel.cs" />
+    <Compile Include="ViewModels\CraftingViewModel.cs" />
+    <Compile Include="ViewModels\Items\EquipViewModel.cs" />
+    <Compile Include="ViewModels\Items\ExplosiveWeaponViewModel.cs" />
+    <Compile Include="ViewModels\Items\FishingrodViewModel.cs" />
+    <Compile Include="ViewModels\Items\FlashlightViewModel.cs" />
+    <Compile Include="ViewModels\Items\FoodViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
-    <Compile Include="ViewModels\GasMaskViewModel.cs" />
+    <Compile Include="ViewModels\Items\GasMaskViewModel.cs" />
     <Compile Include="ViewModels\InventoryViewModel.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
-    <Compile Include="ViewModels\LighterViewModel.cs" />
-    <Compile Include="ViewModels\LightViewModel.cs" />
+    <Compile Include="ViewModels\Items\ItemViewModel.cs" />
+    <Compile Include="ViewModels\Items\LighterViewModel.cs" />
+    <Compile Include="ViewModels\Items\LightViewModel.cs" />
+    <Compile Include="ViewModels\Items\OldToolViewModel.cs" />
+    <Compile Include="ViewModels\Items\OptionToolViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
-    <Compile Include="ViewModels\MaskViewModel.cs" />
-    <Compile Include="ViewModels\MedecineEffectViewModel.cs" />
-    <Compile Include="ViewModels\MedecineViewModel.cs" />
-    <Compile Include="ViewModels\MeleeWeaponViewModel.cs" />
-    <Compile Include="ViewModels\PoisonFoodViewModel.cs" />
-    <Compile Include="ViewModels\RangeWeaponViewModel.cs" />
-    <Compile Include="ViewModels\RepairViewModel.cs" />
-    <Compile Include="ViewModels\ToolViewModel.cs" />
-    <Compile Include="ViewModels\TransportViewModel.cs" />
-    <Compile Include="ViewModels\WeaponViewModel.cs" />
+    <Compile Include="ViewModels\Items\MaskViewModel.cs" />
+    <Compile Include="ViewModels\Items\MedecineEffectViewModel.cs" />
+    <Compile Include="ViewModels\Items\MedecineViewModel.cs" />
+    <Compile Include="ViewModels\Items\MeleeWeaponViewModel.cs" />
+    <Compile Include="ViewModels\Items\PoisonFoodViewModel.cs" />
+    <Compile Include="ViewModels\Items\RangeWeaponViewModel.cs" />
+    <Compile Include="ViewModels\Items\RecycleableComplexViewModel.cs" />
+    <Compile Include="ViewModels\Items\RecycleableViewModel.cs" />
+    <Compile Include="ViewModels\Items\RepairViewModel.cs" />
+    <Compile Include="ViewModels\Items\ToolViewModel.cs" />
+    <Compile Include="ViewModels\Items\TransportViewModel.cs" />
+    <Compile Include="ViewModels\Items\WeaponViewModel.cs" />
     <Compile Include="Views\BaitWindow.xaml.cs">
       <DependentUpon>BaitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CraftingUserControl.xaml.cs">
+      <DependentUpon>CraftingUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InventoryUserControl.xaml.cs">
       <DependentUpon>InventoryUserControl.xaml</DependentUpon>
@@ -394,6 +404,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CraftingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InventoryUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -427,6 +441,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowResources\ListViewInventoryTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\LootDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -477,30 +495,17 @@
     <Resource Include="images\backgrounds\1.png" />
     <Resource Include="images\backgrounds\2.jpg" />
     <Resource Include="images\backgrounds\3.png" />
-    <Resource Include="images\backgrounds\4.jpg" />
     <Resource Include="images\backgrounds\5.png" />
-    <Resource Include="images\backgrounds\6.png" />
-    <Resource Include="images\backgrounds\7.jpg" />
     <Resource Include="images\backgrounds\8.png" />
-    <Resource Include="images\backgrounds\background1.jpg" />
     <Resource Include="images\backgrounds\equipment.jpg" />
     <Resource Include="images\backgrounds\background8.jpg" />
     <Resource Include="images\backgrounds\day_night.jpg" />
     <Resource Include="images\backgrounds\F6Ew8.png" />
-    <Resource Include="images\backgrounds\games-background-1.jpg" />
     <Resource Include="images\backgrounds\grey_lines.jpg" />
     <Resource Include="images\backgrounds\grid.jpg" />
     <Resource Include="images\backgrounds\grunge-background-grungy-canvas_19-122664.jpg" />
-    <Resource Include="images\backgrounds\images %281%29.jpg" />
     <Resource Include="images\backgrounds\images %282%29.jpg" />
-    <Resource Include="images\backgrounds\images.jpg" />
-    <Resource Include="images\backgrounds\inventory.png" />
     <Resource Include="images\backgrounds\paper.jpg" />
-    <Resource Include="images\backgrounds\pexels-photo-207253.jpeg" />
-    <Resource Include="images\backgrounds\pexels-photo-242616.jpeg" />
-    <Resource Include="images\backgrounds\wood.jpg" />
-    <Resource Include="images\backgrounds\thumb2-black-texture-surface-desktop-wallpapers.jpg" />
-    <Resource Include="images\backgrounds\9.jpg" />
     <Resource Include="images\bags\handmade_bag.png" />
     <Resource Include="images\bags\suitcase.png" />
     <Resource Include="images\bags\bag.png" />
@@ -1018,14 +1023,11 @@
     <Resource Include="images\weapons\handmade_launcher.png" />
     <Resource Include="images\weapons\handmade_rocket.png" />
     <Resource Include="images\weapons\handmade_shotgun.png" />
-    <Resource Include="images\backgrounds\slot.jpg" />
-    <Resource Include="images\backgrounds\slot2.png" />
+    <Resource Include="images\backgrounds\slot2.jpg" />
     <Resource Include="images\backgrounds\tool_tip.png" />
-    <Resource Include="images\backgrounds\adasdasd.png" />
-    <Resource Include="images\backgrounds\3625DD70-1CFA-4118-AA91-91009102FE29.jpg" />
-    <Resource Include="images\backgrounds\Background_Slot.png" />
+    <Resource Include="images\backgrounds\white_slot.png" />
     <Resource Include="images\backgrounds\Bg_paper.jpg" />
-    <Resource Include="images\backgrounds\IconBackground.png" />
+    <Resource Include="images\backgrounds\craft.png" />
     <Resource Include="images\backgrounds\Infobox_border.png" />
     <Resource Include="images\backgrounds\Infobox_Metal_top.png" />
     <Resource Include="images\backgrounds\Metal_border.png" />
@@ -1057,15 +1059,29 @@
     <Resource Include="images\effects\vodka.png" />
     <Resource Include="images\effects\worms.png" />
     <Resource Include="images\effects\bullet_wound.png" />
-    <Resource Include="images\backgrounds\fishing.jpg" />
     <Resource Include="images\components\spark_plug.png" />
     <Resource Include="images\icons\exclamation.png" />
+    <Resource Include="images\icons\transports.png" />
+    <Resource Include="images\icons\medecines.png" />
+    <Resource Include="images\icons\food.png" />
+    <Resource Include="images\icons\materials.png" />
+    <Resource Include="images\icons\level1.png" />
+    <Resource Include="images\icons\tools.png" />
+    <Resource Include="images\icons\weapons.png" />
+    <Resource Include="images\icons\all.png" />
+    <Resource Include="images\icons\armors.png" />
+    <Resource Include="images\icons\points.png" />
+    <Resource Include="images\backgrounds\wood.jpg" />
+    <Resource Include="images\icons\points1.png" />
+    <Resource Include="images\backgrounds\inventory.png" />
+    <Resource Include="images\backgrounds\paper2.jpg" />
+    <Resource Include="images\backgrounds\fishing.jpg" />
+    <Resource Include="images\icons\arrow.png" />
+    <Resource Include="images\icons\time.png" />
     <Content Include="images\weapons\svd.png" />
     <Resource Include="images\weapons\sniper_capsule.png" />
     <Resource Include="images\weapons\submachine_capsule.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\ItemViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

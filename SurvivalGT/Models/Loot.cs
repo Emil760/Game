@@ -1,246 +1,306 @@
 ﻿using System;
 using SurvivalGT.Items;
 using System.Collections.Generic;
-using SurvivalGT.Utility;
+using SurvivalGT.Interfacies;
 
 namespace SurvivalGT.Models
 {
-    public class Loot : ObserableObject
+    public interface ILoot
     {
+        Item Item { get; }
+        
+        int Count { get; set; }
+        
+        int CountUse { get; }
+        
+        int GetCountUse();
+        
+        void Take(Inventory inventory);
+
+        LootItem Drop(Inventory inventory);
+
+        LootItem Drop(Inventory inventory, int count);
+
+        bool Check(int count, int? time = null);
+
+        int Check(int count, int times = 1, int? time = null);
+
+        void Use(Inventory inventory, int count);
+    }
+
+    public class LootItem : ILoot, System.ComponentModel.INotifyPropertyChanged
+    {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
         protected Item item;
         protected int count;
 
-        public Loot(Item item, int count)
+        public LootItem(Item item, int count)
         {
             this.item = item;
             this.count = count;
         }
 
+        public Item Item { get => item; }
         public int Count { get => count; set => Set(ref count, value); }
-        public Item Item { get => item; set => item = value; }
-
-        public virtual void Take(Inventory inventory)
+        public int CountUse { get => GetCountUse(); }
+        
+        public virtual int GetCountUse()
         {
-            try
-            {
-                var temp = inventory.AllLoots[this.Item.Tag];
-                temp.Count += count;
-            }
-            catch (KeyNotFoundException)
-            {
-                inventory.AllLoots.Add(item.Tag, this);
-                inventory.Filter.Invoke(this);
-            }
-        }
-
-        public virtual Loot Drop(Inventory inventory)
-        {
-            inventory.AllLoots.Remove(item.Tag);
-            inventory.Loots.Remove(this);
-            return this;
-        }
-
-        public virtual Loot Drop(Inventory inventory, int count)
-        {
-            if (this.count == count) return Drop(inventory);
-            else
-            {
-                Count -= count;
-                return new Loot(item, count);
-            }
+            return count;
         }
 
         public virtual bool Check(int count, int? time = null)
         {
-            if (this.count >= count) return true;
-            else return false;
+            if (this.count < count) return false;
+            else return true;
         }
 
-        public virtual void Use(int count, Inventory inventory)
+        public virtual int Check(int count, int times = 1, int? time = null)
         {
-            if (this.count == count) inventory.AllLoots.Remove(item.Tag);
-            Count -= count;
+            return (this.count - count * times) / times;
+        }
+
+        public virtual LootItem Drop(Inventory inventory)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual LootItem Drop(Inventory inventory, int count)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void Take(Inventory inventory)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void Use(Inventory inventory, int count)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Set<T>(ref T prop, T value, [System.Runtime.CompilerServices.CallerMemberName] string prop_name = "")
+        {
+            prop = value;
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(prop_name));
         }
     }
 
-    public class LootBreak : Loot
+    public class LootBreak : LootItem
     {
-        private LinkedList<int> durabilities;
+        private LinkedList<int> breaks;
 
-        public LootBreak(Item item, int count, LinkedList<int> durabilities) : base(item, count)
+        public LootBreak(Item item, int count) : base(item, count)
         {
-            this.durabilities = durabilities;
+            breaks = new LinkedList<int>();
+            breaks.AddLast((item as IBreakable).CurrentDurability);
         }
 
-        public LinkedList<int> Durabilities { get => durabilities; set => durabilities = value; }
+        public LootBreak(Item item, int count, LinkedList<int> breaks) : base(item, count)
+        {
+            this.breaks = breaks;
+        }
+
+        public LinkedList<int> Breaks { get; }
+        
+        public override int GetCountUse()
+        {
+            int count = 0;
+            foreach (var @break in breaks)
+                count += @break;
+            return count;
+        }
 
         public override void Take(Inventory inventory)
         {
-            try
-            {
-                LootBreak temp = inventory.AllLoots[item.Tag] as LootBreak;
-                temp.Count += count;
-                foreach (var dur in durabilities)
-                    temp.Durabilities.AddLast(dur);
-            }
-            catch (KeyNotFoundException)
-            {
-                inventory.AllLoots.Add(item.Tag, this);
-                inventory.Filter.Invoke(this);
-            }
+            base.Take(inventory);
         }
 
-        public override Loot Drop(Inventory inventory)
+        public override LootItem Drop(Inventory inventory)
         {
             return base.Drop(inventory);
         }
 
-        public override Loot Drop(Inventory inventory, int count)
+        public override LootItem Drop(Inventory inventory, int count)
         {
-            if (this.count == count) return base.Drop(inventory);
-            else
-            {
-                LinkedList<int> breaks = new LinkedList<int>();
-                var it = durabilities.First;
-                for (int i = 0; i < count; i++)
-                {
-                    breaks.AddFirst(it.Value);
-                    it = it.Next;
-                    Durabilities.RemoveFirst();
-                }
-                return new LootBreak(this.Item, count, breaks);
-            }
+            return base.Drop(inventory, count);
         }
 
         public override bool Check(int count, int? time = null)
         {
-            return base.Check(count);
+            return base.Check(count, time);
         }
 
-        public override void Use(int count, Inventory inventory)
+        public override int Check(int count, int times = 1, int? time = null)
         {
-            for (int i = 0; i < count; i++)
-            {
-                if (durabilities.First.Value - 1 == 0)
-                {
-                    durabilities.RemoveFirst();
-                    ((IBreakable)item).CurrentDurability = durabilities.First.Value;
-                    Count--;
-                }
-                else durabilities.First.Value--;
-            }
-            if (durabilities.Count == 0) inventory.AllLoots.Remove(item.Tag);
+            int durs = 0;
+            foreach (var @break in breaks)
+                durs += @break;
+            return (durs - count * times) / times;
+        }
+
+        public override void Use(Inventory inventory, int count)
+        {
+            base.Use(inventory, count);
         }
     }
 
-    public class LootSpoil : Loot
+    public class LootSpoil : LootItem
     {
-        private LinkedList<int> times;
+        private LinkedList<int> spoils;
 
-        public LootSpoil(Item item, int count, LinkedList<int> times) : base(item, count)
+        public LootSpoil(Item item, int count) : base(item, count)
         {
-            this.times = times;
+            spoils = new LinkedList<int>();
+            spoils.AddLast((item as ISpoilable).Time);
         }
 
-        public LinkedList<int> Times { get => times; set => times = value; }
+        public LootSpoil(Item item, int count, LinkedList<int> spoils) : base(item, count)
+        {
+            this.spoils = spoils;
+        }
+
+        public LinkedList<int> Spoils { get; }
+        
+        public override int GetCountUse()
+        {
+            return count;
+        }
 
         public override void Take(Inventory inventory)
         {
-            try
-            {
-                LootSpoil temp = inventory.AllLoots[item.Tag] as LootSpoil;
-                temp.Count += count;
-                foreach (var time in times)
-                    temp.Times.AddLast(time);
-            }
-            catch (KeyNotFoundException)
-            {
-                inventory.AllLoots.Add(item.Tag, this);
-                inventory.Filter.Invoke(this);
-            }
+            base.Take(inventory);
         }
 
-        public override Loot Drop(Inventory inventory)
+        public override LootItem Drop(Inventory inventory)
         {
             return base.Drop(inventory);
         }
 
-        public override Loot Drop(Inventory inventory, int count)
+        public override LootItem Drop(Inventory inventory, int count)
         {
-            if (this.count == count) return base.Drop(inventory);
-            else
+            return base.Drop(inventory, count);
+        }
+
+        public override bool Check(int count, int? time = null)
+        {
+            return base.Check(count, time);
+        }
+
+        public override int Check(int count, int times = 1, int? time = null)
+        {
+            int num = 0;
+            int[] temp = new int[spoils.Count];
+            bool ok = false;
+            spoils.CopyTo(temp, 0);
+            for (int i = time.Value; i < times * time.Value; i += time.Value)
             {
-                LinkedList<int> times = new LinkedList<int>();
-                var it = times.First;
-                for (int i = 0; i < count; i++)
+                for (int j = 0; j < count; j++)
                 {
-                    times.AddFirst(it.Value);
-                    it = it.Next;
-                    this.times.RemoveFirst();
+                    ok = false;
+                    for (int k = 0; k < temp.Length; k++)
+                    {
+                        if (temp[k] >= i)
+                        {
+                            num++;
+                            temp[k] = 0;
+                            ok = true;
+                            break;
+                        }
+                    }
+                    if (!ok) return num;
                 }
-                return new LootSpoil(item, count, times);
             }
+            return num;
         }
 
-        public override bool Check(int count, int? time)
+        public override void Use(Inventory inventory, int count)
         {
-            if (times.Count <= count) return false;
-            if (times.First.Value < time.Value) return false;
-            else return true;
-        }
-
-        public override void Use(int count, Inventory inventory)
-        {
-            base.Use(count, inventory);
-            for (int i = 0; i < count; i++)
-            {
-                times.RemoveFirst();
-            }
-            ((ISpoilable)item).Time = times.First.Value;
+            base.Use(inventory, count);
         }
     }
 
-    abstract public class CraftItem : ObserableObject
+    class LootOption : ILoot, System.ComponentModel.INotifyPropertyChanged
     {
-        private Item item;
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 
-        public CraftItem(Item item)
+        private ILoot loot;
+        private LinkedList<ILoot> options;
+
+        public LootOption(ILoot loot)
         {
-            this.item = item;
-        }
-
-        public Item Item { get => item; set => item = value; }
-    }
-
-    public class CraftMaterial : CraftItem
-    {
-        private int count;
-        private Loot loot;
-
-        public CraftMaterial(Item item, int count, Loot loot) : base(item)
-        {
-            this.count = count;
             this.loot = loot;
+            options = null;
         }
 
-        public Loot Loot { get => loot; set => loot = value; }
-        public int Count { get => count; set => count = value; }
-    }
+        public Item Item { get => loot.Item; }
 
-    public class CraftOption : CraftItem
-    {
-        private LinkedList<Loot> loots;
-        private int count;
+        public int Count { get => loot.Count; set => loot.Count = value; }
 
-        public CraftOption(Item item, LinkedList<Loot> loots) : base(item)
+        public int OptionsCount
         {
-            this.loots = loots;
-            foreach (var loot in loots)
-                Count += loot.Count;
+            get
+            {
+                int count = 0;
+                foreach (var item in options)
+                    count += item.Count;
+                return count;
+            }
+        }
+        
+        public int CountUse { get => GetCountUse(); }
+
+        public int GetCountUse()
+        {
+            int num = 0;
+            foreach (var option in options)
+                num += option.CountUse;
+            return num;
         }
 
-        public LinkedList<Loot> Loots { get => loots; set => loots = value; }
-        public int Count { get => count; set => Set(ref count, value); }
+        public void CheckOptionsCount()
+        {
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs("OptionsCount"));
+        }
+
+        public void Take(Inventory inventory)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public LootItem Drop(Inventory inventory)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public LootItem Drop(Inventory inventory, int count)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Check(int count, int? time = null)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int Check(int count, int times, int? time = null)
+        {
+            return CountUse - (count * times);
+        }
+        
+        public void Use(Inventory inventory, int count)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Set<T>(ref T prop, T value, [System.Runtime.CompilerServices.CallerMemberName] string prop_name = "")
+        {
+            prop = value;
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(prop_name));
+        }
+
     }
 
     public class LootRandom
@@ -260,20 +320,10 @@ namespace SurvivalGT.Models
         public int Min { get => min; set => min = value; }
         public int Max { get => max; set => max = value; }
 
-        public Loot GetLoot()
+        public ILoot GetLoot()
         {
             Random random = new Random();
-            return new Loot(ItemFactory.GetItem(tag), random.Next(min, max));
-        }
-    }
-
-    public class LootMulty
-    {
-        static KeyValuePair<ItemTag, Item[]> craftitems;
-
-        static LootMulty()
-        {
-
+            return ItemFactory.GetItem(Tag).GetLoot(random.Next(min, max));
         }
     }
 }

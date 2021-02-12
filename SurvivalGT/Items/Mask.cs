@@ -1,4 +1,5 @@
-﻿using SurvivalGT.Models;
+﻿using SurvivalGT.Interfacies;
+using SurvivalGT.Models;
 
 namespace SurvivalGT.Items
 {
@@ -43,10 +44,9 @@ namespace SurvivalGT.Items
         private string empty_path;
         private int full_time;
         private Goods[] repair_materials;
-        private ItemTag[] repair_options;
         private int repair_time;
 
-        public GasMask(ItemTag tag, string name, float weight, string path, string empty_path, short rad, int time, Goods[] repair_materials, ItemTag[] repair_options, int repair_time)
+        public GasMask(ItemTag tag, string name, float weight, string path, string empty_path, short rad, int time, Goods[] repair_materials, int repair_time)
             : base(tag, name, weight, empty_path, rad, time)
         {
             this.normal_path = path;
@@ -54,7 +54,6 @@ namespace SurvivalGT.Items
             this.is_empty = true;
             this.full_time = time;
             this.repair_materials = repair_materials;
-            this.repair_options = repair_options;
             this.repair_time = repair_time;
         }
 
@@ -66,16 +65,13 @@ namespace SurvivalGT.Items
 
         public int FullTime { get => full_time; private set => full_time = value; }
 
-        public Goods[] RepairMaterials { get => repair_materials; }
-
-        public ItemTag[] RepairOptions { get => repair_options; }
+        public Goods[] RepairGoods { get => repair_materials; }
 
         public int RepairTime { get => repair_time; }
 
-        //
-        public void Repair(Inventory inventory, CraftMaterial[] materials_craft, CraftOption[] options_craft)
+        public void Repair(Inventory inventory, CraftItem[] crafts)
         {
-            
+
         }
 
         public override void Spoil()

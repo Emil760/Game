@@ -1,79 +1,63 @@
 ﻿using SurvivalGT.Items;
-using System.Collections.ObjectModel;
+using SurvivalGT.Utility;
 
 namespace SurvivalGT.Models
 {
-    //public class Craft
-    //{
-    //    CraftItem[] crafts;
-    //    Player player;
-    //    CraftItem selected_craft;
-    //    //ObservableCollection<LootCraft> materials;
-    //    //ObservableCollection<LootCraft> tools;
-    //    Loot[] inventory_loot;
-    //    Loot[] ground_loot;
-    //    int count;
-    //    int max_craft;
-
-    //    static Craft()
-    //    {
-
-    //    }
-
-    //    public Craft()
-    //    {
-
-    //    }
-
-    //    public void CraftChanged()
-    //    {
-    //        //search from inventory;
-
-    //        //search from ground;
-
-    //        //max_craft;
-    //    }
-
-    //    public void Make()
-    //    {
-    //        for (int i = 0; i < count; i++)
-    //        {
-
-    //        }
-    //    }
-    //}
-
-    //public class CraftItem
-    //{
-    //    Loot output;
-    //    Loot[] inputs;
-    //    short time;
-
-    //    public CraftItem(Loot output, Loot[] inputs, short time)
-    //    {
-    //        this.output = output;
-    //        this.inputs = inputs;
-    //        this.time = time;
-    //    }
-
-    //    public Loot Output { get => output; private set => output = value; }
-    //    public Loot[] Inputs { get => inputs; private set => inputs = value; }
-    //    public short Duration { get => time; private set => time = value; }
-    //}
-
-    public class Temp
+    public class CraftItem : ObserableObject
     {
-        private Goods[] materials;
-        private ItemTag[] tools;
+        private ILoot loot;
+        private int count;
 
-        public Temp(Goods[] materials, ItemTag[] tools)
+        public CraftItem(ILoot loot, int count)
         {
-            this.materials = materials;
-            this.tools = tools;
+            Loot = loot;
+            Count = count;
         }
 
-        public Goods[] Materials { get => materials; set => materials = value; }
-        public ItemTag[] Tools { get => tools; set => tools = value; }
+        public ILoot Loot { get => loot; set => Set(ref loot, value); }
+        public int Count { get => count; set => Set(ref count, value); }
     }
 
+    public class Craft : ObserableObject
+    {
+        private ILoot[] inputs;
+        private ILoot[] outputs;
+        private int time;
+        private ItemType type;
+        private short level;
+        private short points;
+        private bool is_active;
+        private bool is_locked;
+
+        public Craft(ILoot[] inputs, ILoot[] outputs, ItemType type, short level, short points, int time, bool is_locked = true, bool is_active = false)
+        {
+            Inputs = inputs;
+            Outputs = outputs;
+            Time = time;
+            Type = type;
+            Level = level;
+            Points = points;
+            IsLocked = is_locked;
+            IsActive = is_active;
+        }
+
+        public ILoot[] Inputs { get => inputs; private set => Set(ref inputs, value); }
+        public ILoot[] Outputs { get => outputs; private set => Set(ref outputs, value); }
+        public int Time { get => time; private set => Set(ref time, value); }
+        public ItemType Type { get => type; private set => Set(ref type, value); }
+        public short Level { get => level; private set => Set(ref level, value); }
+        public short Points { get => points; private set => Set(ref points, value); }
+        public bool IsActive { get => is_active; set => Set(ref is_active, value); }
+        public bool IsLocked { get => is_locked; set => Set(ref is_locked, value); }
+
+        public void Activate(Player player)
+        {
+
+        }
+
+        public void Make()
+        {
+
+        }
+    }
 }

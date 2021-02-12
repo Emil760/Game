@@ -1,4 +1,4 @@
-﻿using SurvivalGT.Items;
+﻿using SurvivalGT.Interfacies;
 using SurvivalGT.Models;
 using System;
 using System.Globalization;
@@ -55,25 +55,14 @@ namespace SurvivalGT.Utility
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (parameter is CraftMaterial)
-            {
-                CraftMaterial craft = (CraftMaterial)parameter;
-                if (craft.Loot == null) return false;
-                if (craft.Loot.Count < craft.Count) return false;
-                else return true;
-            }
-            else
-            {
-                //CraftOption craft = (CraftOption)parameter;
-                //if (craft.Loots == null) return false;
-                //else return true;
-                return true;
-            }
+            CraftItem item = (CraftItem)value;
+            if (item.Loot.Count < item.Count) return false;
+            else return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
 
@@ -113,11 +102,31 @@ namespace SurvivalGT.Utility
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IBreakable breakable = (value as Loot).Item as IBreakable;
+            IBreakable breakable = (value as ILoot).Item as IBreakable;
             float percent = breakable.CurrentDurability * 100 / breakable.Durability;
             if (percent >= 66) return "Green";
             else if (percent >= 33) return "Yellow";
             else return "Red";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    class TimeConverter2 : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            int minutes = (int)value;
+            string time = "";
+            time += minutes / 1440 + ":";
+            if (minutes / 1440 >= 1) minutes %= 1440;
+            time += minutes / 60 + ":";
+            if (minutes / 60 >= 1) minutes %= 60;
+            time += minutes;
+            return time;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
