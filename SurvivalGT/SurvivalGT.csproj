@@ -88,9 +88,6 @@
     <Compile Include="InfoUC\BookUC.xaml.cs">
       <DependentUpon>BookUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InfoUC\BreakableUC.xaml.cs">
-      <DependentUpon>BreakableUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="InfoUC\CigaretteUC.xaml.cs">
       <DependentUpon>CigaretteUC.xaml</DependentUpon>
     </Compile>
@@ -210,7 +207,6 @@
     <Compile Include="ViewModels\Items\BagViewModel.cs" />
     <Compile Include="ViewModels\BaitViewModel.cs" />
     <Compile Include="ViewModels\Items\BookViewModel.cs" />
-    <Compile Include="ViewModels\Items\BreakableViewModel.cs" />
     <Compile Include="ViewModels\CraftingViewModel.cs" />
     <Compile Include="ViewModels\Items\EquipViewModel.cs" />
     <Compile Include="ViewModels\Items\ExplosiveWeaponViewModel.cs" />
@@ -230,7 +226,6 @@
     <Compile Include="ViewModels\Items\MaskViewModel.cs" />
     <Compile Include="ViewModels\Items\MedecineEffectViewModel.cs" />
     <Compile Include="ViewModels\Items\MedecineViewModel.cs" />
-    <Compile Include="ViewModels\Items\MeleeWeaponViewModel.cs" />
     <Compile Include="ViewModels\Items\PoisonFoodViewModel.cs" />
     <Compile Include="ViewModels\Items\RangeWeaponViewModel.cs" />
     <Compile Include="ViewModels\Items\RecycleableComplexViewModel.cs" />
@@ -297,10 +292,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InfoUC\BookUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InfoUC\BreakableUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

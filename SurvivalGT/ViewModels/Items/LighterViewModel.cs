@@ -1,19 +1,15 @@
-﻿using SurvivalGT.Items;
-using SurvivalGT.Models;
+﻿using SurvivalGT.Models;
 using SurvivalGT.Utility;
 using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class LighterViewModel
+    class LighterViewModel : ItemViewModel
     {
-        public LighterViewModel(ILoot loot)
+        public LighterViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
             Player = Player.Instance;
             MakeFireCommand = new Command(MakeFire);
-            Loot = loot;
-            ItemViewModel = new ItemViewModel(loot);
-            BreakableViewModel = new BreakableViewModel(loot);
 
             //CraftItem = new CraftMaterial(ItemFactory.GetItem(ItemTag.Wood), 10, Player.Inventory.GetMaterial(ItemTag.Wood));
         }
@@ -21,9 +17,6 @@ namespace SurvivalGT.ViewModels.Items
         public ICommand MakeFireCommand { get; }
 
         public Player Player { get; }
-        public ILoot Loot { get; }
-        public ItemViewModel ItemViewModel { get; }
-        public BreakableViewModel BreakableViewModel { get; }
         //public CraftItem CraftItem { get; }
 
         private void MakeFire(object param)

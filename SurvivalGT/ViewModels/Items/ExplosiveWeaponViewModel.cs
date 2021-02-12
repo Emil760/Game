@@ -1,16 +1,10 @@
-﻿using SurvivalGT.Models;
-
-namespace SurvivalGT.ViewModels.Items
+﻿namespace SurvivalGT.ViewModels.Items
 {
-    class ExplosiveWeaponViewModel
+    class ExplosiveWeaponViewModel : ItemViewModel
     {
-        public ExplosiveWeaponViewModel(ILoot loot)
+        public ExplosiveWeaponViewModel(Models.ILoot loot, bool is_info) : base(loot, is_info)
         {
-            Loot = loot;
-            WeaponViewModel = new WeaponViewModel(loot);
-        }
 
-        public ILoot Loot { get; }
-        public WeaponViewModel WeaponViewModel { get; }
+        }
     }
 }

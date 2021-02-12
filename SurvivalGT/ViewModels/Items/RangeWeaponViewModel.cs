@@ -3,9 +3,9 @@ using SurvivalGT.Models;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class RangeWeaponViewModel
+    class RangeWeaponViewModel : ItemViewModel
     {
-        public RangeWeaponViewModel(ILoot loot)
+        public RangeWeaponViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
             Loot = loot;
             Player = Player.Instance;

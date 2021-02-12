@@ -7,18 +7,16 @@ using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    public class RepairViewModel : ObserableObject
+    public class RepairViewModel : ItemViewModel
     {
-        private ILoot loot;
         private IRepairable repairable;
         private ObservableCollection<CraftItem> repairs;
 
-        public RepairViewModel(ILoot loot)
+        public RepairViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
             RepairCommand = new Command(Repair);
 
             Player = Player.Instance;
-            Loot = loot;
             repairable = loot.Item as IRepairable;
 
             Repairs = new ObservableCollection<CraftItem>();
@@ -26,7 +24,6 @@ namespace SurvivalGT.ViewModels.Items
         }
 
         public ICommand RepairCommand { get; }
-        public ILoot Loot { get => loot; set => Set(ref loot, value); }
         public Player Player { get; }
         public ObservableCollection<CraftItem> Repairs { get => repairs; set => repairs = value; }
 

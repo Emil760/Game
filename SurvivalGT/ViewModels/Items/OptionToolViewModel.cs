@@ -1,8 +1,8 @@
 ﻿namespace SurvivalGT.ViewModels.Items
 {
-    class OptionToolViewModel
+    class OptionToolViewModel : ItemViewModel
     {
-        public OptionToolViewModel()
+        public OptionToolViewModel(Models.ILoot loot, bool is_info) : base(loot, is_info)
         {
 
         }

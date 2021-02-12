@@ -1,22 +1,12 @@
-﻿using SurvivalGT.Models;
-
-namespace SurvivalGT.ViewModels.Items
+﻿namespace SurvivalGT.ViewModels.Items
 {
-    class LightViewModel
+    class LightViewModel : ItemViewModel
     {
-        public LightViewModel(ILoot loot)
+        public LightViewModel(Models.ILoot loot, bool is_info) : base(loot, is_info)
         {
-            Player = Player.Instance;
-            Loot = loot;
-            ItemViewModel = new ItemViewModel(loot);
-            BreakableViewModel = new BreakableViewModel(loot);
-            EquipViewModel = new EquipViewModel(loot);
+            EquipViewModel = new EquipViewModel(loot, is_info);
         }
 
-        public Player Player { get; }
-        public ILoot Loot { get; }
-        public ItemViewModel ItemViewModel { get; }
-        public BreakableViewModel BreakableViewModel { get; }
         public EquipViewModel EquipViewModel { get; }
     }
 }
