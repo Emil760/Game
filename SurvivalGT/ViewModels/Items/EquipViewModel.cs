@@ -1,11 +1,12 @@
 ﻿using SurvivalGT.Models;
+using SurvivalGT.Utility;
 using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    public class EquipViewModel : ItemViewModel
+    public class EquipViewModel : ObserableObject
     {
-        public EquipViewModel(ILoot loot, bool is_info) : base(loot, is_info)
+        public EquipViewModel(ILoot loot)
         {
             Player = Player.Instance;
         }

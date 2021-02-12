@@ -2,16 +2,18 @@
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class FlashlightViewModel : ItemViewModel
+    class FlashlightViewModel
     {
-        public FlashlightViewModel(ILoot loot, bool is_info) : base(loot, is_info)
+        public FlashlightViewModel(ILoot loot)
         {
             Player = Player.Instance;
-            LightViewModel = new LightViewModel(loot, is_info);
-            RepairViewModel = new RepairViewModel(Loot, is_info);
+            Loot = loot;
+            LightViewModel = new LightViewModel(loot);
+            RepairViewModel = new RepairViewModel(loot);
         }
 
         public Player Player { get; }
+        public ILoot Loot { get; }
         public LightViewModel LightViewModel { get; }
         public RepairViewModel RepairViewModel { get; }
     }

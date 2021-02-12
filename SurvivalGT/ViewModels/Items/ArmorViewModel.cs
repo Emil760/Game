@@ -1,13 +1,24 @@
-﻿namespace SurvivalGT.ViewModels.Items
+﻿using SurvivalGT.Models;
+using SurvivalGT.Utility;
+
+namespace SurvivalGT.ViewModels.Items
 {
-    public class ArmorViewModel : ItemViewModel
+    public class ArmorViewModel : ObserableObject
     {
-        public ArmorViewModel(Models.ILoot loot, bool is_info) : base(loot, is_info)
+        private ILoot loot;
+
+        public ArmorViewModel(ILoot loot)
         {
-            EquipViewModel = new EquipViewModel(loot, is_info);
-            RepairViewModel = new RepairViewModel(loot, is_info);
+            Loot = loot;
+            ItemViewModel = new ItemViewModel(loot);
+            BreakableViewModel = new BreakableViewModel(loot);
+            EquipViewModel = new EquipViewModel(loot);
+            RepairViewModel = new RepairViewModel(loot);
         }
 
+        public ILoot Loot { get => loot; set => Set(ref loot, value); }
+        public ItemViewModel ItemViewModel { get; }
+        public BreakableViewModel BreakableViewModel { get; }
         public EquipViewModel EquipViewModel { get; }
         public RepairViewModel RepairViewModel { get; }
     }

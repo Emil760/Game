@@ -4,9 +4,10 @@ namespace SurvivalGT.ViewModels.Items
 {
     class WeaponViewModel
     {
-        public WeaponViewModel(ILoot lootb, bool is_info)
+        public WeaponViewModel(ILoot loot)
         {
-            ItemViewModel = new ItemViewModel(loot, is_info);
+            Loot = loot;
+            ItemViewModel = new ItemViewModel(loot);
         }
 
         public ILoot Loot { get; }

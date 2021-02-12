@@ -2,15 +2,17 @@
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class ExplosiveWeaponViewModel
+    class MeleeWeaponViewModel
     {
-        public ExplosiveWeaponViewModel(ILoot loot)
+        public MeleeWeaponViewModel(ILoot loot)
         {
             Loot = loot;
             WeaponViewModel = new WeaponViewModel(loot);
+            BreakableViewModel = new BreakableViewModel(loot);
         }
 
         public ILoot Loot { get; }
         public WeaponViewModel WeaponViewModel { get; }
+        public BreakableViewModel BreakableViewModel { get; }
     }
 }

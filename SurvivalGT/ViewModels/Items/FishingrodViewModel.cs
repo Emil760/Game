@@ -6,17 +6,23 @@ using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class FishingrodViewModel : ItemViewModel
+    class FishingrodViewModel
     {
-        public FishingrodViewModel(ILoot loot, bool is_info) : base(loot, is_info)
+        public FishingrodViewModel(ILoot loot)
         {
             CatchFishCommand = new Command(CatchFish);
 
-            RepairViewModel = new RepairViewModel(loot, is_info);
+            Loot = loot;
+            ItemViewModel = new ItemViewModel(loot);
+            BreakableViewModel = new BreakableViewModel(loot);
+            RepairViewModel = new RepairViewModel(loot);    
         }
 
         public ICommand CatchFishCommand { get; }
 
+        public ILoot Loot { get; }
+        public ItemViewModel ItemViewModel { get; }
+        public BreakableViewModel BreakableViewModel { get; }
         public RepairViewModel RepairViewModel { get; }
 
         public void CatchFish(object param)

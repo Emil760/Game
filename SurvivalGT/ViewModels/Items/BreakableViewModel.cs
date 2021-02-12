@@ -1,10 +1,11 @@
 ﻿using SurvivalGT.Models;
+using SurvivalGT.Utility;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    public class ItemViewModel
+    public class BreakableViewModel : ObserableObject
     {
-        public ItemViewModel(ILoot loot)
+        public BreakableViewModel(ILoot loot)
         {
             Loot = loot;
         }
