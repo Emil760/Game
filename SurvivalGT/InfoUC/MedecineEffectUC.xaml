@@ -11,7 +11,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+        <local:ItemUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <Border Style="{StaticResource BorderStyle}">
             <StackPanel>

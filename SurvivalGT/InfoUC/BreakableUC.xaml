@@ -12,8 +12,8 @@
     <StackPanel>
         <TextBlock Style="{StaticResource InfoTextBlock}">
             <Run Text="{Binding Path=Loot.Item.CurrentDurability, StringFormat=Durability: {0}, Mode=OneWay}"/>
-            <Run> / </Run>
-            <Run Text="{Binding Path=Loot.Item.Durability, Mode=OneWay}"/>
+            <Run Text="/" Style="{StaticResource RunHidden}"/> 
+            <Run Text="{Binding Path=Loot.Item.Durability, Mode=OneWay}" Style="{StaticResource RunHidden}"/>
         </TextBlock>
     </StackPanel>
 </UserControl>

@@ -17,12 +17,14 @@
         <Setter Property="BorderBrush" Value="Brown"/>
     </Style>
 
+
     <Style x:Key="InfoTextBlock" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="DemiBold"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0,0,5,5"/>
     </Style>
+
 
     <Style x:Key="InfoIconStyle" TargetType="Image">
         <Setter Property="Width" Value="50"/>
@@ -31,21 +33,47 @@
         <Setter Property="Margin" Value="0,0,5,5"/>
     </Style>
 
+
     <Style x:Key="ImageEffect" TargetType="Image">
         <Setter Property="Width" Value="32"/>
         <Setter Property="Height" Value="32"/>
     </Style>
 
+
     <Style x:Key="Consumer" TargetType="UserControl">
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
+
 
     <Style x:Key="BorderStyle" TargetType="Border">
         <Setter Property="BorderThickness" Value="4"/>
         <Setter Property="Margin" Value="10,5"/>
         <Setter Property="BorderBrush" Value="Brown"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsInfo}" Value="True">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
+
+    <Style x:Key="RunHidden" TargetType="Run">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsInfo}" Value="True">
+                <Setter Property="Text" Value=""/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ControlHidden" TargetType="FrameworkElement">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsInfo}" Value="True">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
         <Border Name="border" Width="150" Height="30" Margin="0, 5" Background="BlanchedAlmond" BorderBrush="Brown" BorderThickness="2" VerticalAlignment="Center" Cursor="Hand">
@@ -56,6 +84,9 @@
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="border" Property="Background" Value="DarkKhaki"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Path=IsInfo}" Value="True">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

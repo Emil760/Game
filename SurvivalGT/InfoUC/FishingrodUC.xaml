@@ -11,14 +11,12 @@
     </UserControl.Resources>
 
     <StackPanel>
+        <local:ItemUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
-
-        <local:BreakableUC DataContext="{Binding Path=BreakableViewModel}"/>
+        <local:BreakableUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <local:RepairUC DataContext="{Binding Path=RepairViewModel}"/>
 
         <Button Content="Catch fish" Template="{StaticResource ButtonTemplate}" Command="{Binding CatchFishCommand}"/>
-
     </StackPanel>
 </UserControl>

@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderBrush="Brown" BorderThickness="4">
+    <Border Style="{StaticResource BorderStyle}">
         <StackPanel>
             <ListView ItemsSource="{Binding Path=Repairs}" Style="{StaticResource LootListView}"/>
 

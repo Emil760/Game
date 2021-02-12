@@ -8,8 +8,8 @@
              d:DesignHeight="200" d:DesignWidth="400">
     
     <StackPanel>
-        <local:WeaponUC DataContext="{Binding Path=WeaponViewModel}"/>
+        <local:WeaponUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <local:BreakableUC DataContext="{Binding Path=BreakableViewModel}"/>
+        <local:BreakableUC DataContext="{Binding BindsDirectlyToSource=True}"/>
     </StackPanel>
 </UserControl>

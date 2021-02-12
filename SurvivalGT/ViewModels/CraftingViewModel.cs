@@ -1,10 +1,13 @@
 ﻿using SurvivalGT.Items;
 using SurvivalGT.Models;
 using SurvivalGT.Utility;
+using SurvivalGT.ViewModels.Items;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels
@@ -16,6 +19,7 @@ namespace SurvivalGT.ViewModels
         private ObservableCollection<Craft> crafts;
         private Visibility craft_visibility;
         private int craft_time;
+        private UserControl output_control;
 
         public CraftViewModel()
         {
@@ -42,6 +46,7 @@ namespace SurvivalGT.ViewModels
         public ObservableCollection<CraftItem> Inputs { get => inputs; set => Set(ref inputs, value); }
         public Visibility CraftVisibility { get => craft_visibility; set => Set(ref craft_visibility, value); }
         public int CraftTime { get => craft_time; set => Set(ref craft_time, value); }
+        public UserControl OutputControl { get => output_control; set => Set(ref output_control, value); }
 
         public ICommand CraftCommand { get; }
         public ICommand CraftChangedCommand { get; }
@@ -66,6 +71,13 @@ namespace SurvivalGT.ViewModels
                 Inputs.Add(new CraftItem(loot, item.Count));
             }
             crafter.CraftChanged(Inputs);
+
+            string str = crafter.SelectedCraft.Outputs[0].Item.GetType().Name;
+            Type type = Type.GetType($"SurvivalGT.InfoUC.{str}UC", false, false);
+            OutputControl = (UserControl)Activator.CreateInstance(type);
+            type = Type.GetType("SurvivalGT.ViewModels.Items." + str + "ViewModel");
+            if (type == null) OutputControl.DataContext = new ItemViewModel(crafter.SelectedCraft.Outputs[0], true);
+            else OutputControl.DataContext = Activator.CreateInstance(type, crafter.SelectedCraft.Outputs[0], true);
         }
 
         public void CraftCountChaged(object param)

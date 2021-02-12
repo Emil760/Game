@@ -11,7 +11,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+        <local:ItemUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <TextBlock Text="{Binding Path=Loot.Item.Time, StringFormat=Spoils after: {0}, Converter={StaticResource TimeConverter}}" Style="{StaticResource InfoTextBlock}"/>
 

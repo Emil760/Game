@@ -2,21 +2,14 @@
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class TransportViewModel
+    class TransportViewModel : ItemViewModel
     {
-        public TransportViewModel(ILoot loot)
+        public TransportViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
-            Loot = loot;
-
-            ItemViewModel = new ItemViewModel(loot);
-            BreakableViewModel = new BreakableViewModel(loot);
-            EquipViewModel = new EquipViewModel(loot);
-            RepairViewModel = new RepairViewModel(loot);
+            EquipViewModel = new EquipViewModel(loot, is_info);
+            RepairViewModel = new RepairViewModel(loot, is_info);
         }
 
-        public ILoot Loot { get; }
-        public ItemViewModel ItemViewModel { get; }
-        public BreakableViewModel BreakableViewModel { get; }
         public EquipViewModel EquipViewModel { get; }
         public RepairViewModel RepairViewModel { get; }
     }

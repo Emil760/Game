@@ -1,14 +1,14 @@
-﻿using SurvivalGT.Models;
-
-namespace SurvivalGT.ViewModels.Items
+﻿namespace SurvivalGT.ViewModels.Items
 {
-    public class ItemViewModel
+    public class ItemViewModel : Utility.ObserableObject
     {
-        public ItemViewModel(ILoot loot)
+        public ItemViewModel(Models.ILoot loot, bool is_info)
         {
             Loot = loot;
+            IsInfo = is_info;
         }
 
-        public ILoot Loot { get; }
+        public Models.ILoot Loot { get; }
+        public bool IsInfo { get; }
     }
 }

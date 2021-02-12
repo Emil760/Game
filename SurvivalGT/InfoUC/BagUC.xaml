@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel>
-        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+        <local:ItemUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <local:BreakableUC DataContext="{Binding Path=BreakableViewModel}"/>
+        <local:BreakableUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <TextBlock Text="{Binding Path=Сapacity}"/>
 

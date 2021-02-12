@@ -2,17 +2,13 @@
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class MaskViewModel
+    class MaskViewModel : ItemViewModel
     {
-        public MaskViewModel(ILoot loot)
+        public MaskViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
-            Loot = loot;
-            ItemViewModel = new ItemViewModel(loot);
-            EquipViewModel = new EquipViewModel(loot);
+            EquipViewModel = new EquipViewModel(loot, is_info);
         }
 
-        public ILoot Loot { get; }
-        public ItemViewModel ItemViewModel { get; }
         public EquipViewModel EquipViewModel { get; }
     }
 }

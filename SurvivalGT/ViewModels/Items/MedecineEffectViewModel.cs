@@ -4,19 +4,14 @@ using System.Windows.Input;
 
 namespace SurvivalGT.ViewModels.Items
 {
-    class MedecineEffectViewModel
+    class MedecineEffectViewModel : ItemViewModel
     {
-        public MedecineEffectViewModel(ILoot loot)
+        public MedecineEffectViewModel(ILoot loot, bool is_info) : base(loot, is_info)
         {
-            Loot = loot;
             ConsumeCommand = new Command(Consume);
-            ItemViewModel = new ItemViewModel(loot);
         }
 
         public ICommand ConsumeCommand { get; }
-
-        public ILoot Loot { get; }
-        public ItemViewModel ItemViewModel { get; }
 
         public void Consume(object param)
         {

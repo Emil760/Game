@@ -9,7 +9,7 @@
         <ResourceDictionary Source="/WindowResources/InfoDictionary.xaml"/>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Style="{StaticResource ControlHidden}">
         <Button Content="Equip" Template="{StaticResource ButtonTemplate}" Command="{Binding Path=EquipCommand}"/>
     </StackPanel>
 </UserControl>

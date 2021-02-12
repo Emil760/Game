@@ -112,6 +112,12 @@
     <Compile Include="InfoUC\MedecineUC.xaml.cs">
       <DependentUpon>MedecineUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InfoUC\OldToolUC.xaml.cs">
+      <DependentUpon>OldToolUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUC\OptionToolUC.xaml.cs">
+      <DependentUpon>OptionToolUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InfoUC\PoisonFoodUC.xaml.cs">
       <DependentUpon>PoisonFoodUC.xaml</DependentUpon>
     </Compile>
@@ -210,10 +216,8 @@
     <Compile Include="ViewModels\Items\BagViewModel.cs" />
     <Compile Include="ViewModels\BaitViewModel.cs" />
     <Compile Include="ViewModels\Items\BookViewModel.cs" />
-    <Compile Include="ViewModels\Items\BreakableViewModel.cs" />
     <Compile Include="ViewModels\CraftingViewModel.cs" />
     <Compile Include="ViewModels\Items\EquipViewModel.cs" />
-    <Compile Include="ViewModels\Items\ExplosiveWeaponViewModel.cs" />
     <Compile Include="ViewModels\Items\FishingrodViewModel.cs" />
     <Compile Include="ViewModels\Items\FlashlightViewModel.cs" />
     <Compile Include="ViewModels\Items\FoodViewModel.cs" />
@@ -223,22 +227,17 @@
     <Compile Include="ViewModels\Items\ItemViewModel.cs" />
     <Compile Include="ViewModels\Items\LighterViewModel.cs" />
     <Compile Include="ViewModels\Items\LightViewModel.cs" />
-    <Compile Include="ViewModels\Items\OldToolViewModel.cs" />
-    <Compile Include="ViewModels\Items\OptionToolViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\Items\MaskViewModel.cs" />
     <Compile Include="ViewModels\Items\MedecineEffectViewModel.cs" />
     <Compile Include="ViewModels\Items\MedecineViewModel.cs" />
-    <Compile Include="ViewModels\Items\MeleeWeaponViewModel.cs" />
     <Compile Include="ViewModels\Items\PoisonFoodViewModel.cs" />
     <Compile Include="ViewModels\Items\RangeWeaponViewModel.cs" />
     <Compile Include="ViewModels\Items\RecycleableComplexViewModel.cs" />
     <Compile Include="ViewModels\Items\RecycleableViewModel.cs" />
     <Compile Include="ViewModels\Items\RepairViewModel.cs" />
-    <Compile Include="ViewModels\Items\ToolViewModel.cs" />
     <Compile Include="ViewModels\Items\TransportViewModel.cs" />
-    <Compile Include="ViewModels\Items\WeaponViewModel.cs" />
     <Compile Include="Views\BaitWindow.xaml.cs">
       <DependentUpon>BaitWindow.xaml</DependentUpon>
     </Compile>
@@ -329,6 +328,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InfoUC\MedecineUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\OldToolUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoUC\OptionToolUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

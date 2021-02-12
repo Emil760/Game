@@ -256,16 +256,10 @@
 
             </StackPanel>
 
-            <Grid Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="2">
+                <UserControl Content="{Binding OutputControl}" VerticalAlignment="Top"/>
+            </ScrollViewer>
 
-                <Image Grid.Row="0"/>
-
-                <UserControl Grid.Row="1"/>
-            </Grid>
         </Grid>
     </Grid>
 </UserControl>

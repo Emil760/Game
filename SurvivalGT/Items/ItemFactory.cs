@@ -176,7 +176,7 @@ namespace SurvivalGT.Items
             items.Add(ItemTag.MilitaryArmor, new Armor(ItemTag.MilitaryArmor, "Military armor", 2.5f, "/images/armors/military_armor.png", 100, 200,
                  new Goods[] { }, 111));
             items.Add(ItemTag.MotorwayArmor, new Armor(ItemTag.MotorwayArmor, "Motorway armor", 3.5f, "/images/armors/motorway_armor.png", 100, 300,
-                 new Goods[] { new Goods(ItemTag.Cloth, 2), new Goods(ItemTag.String, 5), new Goods(ItemTag.Tire, 1), new Goods(ItemTag.Wire, 3), new Goods(ItemTag.Needle, 1) }, 111));
+                 new Goods[] { new Goods(ItemTag.Cloth, 15), new Goods(ItemTag.String, 5), new Goods(ItemTag.Tire, 1), new Goods(ItemTag.Wire, 3), new Goods(ItemTag.Needle, 1) }, 111));
             items.Add(ItemTag.LeatherArmor, new Armor(ItemTag.LeatherArmor, "Leather armor", 4, "/images/armors/leather_armor.png", 100, 380,
                 new Goods[] { }, 111));
             items.Add(ItemTag.SteelArmor, new Armor(ItemTag.SteelArmor, "Steel armor", 5, "/images/armors/steel_armor.png", 100, 500,

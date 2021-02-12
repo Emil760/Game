@@ -11,11 +11,11 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <local:ItemUC DataContext="{Binding Path=ItemViewModel}"/>
+        <local:ItemUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <local:BreakableUC DataContext="{Binding Path=BreakableViewModel}"/>
+        <local:BreakableUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <StackPanel Height="80" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5">
+        <StackPanel Height="80" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5" Style="{StaticResource ControlHidden}">
             <StackPanel Background="{StaticResource SlotBackground}" Width="80" Height="80">
                 <StackPanel.ToolTip>
                     <ToolTip Template="{StaticResource ToolTipTemplate}" Placement="Top">

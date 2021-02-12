@@ -11,9 +11,9 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <local:WeaponUC DataContext="{Binding Path=WeaponViewModel}"/>
+        <local:WeaponUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
-        <local:BreakableUC DataContext="{Binding Path=BreakableViewModel}"/>
+        <local:BreakableUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <TextBlock Text="{Binding Path=Loot.Item.Range, StringFormat=Range: {0} tiles}" Style="{StaticResource InfoTextBlock}"/>
 

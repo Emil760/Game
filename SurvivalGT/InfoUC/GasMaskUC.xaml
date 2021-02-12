@@ -8,7 +8,7 @@
              d:DesignHeight="250" d:DesignWidth="500">
 
     <StackPanel>
-        <local:MaskUC DataContext="{Binding Path=MaskViewModel}"/>
+        <local:MaskUC DataContext="{Binding BindsDirectlyToSource=True}"/>
 
         <local:RepairUC DataContext="{Binding Path=RepairViewModel}"/>
     </StackPanel>

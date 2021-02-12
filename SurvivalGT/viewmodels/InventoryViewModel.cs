@@ -44,6 +44,7 @@ namespace SurvivalGT.ViewModels
             Loots.Add(new LootSpoil(ItemFactory.GetItem(ItemTag.BeefCan), 5, vs));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Ak47), 1, vs1));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Berdish), 1, vs1));
+            Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Club), 1, vs1));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.SteelAxe), 1, vs1));
             Loots.Add(new LootItem(ItemFactory.GetItem(ItemTag.Bryocarm), 1));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Vodka), 1, vs1));
@@ -69,8 +70,7 @@ namespace SurvivalGT.ViewModels
             Loots.Add(new LootSpoil(ItemFactory.GetItem(ItemTag.HandmadeRespirator), 1, vs1));
             Loots.Add(new LootSpoil(ItemFactory.GetItem(ItemTag.Gasmask3), 1, vs1));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Zaz), 1, vs));
-            //Loots.Add(new LootItem(ItemFactory.GetItem(ItemTag.BrockenZaz), 1));
-            Loots.Add(new LootItem(ItemFactory.GetItem(ItemTag.Cloth), 4));
+            Loots.Add(new LootItem(ItemFactory.GetItem(ItemTag.Rags), 15));
 
             foreach (var item in Loots)
             {
@@ -106,18 +106,11 @@ namespace SurvivalGT.ViewModels
         private void ItemChanged(object param)
         {
             string item = SelectedLoot.Item.GetType().Name;
-            if (item.Contains("Tool"))
-            {
-                InfoUC = new ToolUC();
-                InfoUC.DataContext = new ToolViewModel(SelectedLoot);
-            }
-            else
-            {
-                Type type = Type.GetType($"SurvivalGT.InfoUC.{item}UC", false, false);
-                InfoUC = (UserControl)Activator.CreateInstance(type);
-                type = Type.GetType("SurvivalGT.ViewModels.Items." + item + "ViewModel");
-                InfoUC.DataContext = Activator.CreateInstance(type, SelectedLoot);
-            }
+            Type type = Type.GetType($"SurvivalGT.InfoUC.{item}UC", false, false);
+            InfoUC = (UserControl)Activator.CreateInstance(type);
+            type = Type.GetType("SurvivalGT.ViewModels.Items." + item + "ViewModel");
+            if (type == null) InfoUC.DataContext = new ItemViewModel(SelectedLoot, false);
+            else InfoUC.DataContext = Activator.CreateInstance(type, SelectedLoot, false);
         }
 
         private void OrderChanged(object param)
