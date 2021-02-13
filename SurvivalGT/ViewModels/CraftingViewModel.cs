@@ -63,14 +63,8 @@ namespace SurvivalGT.ViewModels
 
         public void CraftChanged(object param)
         {
-            Inputs.Clear();
-            foreach (var item in crafter.SelectedCraft.Inputs)
-            {
-                ILoot loot = crafter.Player.Inventory[item.Item.Tag];
-                if (loot == null) loot = ItemFactory.GetItem(item.Item.Tag).GetLoot();
-                Inputs.Add(new CraftItem(loot, item.Count));
-            }
-            crafter.CraftChanged(Inputs);
+            crafter.CraftChanged();
+            Inputs = new ObservableCollection<CraftItem>(crafter.Inputs);
 
             string str = crafter.SelectedCraft.Outputs[0].Item.GetType().Name;
             Type type = Type.GetType($"SurvivalGT.InfoUC.{str}UC", false, false);
@@ -82,18 +76,17 @@ namespace SurvivalGT.ViewModels
 
         public void CraftCountChaged(object param)
         {
-            var it = inputs.GetEnumerator();
-            foreach (var item in crafter.SelectedCraft.Inputs)
-            {
-                it.Current.Count = item.Count * crafter.CraftCount;
-                it.MoveNext();
-            }
+            //var it = inputs.GetEnumerator();
+            //foreach (var item in crafter.SelectedCraft.Inputs)
+            //{
+            //    it.Current.Count = item.Count * crafter.CraftCount;
+            //    it.MoveNext();
+            //}
         }
 
         public void ActivateCraft(object param)
         {
-            System.Console.WriteLine("aaa");
-            //System.Console.WriteLine(crafter.SelectedCraft.Outputs[0].Item.Name);
+            Console.WriteLine("bbb");
         }
     }
 
@@ -105,6 +98,7 @@ namespace SurvivalGT.ViewModels
         private int max_count;
         private int progress_count;
         private Craft selected_craft;
+        private CraftItem[] inputs;
 
         static Crafter()
         {
@@ -117,7 +111,7 @@ namespace SurvivalGT.ViewModels
                 new ILoot[] { ItemFactory.GetItem(ItemTag.MotorwayArmor).GetLoot(1) }, ItemType.Armor, 1, 3, 50, false, true));
 
             crafts.AddLast(new Craft(new ILoot[] { ItemFactory.GetItem(ItemTag.Water).GetLoot(2), ItemFactory.GetItem(ItemTag.Coal).GetLoot(5) },
-                new ILoot[] { ItemFactory.GetItem(ItemTag.ActivatedCarbon).GetLoot(5) }, ItemType.Medecine, 2, 4, 50));
+                new ILoot[] { ItemFactory.GetItem(ItemTag.ActivatedCarbon).GetLoot(5) }, ItemType.Medecine, 2, 4, 50, false, true));
 
             crafts.AddLast(new Craft(new ILoot[] { ItemFactory.GetItem(ItemTag.FreshMeat).GetLoot(1) },
                 new ILoot[] { ItemFactory.GetItem(ItemTag.FriedMeat).GetLoot(1) }, ItemType.Food, 2, 5, 50));
@@ -149,43 +143,21 @@ namespace SurvivalGT.ViewModels
         public int ProgressCount { get => progress_count; set => Set(ref progress_count, value); }
         public Craft SelectedCraft { get => selected_craft; set => Set(ref selected_craft, value); }
         public LinkedList<Craft> Crafts { get => crafts; }
-
-        public int Check()
-        {
-            int num = 0;
-            max_count = Player.Inventory[selected_craft.Inputs[0].Item.Tag].Count / selected_craft.Inputs[0].Count;
-            for (int i = 1; i < selected_craft.Inputs.Length; i++)
-            {
-                num = Player.Inventory[selected_craft.Inputs[i].Item.Tag].Check(num, selected_craft.Inputs[i].Count, selected_craft.Time);
-                if (max_count > num) max_count = num;
-            }
-            return num;
-        }
-
-        public int Check(IEnumerable<CraftItem> inputs)
-        {
-            int num = 0, temp = 0;
-            var it = inputs.GetEnumerator();
-            num = it.Current.Loot.Check(it.Current.Count, it.Current.Loot.Count, selected_craft.Time);
-            while (it.MoveNext())
-            {
-                temp = it.Current.Loot.Check(it.Current.Count, it.Current.Loot.Count, selected_craft.Time);
-                if (temp < num) num = temp;
-            }
-            return num;
-        }
+        public IEnumerable<CraftItem> Inputs { get => inputs; }
 
         public void CraftChanged()
         {
-            //CraftCount = 0;
-            MaxCount = Check();
+            int num;
+            var inputs = selected_craft.Inputs;
+            MaxCount = inputs[0].Check(inputs[0].Count, selected_craft.Time);
+            for (int i = 1; i < inputs.Length; i++)
+            {
+                ILoot loot = Player.Inventory[inputs[i].Item.Tag];
+                if (loot == null) loot = ItemFactory.GetItem(inputs[i].Item.Tag).GetLoot();
+                this.inputs[i] = new CraftItem(loot, inputs[i].Count);
+                num = loot.Check(inputs[i].Count, selected_craft.Time);
+                if (MaxCount > num) MaxCount = num;
+            }
         }
-
-        public void CraftChanged(IEnumerable<CraftItem> inputs)
-        {
-            //CraftCount = 0;
-            //MaxCount = Check(inputs);
-        }
-
     }
 }

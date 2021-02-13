@@ -1,5 +1,4 @@
-﻿using SurvivalGT.InfoUC;
-using SurvivalGT.Interfacies;
+﻿using SurvivalGT.Interfacies;
 using SurvivalGT.Items;
 using SurvivalGT.Models;
 using SurvivalGT.Utility;
@@ -71,6 +70,8 @@ namespace SurvivalGT.ViewModels
             Loots.Add(new LootSpoil(ItemFactory.GetItem(ItemTag.Gasmask3), 1, vs1));
             Loots.Add(new LootBreak(ItemFactory.GetItem(ItemTag.Zaz), 1, vs));
             Loots.Add(new LootItem(ItemFactory.GetItem(ItemTag.Rags), 15));
+
+            int a = 1;
 
             foreach (var item in Loots)
             {

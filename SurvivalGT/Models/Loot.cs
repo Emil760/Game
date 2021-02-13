@@ -8,13 +8,13 @@ namespace SurvivalGT.Models
     public interface ILoot
     {
         Item Item { get; }
-        
+
         int Count { get; set; }
-        
+
         int CountUse { get; }
-        
+
         int GetCountUse();
-        
+
         void Take(Inventory inventory);
 
         LootItem Drop(Inventory inventory);
@@ -23,7 +23,7 @@ namespace SurvivalGT.Models
 
         bool Check(int count, int? time = null);
 
-        int Check(int count, int times = 1, int? time = null);
+        int Check(int times = 1, int time = 0);
 
         void Use(Inventory inventory, int count);
     }
@@ -44,7 +44,7 @@ namespace SurvivalGT.Models
         public Item Item { get => item; }
         public int Count { get => count; set => Set(ref count, value); }
         public int CountUse { get => GetCountUse(); }
-        
+
         public virtual int GetCountUse()
         {
             return count;
@@ -56,9 +56,9 @@ namespace SurvivalGT.Models
             else return true;
         }
 
-        public virtual int Check(int count, int times = 1, int? time = null)
+        public virtual int Check(int times = 1, int time = 0)
         {
-            return (this.count - count * times) / times;
+            return count / times;
         }
 
         public virtual LootItem Drop(Inventory inventory)
@@ -104,7 +104,7 @@ namespace SurvivalGT.Models
         }
 
         public LinkedList<int> Breaks { get; }
-        
+
         public override int GetCountUse()
         {
             int count = 0;
@@ -133,12 +133,12 @@ namespace SurvivalGT.Models
             return base.Check(count, time);
         }
 
-        public override int Check(int count, int times = 1, int? time = null)
+        public override int Check(int times = 1, int time = 0)
         {
             int durs = 0;
             foreach (var @break in breaks)
                 durs += @break;
-            return (durs - count * times) / times;
+            return durs / times;
         }
 
         public override void Use(Inventory inventory, int count)
@@ -163,7 +163,7 @@ namespace SurvivalGT.Models
         }
 
         public LinkedList<int> Spoils { get; }
-        
+
         public override int GetCountUse()
         {
             return count;
@@ -189,28 +189,27 @@ namespace SurvivalGT.Models
             return base.Check(count, time);
         }
 
-        public override int Check(int count, int times = 1, int? time = null)
+        public override int Check(int times = 1, int time = 0)
         {
-            int num = 0;
-            int[] temp = new int[spoils.Count];
-            bool ok = false;
-            spoils.CopyTo(temp, 0);
-            for (int i = time.Value; i < times * time.Value; i += time.Value)
+            int num = 0, index = 0;
+            bool ok;
+            int[] spoils = new int[this.spoils.Count];
+            this.spoils.CopyTo(spoils, 0);
+            for (int i = 0; i < spoils.Length / times; i++)
             {
-                for (int j = 0; j < count; j++)
+                for (int j = 0; j < times; j++)
                 {
                     ok = false;
-                    for (int k = 0; k < temp.Length; k++)
+                    for (int k = 0; k < spoils.Length; k++)
                     {
-                        if (temp[k] >= i)
+                        if (spoils[k] > time && spoils[index] <= spoils[k])
                         {
-                            num++;
-                            temp[k] = 0;
+                            index = k;
                             ok = true;
-                            break;
                         }
                     }
                     if (!ok) return num;
+                    spoils[index] = 0;
                 }
             }
             return num;
@@ -249,7 +248,7 @@ namespace SurvivalGT.Models
                 return count;
             }
         }
-        
+
         public int CountUse { get => GetCountUse(); }
 
         public int GetCountUse()
@@ -285,11 +284,11 @@ namespace SurvivalGT.Models
             throw new System.NotImplementedException();
         }
 
-        public int Check(int count, int times, int? time = null)
+        public int Check(int times = 1, int time = 0)
         {
-            return CountUse - (count * times);
+            return CountUse / times;
         }
-        
+
         public void Use(Inventory inventory, int count)
         {
             throw new System.NotImplementedException();
@@ -300,7 +299,6 @@ namespace SurvivalGT.Models
             prop = value;
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(prop_name));
         }
-
     }
 
     public class LootRandom
