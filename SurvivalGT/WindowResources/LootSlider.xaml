@@ -48,7 +48,7 @@
         <Canvas Width="30" Height="30" Cursor="Hand">
             <Ellipse x:Name="ellipse" Width="30" Height="30" Fill="{StaticResource ThumbBackground}" StrokeThickness="2" Stroke="Black" Cursor="Hand"/>
 
-            <TextBlock Canvas.Top="-30" Canvas.Left="5" Text="{Binding RelativeSource={RelativeSource AncestorType=Slider}, Path=Value, StringFormat={}{0:F0}}" Foreground="FloralWhite" FontSize="20" FontWeight="Bold" />
+            <TextBlock Canvas.Top="-30" Canvas.Left="5" Text="{Binding RelativeSource={RelativeSource AncestorType=Slider}, Path=Value, StringFormat={}{0:F0}}" Foreground="FloralWhite" FontSize="20" FontWeight="Bold"/>
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsDragging" Value="True">

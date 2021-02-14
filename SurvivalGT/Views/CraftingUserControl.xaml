@@ -244,7 +244,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Slider Grid.Column="0" Maximum="{Binding Path=Crafter.MaxCount}" Template="{StaticResource SliderTemplate}"/>
+                <Slider Grid.Column="0" Value="0" Maximum="{Binding Path=Crafter.MaxCount}" Template="{StaticResource SliderTemplate}"/>
 
                 <TextBlock Grid.Column="1" Text="{Binding Path=CraftTime, Converter={StaticResource TimeConverter2}}" Foreground="#C5DCDA" VerticalAlignment="Center" FontSize="30" Margin="10"/>
 

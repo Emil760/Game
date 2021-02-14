@@ -26,6 +26,7 @@ namespace SurvivalGT.ViewModels
             Player = Player.Instance;
             Crafter = new Crafter();
             crafter.MaxCount = 143;
+            //crafter.CraftCount = 100;
 
             crafts = new ObservableCollection<Craft>();
             foreach (var item in crafter.Crafts)
@@ -137,7 +138,7 @@ namespace SurvivalGT.ViewModels
         }
 
         public Player Player { get; }
-        public int CraftCount { get => CraftCount; set => Set(ref craft_count, value); }
+        public int CraftCount { get => CraftCount;  }
         public int MaxCount { get => max_count; set => Set(ref max_count, value); }
         public int ProgressCount { get => progress_count; set => Set(ref progress_count, value); }
         public Craft SelectedCraft { get => selected_craft; set => Set(ref selected_craft, value); }
@@ -147,15 +148,23 @@ namespace SurvivalGT.ViewModels
         public void CraftChanged()
         {
             int num;
-            var inputs = selected_craft.Inputs;
-            MaxCount = inputs[0].Check(inputs[0].Count, selected_craft.Time);
-            for (int i = 1; i < inputs.Length; i++)
+            inputs = new CraftItem[selected_craft.Inputs.Length];
+            MaxCount = selected_craft.Inputs[0].Check(selected_craft.Inputs[0].Count, selected_craft.Time);
+            for (int i = 0; i < selected_craft.Inputs.Length; i++)
             {
-                ILoot loot = Player.Inventory[inputs[i].Item.Tag];
-                if (loot == null) loot = ItemFactory.GetItem(inputs[i].Item.Tag).GetLoot();
-                this.inputs[i] = new CraftItem(loot, inputs[i].Count);
-                num = loot.Check(inputs[i].Count, selected_craft.Time);
+                ILoot loot = Player.Inventory[selected_craft.Inputs[i].Item.Tag];
+                if (loot == null) loot = ItemFactory.GetItem(selected_craft.Inputs[i].Item.Tag).GetLoot();
+                inputs[i] = new CraftItem(loot, selected_craft.Inputs[i].Count);
+                num = loot.Check(selected_craft.Inputs[i].Count, selected_craft.Time);
                 if (MaxCount > num) MaxCount = num;
+            }
+        }
+
+        public void CraftCountChangeg()
+        {
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                inputs[0].Count = selected_craft.Inputs[0].Count * CraftCount;
             }
         }
     }

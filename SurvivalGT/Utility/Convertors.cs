@@ -134,4 +134,18 @@ namespace SurvivalGT.Utility
             return value;
         }
     }
+
+    class OptionCountConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            CraftItem item = (CraftItem)value;
+            if(item.Loot is )
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

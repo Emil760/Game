@@ -136,8 +136,9 @@ namespace SurvivalGT.Models
         public override int Check(int times = 1, int time = 0)
         {
             int durs = 0;
-            foreach (var @break in breaks)
-                durs += @break;
+            if (breaks != null)
+                foreach (var @break in breaks)
+                    durs += @break;
             return durs / times;
         }
 
@@ -193,23 +194,26 @@ namespace SurvivalGT.Models
         {
             int num = 0, index = 0;
             bool ok;
-            int[] spoils = new int[this.spoils.Count];
-            this.spoils.CopyTo(spoils, 0);
-            for (int i = 0; i < spoils.Length / times; i++)
+            if (spoils != null)
             {
-                for (int j = 0; j < times; j++)
+                int[] spoils = new int[this.spoils.Count];
+                this.spoils.CopyTo(spoils, 0);
+                for (int i = 0; i < spoils.Length / times; i++)
                 {
-                    ok = false;
-                    for (int k = 0; k < spoils.Length; k++)
+                    for (int j = 0; j < times; j++)
                     {
-                        if (spoils[k] > time && spoils[index] <= spoils[k])
+                        ok = false;
+                        for (int k = 0; k < spoils.Length; k++)
                         {
-                            index = k;
-                            ok = true;
+                            if (spoils[k] > time && spoils[index] <= spoils[k])
+                            {
+                                index = k;
+                                ok = true;
+                            }
                         }
+                        if (!ok) return num;
+                        spoils[index] = 0;
                     }
-                    if (!ok) return num;
-                    spoils[index] = 0;
                 }
             }
             return num;
@@ -254,8 +258,9 @@ namespace SurvivalGT.Models
         public int GetCountUse()
         {
             int num = 0;
-            foreach (var option in options)
-                num += option.CountUse;
+            if (options != null)
+                foreach (var option in options)
+                    num += option.CountUse;
             return num;
         }
 

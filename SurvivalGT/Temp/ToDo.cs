@@ -11,6 +11,6 @@
     //crafter make not static class
     //public or private is_locked and is_active in Craft class
     //when changing craft count tools count shows not correctly
-    //level up make load from json 
-
+    //level up make load from json
+    //slider value stackoverflow
 }
