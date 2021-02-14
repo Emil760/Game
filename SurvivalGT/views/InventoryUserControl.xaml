@@ -10,9 +10,10 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/WindowResources\DropTemplate.xaml"/>
                 <ResourceDictionary Source="/WindowResources\CategoryButtonTemplate.xaml"/>
                 <ResourceDictionary Source="/WindowResources\ListViewInventoryTemplate.xaml"/>
+                <ResourceDictionary Source="/WindowResources\DropButton.xaml"/>
+                <ResourceDictionary Source="/WindowResources\LootSlider.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="EquipmentStyle" TargetType="Button">

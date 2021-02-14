@@ -25,8 +25,7 @@ namespace SurvivalGT.ViewModels
         {
             Player = Player.Instance;
             Crafter = new Crafter();
-
-            CraftTime = 154;
+            crafter.MaxCount = 143;
 
             crafts = new ObservableCollection<Craft>();
             foreach (var item in crafter.Crafts)

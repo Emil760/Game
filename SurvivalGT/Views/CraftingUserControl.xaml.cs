@@ -1,5 +1,4 @@
-﻿using SurvivalGT.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SurvivalGT.Views
 {
@@ -11,7 +10,7 @@ namespace SurvivalGT.Views
         public CraftingUserControl()
         {
             InitializeComponent();
-            DataContext = new CraftViewModel();
+            DataContext = new ViewModels.CraftViewModel();
         }
     }
 }
